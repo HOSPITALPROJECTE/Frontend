@@ -1,0 +1,147 @@
+
+/* BACKGROUND STYLE */
+#overflow_style
+{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 2;
+}
+#overflow_style::before,
+#overflow_style::after
+{
+    content: '';
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: translate(-50%, -50%);
+    height: 300px;
+    width: 300px;
+}
+#overflow_style.estiu::before{
+    top: 47vh;
+    left: 20vw;
+    background-image: url('../../../../assets/img/brch_estiu.png');
+    background-size: 450px;}
+#overflow_style.estiu::after{
+    top: 73vh;
+    left: 86vw;
+    background-image: url('../../../../assets/img/brch_estiu.png');
+    background-size: 300px;
+    transform: translate(-50%, -50%) rotate(137deg);}
+#overflow_style.tardor::before{
+    top: 75vh;
+    left: 24vw;
+    background-image: url('../../../../assets/img/brch_tardor.png');
+    background-size: 220px;
+    transform: translate(-50%, -50%) rotate(16deg);}
+#overflow_style.tardor::after{
+    top: 48vh;
+    left: 83.5vw;
+    background-image: url('../../../../assets/img/brch_tardor.png');
+    background-size: 220px;
+    transform: translate(-50%, -50%) scaleX(-1) rotate(30deg);}
+/* BODY */
+.legend_item:nth-child(1) .color{background: var(--color-green);}
+.legend_item:nth-child(2) .color{background: var(--color-blue);}
+.legend_item:nth-child(3) .color{background: var(--color-grey);}
+
+#change_month
+{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(26px - .5em);
+    height: 5vh;
+    width: 100vw;
+    padding-bottom: 1vh;
+    margin-bottom: 3vh;
+    z-index: 5;
+}
+#change_month::before
+{
+    content: '';
+    position: absolute;
+    width: 48vw;
+    height: 1px;
+    background-color: var(--color-black);
+    bottom: 0;
+    opacity: .2;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#change_month h4{color:var(--color-black); text-transform: uppercase;}
+#change_month i
+{
+    font-size: 1.6em;
+    color:var(--color-green);
+    padding: 0 .5em;
+}
+#calendar
+{
+    width: 85%;
+    background: rgba(255,255,255,93%);
+    border-radius: 30px;
+    padding: 1em;
+    box-shadow: 0px 0px 10px var(--color-shadow);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 5;
+}
+.calendar_grid
+{
+    position: relative;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 5px;
+}
+.calendar_grid:nth-child(1)::before 
+{
+    content: '';
+    position: absolute;
+    bottom: .3em;
+    width: 100%;
+    height: 1px;
+    background: var(--color-grey);
+    opacity: .6;
+}
+.calendar_grid > h6{text-align: center;padding-bottom: 1em;}
+.calendar_grid .day
+{
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.day.festivo
+{
+    background-color: var(--color-grey);
+    border: 3px solid white;
+    border-radius: 50%;
+    box-shadow: 0px 3px 6px var(--color-shadow);
+}
+.day.assigned{background-color: var(--color-green);}
+.day.applyed{background-color: var(--color-blue);}
+
+
+#viewAllMonths
+{
+    position: absolute;
+    display: flex;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    bottom: 5.5em;
+    bottom: 0;
+    z-index: 8;
+}

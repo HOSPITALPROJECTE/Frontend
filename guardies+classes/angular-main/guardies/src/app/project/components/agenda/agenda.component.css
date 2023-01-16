@@ -1,0 +1,188 @@
+/* HEADER */
+header > div
+{
+    margin-top: 1vh;
+    display: flex;
+    gap: 24px;
+}
+header > div > h3
+{
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 1.1em;
+    color: #15151580;
+}
+header > div > h3.active{color:#151515}
+
+/* LLEGENDA */
+.legend_item:nth-child(1) .color {background: var(--color-violet);}
+.legend_item:nth-child(2) .color {background: var(--color-green);}
+.legend_item:nth-child(3) .color {background: var(--color-blue);}
+
+
+/* AGENDA */
+#agenda_box
+{
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.agendaMonth
+{
+    position: relative;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    padding: 40px 0;
+}
+.agendaMonth::before
+{
+    content: attr(month-data);
+    color: var(--color-grey);
+    color: #707070;
+    text-transform: capitalize;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.agendaMonth::after 
+{
+    content: '';
+    position: absolute;
+    top: 26px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-grey);
+}
+.day
+{
+    position: relative;
+    width: 100%;
+    background: white;
+    box-shadow: 0px 0px 12px var(--color-shadow);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.day::after
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 8px;
+    background-color: var(--color-green);
+}
+.day[status-data='assignada']::after{background-color: var(--color-violet);}
+.day[status-data='prioritat']::after{background-color: var(--color-blue);}
+
+.day:not([status-data='assignada']) .dayAction
+{
+    position: absolute;
+    padding: 4px 16px;
+    border-bottom-left-radius: 5px;
+    top: 0;
+    right: 0;
+    font-size: .9em;
+    color: var(--color-red);
+}
+.day[status-data='assignada'] .dayAction{display: none;}
+
+.day > .num
+{
+    font-size: 1.8em;
+    font-weight: 600;
+    width: 20%;
+    text-align: center;
+    color: #151515;
+}
+.day > .place{padding-left: .2em; color: #151515;}
+.day > .place > div{display: flex; align-items: baseline;gap: 10px;}
+.day > .place h3{font-size: 1em;}
+.day > .place label{font-size: .8em; color:#707070}
+.day > .place > p{font-size: .9em;}
+
+#confirm_window
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 7;
+    background: rgba(255,255,255,0.8);
+    background: #DEE1E680;
+    background: #f9f9f980;
+    backdrop-filter: blur(1px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#confirm_window.hide{display: none !important;}
+#window_box
+{
+    width: 85%;
+    background:white;
+    box-shadow: 3px 3px 20px var(--color-shadow);
+    box-shadow: 3px 3px 20px #70707080;
+    padding: 20px;
+    border-radius: 15px;
+}
+#window_box h2
+{
+    text-transform: uppercase;
+    font-size: 1em;
+}
+#window_box .data
+{
+    display: grid;
+    padding: 16px 0;
+    justify-content: center;
+    width: 100%;
+    grid-template-columns: 35% 45%;
+}
+#window_box .data label
+{
+    text-transform: lowercase;
+    color: #707070;
+    font-size: .9em;
+}
+#window_box .data p
+{
+    text-transform: capitalize;
+    color: #151515;
+    font-size: .9em;
+    text-align: right;
+}
+
+#buttons
+{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    padding-top: 10px;
+    gap:12px
+}
+.btn_cancel
+{
+    padding: 5px 10px;
+    border: 1px solid #151515;
+    border-radius: 5px;
+    background: none;
+}
+.btn_eliminar
+{
+    border: none;
+    padding: 5px 10px;
+    background-color: var(--color-red);
+    color:white;
+    border-radius: 5px;
+}
