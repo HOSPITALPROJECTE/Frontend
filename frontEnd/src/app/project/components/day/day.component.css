@@ -1,0 +1,103 @@
+.legend_item:nth-child(1) .color{background-color: var(--color-blue);}
+.legend_item:nth-child(2) .color{background-color: var(--color-green);}
+#unitats
+{
+    width: 100%;
+    display: flex;
+    padding-top: .5em;
+    flex-direction: column;
+    align-items: center;
+    gap:1.5em;
+    margin-bottom: 12vh;
+}
+.unitat_box
+{
+    position: relative;
+    width: 85%;
+    background: #FFF;
+    box-shadow: 3px 3px 6px var(--color-shadow);
+
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+
+    transition: .3s;
+}
+.unitat_box::before
+{
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 100%;
+    background-color: var(--color-green);
+    left: 0;
+    top: 0;
+}
+.unitat_box.inscrito::before{background-color: var(--color-blue);}
+.unitat
+{
+    position: relative;
+    display: grid;
+    grid-template-columns: 36% 64%;
+    align-items: center;
+    height: calc(4.25em - 15px * 2);
+}
+.unitat > h1
+{
+    padding-left: 10px;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+.unitat > h3
+{
+    font-size: 1em;
+    font-weight: 400;
+}
+.unitat_data
+{
+    height: 0;
+    overflow: hidden;
+    transition: .3s;
+}
+.unitat_box.active .unitat_data{ height: 25vh; padding: .5em;}
+
+.buttons
+{
+    position: relative;
+    display: inline-block;
+}
+.buttons > input
+{
+    position: absolute;
+    appearance: none;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.buttons > button 
+{
+    border: 1px solid var(--color-grey);
+    background: transparent;
+    width: 5em;
+    height: 2em;
+    border-radius: 30px;
+    margin: 0 2px;
+}
+.buttons:has(input:checked) button:nth-child(3){border: 2px solid var(--color-green);}
+.buttons:has(input:not(:checked)) button:nth-child(2){border: 2px solid var(--color-green);}
+
+.unitat_data:has(.buttons input:checked) .torn_mati{display: none;}
+.unitat_data:has(.buttons input:not(:checked)) .torn_tarda{display: none;}
+.info
+{
+    padding: 1.2em 0;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 5px;
+}
+.actions
+{
+    display: flex;
+    gap: 10px;
+}

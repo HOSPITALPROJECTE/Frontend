@@ -1,0 +1,49 @@
+<header>
+    <h1>CALENDARI</h1>
+    <p>Diumenge, 16 Abril 2023</p>
+</header>
+
+<section id="body">
+    <section id="color_legend">
+        <div class="legend_item">
+            <div class="color"></div>
+            <h5>apuntades</h5>
+        </div>
+        <div class="legend_item">
+            <div class="color"></div>
+            <h5>disponibles</h5>
+        </div>
+    </section>
+    <div id="unitats">
+        <div *ngFor="let unitat of this.unitats" class="unitat_box" [ngClass]="{'inscrito': unitat[2][3]==1 || unitat[3][3]==1}">
+            <div class="unitat">
+                <h1>{{unitat[0]}}</h1>
+                <h3>{{unitat[1]}}</h3>
+            </div>
+            <div class="unitat_data">
+                <div class="buttons">
+                    <input type="checkbox">
+                    <button>MATI</button>
+                    <button>TARDA</button>
+                </div>
+                <div class="info torn_mati">
+                    <p>Places</p>
+                    <p>{{unitat[2][1]}}</p>
+                    <p>Inscripcions</p>
+                    <p>{{unitat[2][2]}}</p>
+                </div>
+                <div class="info torn_tarda">
+                    <p>Places</p>
+                    <p>{{unitat[3][1]}}</p>
+                    <p>Inscripcions</p>
+                    <p>{{unitat[3][2]}}</p>
+                </div>
+                <div class="actions">
+                    <button class="btn_primary">Inscriure'm</button>
+                    <button class="btn_secondary">cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="exit" (click)="goToMonth()"></div>
+</section>
