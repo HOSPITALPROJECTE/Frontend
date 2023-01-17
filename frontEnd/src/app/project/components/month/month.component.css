@@ -42,6 +42,32 @@
     background-image: url('../../../../assets/img/brch_tardor.png');
     background-size: 220px;
     transform: translate(-50%, -50%) scaleX(-1) rotate(30deg);}
+    #overflow_style.primavera::before{
+        top: 75vh;
+        left: 20vw;
+        background-image: url('../../../../assets/img/brch_primavera.png');
+        background-size: 220px;
+        transform: translate(-50%, -50%) rotate(16deg);
+    }
+    #overflow_style.primavera::after{
+        top: 38vh;
+        left: 80vw;
+        background-image: url('../../../../assets/img/brch_primavera.png');
+        background-size: 220px;
+        transform: translate(-50%, -50%) scaleX(-1) rotate(30deg);
+    }
+    #overflow_style.hivern::before{
+        top: 45vh;
+        left: 15vw;
+        background-image: url('../../../../assets/img/brch_hivern.png');
+        background-size: 180px;
+        transform: translate(-50%, -50%) rotate(209deg);}
+    #overflow_style.hivern::after{
+        top: 70vh;
+        left: 90vw;
+        background-image: url('../../../../assets/img/brch_hivern.png');
+        background-size: 180px;
+        transform: translate(-50%, -50%) scaleY(-1) rotate(1deg);}
 /* BODY */
 .legend_item:nth-child(1) .color{background: var(--color-green);}
 .legend_item:nth-child(2) .color{background: var(--color-blue);}

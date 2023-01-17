@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef} from '@angular/core';
 import { Router } from '@angular/router';
 import { Month } from '../../model/entities/implementations/Month';
 
@@ -10,8 +10,8 @@ import { Month } from '../../model/entities/implementations/Month';
 export class MonthComponent implements AfterViewInit {
   month:Month;
 
-  constructor(private router: Router,private elementRef: ElementRef) { 
-    this.month = new Month('2022-6');
+  constructor(private router: Router,private elementRef: ElementRef) {
+    this.month = new Month('2022-12');
   }
 
   // equivalent a window.onload
@@ -28,7 +28,11 @@ export class MonthComponent implements AfterViewInit {
     else if (season == 3) return 'estiu';
     else return 'tardor';
   }
-  addGuardies(){
+  /* PENDENT DE MODIFICAR addGuardies
+  Ha d'agafar les guardes actives/apuntades per treballador
+  No les ha de posar per numero de dia sino per data
+  */
+  addGuardies(){ 
     let dias = this.elementRef.nativeElement.querySelectorAll('.day');
     for (let dia = 0; dia < dias.length; dia++) {
       if(this.month.days[dia].status == 1) dias[dia].classList.add('festivo','applyed')
@@ -51,7 +55,12 @@ export class MonthComponent implements AfterViewInit {
       let sumar = true;
       if(b == boto[0]) sumar = false;
       this.month = new Month(this.setNewMonth(sumar));
-    }));
+
+      setTimeout(() => { // funcio asyncrona per afegir events als nous elements
+        this.addGuardies(); // afegeix les guardies al mes
+        this.addClickEvent_Guardies(); // onclik -> guardia
+      }, 0);
+    }))
   }
   setNewMonth(sumar:boolean){
     let any = parseInt(this.month.id.substring(0,4));
