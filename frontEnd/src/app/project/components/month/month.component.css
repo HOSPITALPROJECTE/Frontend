@@ -177,3 +177,52 @@
     bottom: 0;
     z-index: 8;
 }
+
+#btn_allMonths
+{
+    margin: 3vh 0;
+    padding: .5em 1.5em;
+    background: var(--color-green-light);
+    border-bottom:4px solid var(--color-green);
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px var(--color-shadow);
+
+    text-align: center;
+    font-size: .9em;
+    z-index: 8;
+}
+
+#allMonths_box
+{
+    position: fixed;
+    top: 14vh;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 14vh - 10vh);
+    display: none;
+    z-index: 9;
+}
+#allMonths_box.active{display: flex;}
+#allMonths_box .month_list
+{
+    height: 100%;
+    width: 45vw;
+    padding: 2em .5em;
+    background: var(--color-green-light);
+    overflow-Y: scroll;
+}
+#allMonths_box .month_list .month
+{
+    padding: .5em 1em;
+    border-bottom: 1px solid var(--color-shadow);
+}
+#allMonths_box .month_list .month h1{font-size: 1em; height: 1.1em;}
+#allMonths_box .month_list .month p{font-size: .8em;}
+
+.exitMonths
+{
+    height: 100%;
+    width: 55vw;
+    background: var(--color-shadow);
+    backdrop-filter: blur(1px);
+}
