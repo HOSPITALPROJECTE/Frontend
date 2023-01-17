@@ -56,7 +56,6 @@ export class MonthComponent implements AfterViewInit {
   setNewMonth(sumar:boolean){
     let any = parseInt(this.month.id.substring(0,4));
     let mes = parseInt(this.month.id.substring(5));
-    console.log(any.toString()+'-'+mes.toString());
     if(sumar){
       // sumar mes
       mes = mes + 1;
@@ -72,7 +71,6 @@ export class MonthComponent implements AfterViewInit {
         any = any - 1
       }
     }
-    console.log(any.toString()+'-'+mes.toString())
     return any.toString()+'-'+mes.toString();
   }
 
