@@ -8,6 +8,7 @@ import { NavbarComponent } from './project/components/navbar/navbar.component';
 import { DayComponent } from './project/components/day/day.component';
 import { AgendaComponent } from './project/components/agenda/agenda.component';
 import { HistorialComponent } from './project/components/historial/historial.component';
+import { LoginComponent } from './project/components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HistorialComponent } from './project/components/historial/historial.com
     NavbarComponent,
     DayComponent,
     AgendaComponent,
-    HistorialComponent
+    HistorialComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -5,8 +5,10 @@ import { MonthComponent } from './project/components/month/month.component';
 import { DayComponent } from './project/components/day/day.component';
 import { AgendaComponent } from './project/components/agenda/agenda.component';
 import { HistorialComponent } from './project/components/historial/historial.component';
+import { LoginComponent } from './project/components/login/login.component';
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   { path: 'month', component: MonthComponent },
   { path: 'day', component: DayComponent },
   { path: 'agenda', component: AgendaComponent },

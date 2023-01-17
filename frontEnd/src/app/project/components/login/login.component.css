@@ -1,0 +1,42 @@
+.logo{
+    position: absolute;
+    top: 17%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.inputs{
+    position: absolute;
+    top:57%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button{
+    width:100%;
+    border-radius: 20px;
+    font-size:15px;
+}
+
+input{
+    width: 130%;
+}
+label{
+    font-size:80%;
+}
+.loginbackground{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../../../assets/img/fondo_pantalla.png") ;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}   
