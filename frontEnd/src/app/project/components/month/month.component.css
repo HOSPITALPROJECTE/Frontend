@@ -72,7 +72,13 @@
     left: 50%;
     transform: translateX(-50%);
 }
-#change_month h4{color:var(--color-black); text-transform: uppercase;}
+#change_month h4
+{
+    color:var(--color-black); 
+    text-transform: uppercase; 
+    width: 100px;
+    text-align: center;
+}
 #change_month i
 {
     font-size: 1.6em;
