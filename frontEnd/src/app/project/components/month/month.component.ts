@@ -16,9 +16,10 @@ export class MonthComponent implements AfterViewInit {
 
   // equivalent a window.onload
   ngAfterViewInit() {
-    this.addGuardies();
-    this.addClickEvent_Guardies();
-    this.showAllMonths();
+    this.addGuardies(); // afegeix les guardies al mes
+    this.addClickEvent_Guardies(); // onclik -> guardia
+    this.showAllMonths(); // No esta funcionant
+    this.onChangeMonth(); //cambiar mes
   }
 
   setClassSeason(season:number){
@@ -42,6 +43,39 @@ export class MonthComponent implements AfterViewInit {
       else months?.classList.add('active')
     });
   }
+
+  onChangeMonth(){
+    let boto = document.querySelectorAll('#change_month > i');
+    boto.forEach(b => b.addEventListener('click', () => {
+      // comprovo si es mou un mes endavant o enrrera
+      let sumar = true;
+      if(b == boto[0]) sumar = false;
+      this.month = new Month(this.setNewMonth(sumar));
+    }));
+  }
+  setNewMonth(sumar:boolean){
+    let any = parseInt(this.month.id.substring(0,4));
+    let mes = parseInt(this.month.id.substring(5));
+    console.log(any.toString()+'-'+mes.toString());
+    if(sumar){
+      // sumar mes
+      mes = mes + 1;
+      if(mes == 13){
+        mes = 1;
+        any = any + 1
+      }
+    }else{
+      // restar mes
+      mes = mes -1;
+      if(mes == 0){
+        mes = 12;
+        any = any - 1
+      }
+    }
+    console.log(any.toString()+'-'+mes.toString())
+    return any.toString()+'-'+mes.toString();
+  }
+
   /* NAVEGACIO */
   addClickEvent_Guardies(){
     let elementos = this.elementRef.nativeElement.querySelectorAll('.festivo');
