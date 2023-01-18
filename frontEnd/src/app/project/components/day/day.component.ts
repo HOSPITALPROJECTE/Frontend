@@ -24,7 +24,8 @@ export class DayComponent implements AfterViewInit {
 
   // equivalent a js window.onload
   ngAfterViewInit(){
-    this.selectUnitiOnClick();
+    this.selectUnitiOnClick(); // desplegar una unitat
+    this.inscriveGuardia();// inscriure's a una guardia
   }
   selectUnitiOnClick() {
     let elementos = this.elementRef.nativeElement.querySelectorAll('.unitat');
@@ -35,6 +36,14 @@ export class DayComponent implements AfterViewInit {
         this.updateElementClass(elementos[i].parentNode);
       });
     }
+
+    this.cancelInscription(); // cancelar.click => plegar una unitat
+  }
+  cancelInscription() {
+    let btn = document.querySelector('.btn_secondary')
+    btn?.addEventListener('click', () => {
+      btn?.parentElement?.parentElement?.parentElement?.classList.remove('active');
+    })
   }
   updateElementClass(element: any) {
     if (element.classList.contains('active')){element.classList.remove('active');}
@@ -47,6 +56,11 @@ export class DayComponent implements AfterViewInit {
         elementos[i].parentNode.classList.remove('active')
       }
     }
+  }
+  inscriveGuardia() {
+    document.querySelector('.btn_primary')?.addEventListener('click', () => {
+      //TODO: INSCRIURE TREBALLADOR A GUARDIA
+    })
   }
 }
 

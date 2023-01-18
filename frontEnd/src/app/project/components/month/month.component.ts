@@ -21,12 +21,12 @@ export class MonthComponent implements AfterViewInit {
   }
   // equivalent a window.onload
   ngAfterViewInit() {
-    this.addFuncionalities();
-    this.showAllMonths(); // No esta funcionant
+    this.addFuncionalities(); // funcio asyncrona per afegir events al DOM
+    this.showAllMonths(); // Permet escollir un mes qualsevol
     this.onChangeMonth(); //cambiar mes
   }
   addFuncionalities(){
-    setTimeout(() => { // funcio asyncrona per afegir events als nous elements
+    setTimeout(() => {
       this.addGuardies(); // afegeix les guardies al mes
       this.addClickEvent_Guardies(); // onclik -> guardia
     }, 0);
