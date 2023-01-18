@@ -167,7 +167,7 @@ header > div > h3.active{color:#151515}
 {
     width: 100%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     padding-top: 10px;
     gap:12px
 }

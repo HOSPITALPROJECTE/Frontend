@@ -4,10 +4,10 @@
         <div class="inputs">
             <form>
                 <label for="username">Usuari:</label>
-                <input type="text" id="username" name="username" placeholder="nº"><br><br><br>
+                <input type="text" placeholder="nº" [(ngModel)]="username"  name="username" required=""br><br><br>
                 <label for="password">Contrasenya:</label>
-                <input type="password" id="password" name="password" placeholder="contrasenya"><br><br><br><br>
-                <button>Iniciar Sessió</button>
+                <input type="text" placeholder="contrasenya" [(ngModel)]="password"  name="password" required><br><br><br><br>
+                <button type="submit" (click)="login()">Iniciar Sessió</button>
             </form>
         </div>
     </div>   
