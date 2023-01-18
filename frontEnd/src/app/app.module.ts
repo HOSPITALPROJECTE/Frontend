@@ -20,12 +20,10 @@ import { AdminComponent } from './project/components/Admin/admin/admin.component
     DayComponent,
     AgendaComponent,
     HistorialComponent,
-
     LoginComponent,
-
     AdminComponent
-
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule
