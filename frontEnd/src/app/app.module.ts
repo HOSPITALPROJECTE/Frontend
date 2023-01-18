@@ -8,7 +8,11 @@ import { NavbarComponent } from './project/components/navbar/navbar.component';
 import { DayComponent } from './project/components/day/day.component';
 import { AgendaComponent } from './project/components/agenda/agenda.component';
 import { HistorialComponent } from './project/components/historial/historial.component';
+<<<<<<< Updated upstream
 import { LoginComponent } from './project/components/login/login.component';
+=======
+import { AdminComponent } from './project/components/Admin/admin/admin.component';
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { LoginComponent } from './project/components/login/login.component';
     DayComponent,
     AgendaComponent,
     HistorialComponent,
+<<<<<<< Updated upstream
     LoginComponent
+=======
+    AdminComponent
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,

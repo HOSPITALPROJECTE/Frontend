@@ -1,0 +1,103 @@
+#container {
+    margin-top: 20vh;
+    margin-bottom: 10%;
+    width:95%;
+    margin-left: 0%;
+    display: flex;    
+    align-content: space-around;
+    position:relative;
+    flex-wrap: wrap;
+
+}
+
+  #subcontainer {
+    width: 100%;
+    margin: 10%;
+    margin-top: 3%;
+
+  }
+
+  #opcio{    
+    background-color: var(--color-green);
+    padding: 2%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: white;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    
+  }
+
+  #columna {
+    width: 50%;
+  }
+
+  .menu {
+    width: 100%;
+    height: 400px;
+    background-color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    margin-bottom: 50px;
+  }
+
+  .espaiador {
+    height: 130px;
+  }
+
+  #editar {
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    font-size: 1.5em;
+    margin-top: 5vh;
+    margin-left: 4vh;
+    background-color: var(--color-green);
+    border-color: var(--color-green);
+    border-radius: 10px;
+    color: white;
+
+  }
+
+  #borrar {
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    font-size: 1.5em;
+    margin-top: 5vh;
+    margin-left: 2vh;
+    background-color: var(--color-red);
+    border-color: var(--color-red);
+    border-radius: 10px;
+    color: white;
+
+  }
+
+  .llista {
+    width: 80%;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    height: 300px;
+    border-bottom-right-radius: 10px;
+
+  }
+
+  .retorna {
+    position: fixed;
+    bottom: 11%;
+    left: 80%;
+    color: white;    
+    border-radius: 100px;
+    padding: 10px;
+    background-color: var(--color-green);
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+  }

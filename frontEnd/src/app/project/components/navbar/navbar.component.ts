@@ -18,4 +18,7 @@ export class NavbarComponent implements OnInit {
   goToAgenda(){
     this.router.navigate(['/agenda']);
   }
+  goToAdmin(){
+    this.router.navigate(['/admin']);
+  }
 }
