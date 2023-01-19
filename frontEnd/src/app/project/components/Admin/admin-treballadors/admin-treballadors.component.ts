@@ -36,13 +36,20 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
     }))
   }
   removeSelecions(treballadors:NodeListOf<Element>){
-    treballadors.forEach(t => t.classList.remove('active'));
+    treballadors.forEach(t => {
+      t.classList.remove('active');
+      document.querySelector('#exit')?.classList.remove('hide');
+    });
   }
   actionsWithTreballador(){
     document.querySelector('.btns')?.classList.add('active');
+    document.querySelector('#exit')?.classList.add('hide');
   }
 
   btnsActions(){
+    this.btnSecondary();
+  }
+  btnSecondary(){
     document.querySelector('.btn_secondary')?.addEventListener('click', () => {
       document.querySelector('.btns')?.classList.remove('active');
       this.removeSelecions(document.querySelectorAll('.treballador'));

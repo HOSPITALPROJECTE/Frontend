@@ -162,3 +162,9 @@
   transition: .3s;
 }
 .btns.active{bottom: 14vh;}
+
+#exit.hide
+{
+  top: 100vh !important;
+  z-index: 2;
+}
