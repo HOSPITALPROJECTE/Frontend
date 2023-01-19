@@ -10,6 +10,7 @@ import { AgendaComponent } from './project/components/agenda/agenda.component';
 import { HistorialComponent } from './project/components/historial/historial.component';
 import { LoginComponent } from './project/components/login/login.component';
 import { AdminComponent } from './project/components/Admin/admin/admin.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { AdminComponent } from './project/components/Admin/admin/admin.component
   
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

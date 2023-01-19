@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ATreballador } from 'src/app/project/services/api/treballador/ATreballador';
 
 @Component({
   selector: 'app-admin-treballadors',
@@ -10,10 +11,23 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
   filter_name: string = '';
   filter_dni: string = '';
   filter_select!: string;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private httpClient:ATreballador) {
+    console.log('inici');
+    this.httpClient.getTreballador().subscribe(
+    data => {
+      console.log("Dins subscribe");
+      console.log(data);
+    }
+    ); 
+  }
 
   ngOnInit(): void {
   }
+
+
+  /******************
+     VISUAL ACTIONS 
+  *******************/
 
   ngAfterViewInit(): void {
     this.setFilterSelect()
