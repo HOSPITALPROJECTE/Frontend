@@ -102,16 +102,23 @@
     border-width: 1px;
   }*/
 
-.filtres{padding: 1.5em; display: flex; gap: 5px;}
+.filtres{
+  padding: 1.5em; 
+  display: flex; 
+  gap: 5px; 
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .filtres input{padding-left: 5px; position: relative;}
 .filtres input[name='dni']{width: 100px;}
 .filtres input[name='nom']{width: 120px;}
 .filtres button
 {
-  padding: 0 .2em;
+  padding: .1em .4em;
   background: var(--color-green-light);
   border: none;
 }
+.filtres button:active{background: var(--color-green);}
 
 
 .treballadors_box
@@ -123,13 +130,13 @@
 }
 .treballadors_box li{display: flex;}
 .tr_header{background: var(--color-grey); border-top-left-radius: 5px;border-top-right-radius: 5px;}
-.tr_header p{text-align: center; font-size: .95em;}
+.tr_header p{text-align: center; font-size: .9em;}
 
 .treballador{border-bottom: 1px solid var(--color-grey);}
 .treballador p
 {
   padding-left: 5px;
-  font-size: .9em;
+  font-size: .85em;
   border-left: 1px solid var(--color-grey);
   line-height: 24px;
   height: 24px;
@@ -143,6 +150,7 @@
 .treballadors_box p:nth-child(3),.treballadors_box p:nth-child(4){text-align: center;}
 
 .treballador.active{background: var(--color-green-light);}
+.treballador.hide{display: none !important;}
 
 .btns
 {
