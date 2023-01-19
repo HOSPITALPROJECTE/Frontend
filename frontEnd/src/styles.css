@@ -22,6 +22,7 @@
     font-family: "Poppins", sans-serif;
 }
 body{overflow-x: hidden;}
+li{list-style: none;}
 /****************************************************************
                             ELEMENTS
 ****************************************************************/
@@ -41,6 +42,7 @@ body{overflow-x: hidden;}
     padding: .25em 1em;
     border: 2px solid var(--color-green);
     background: transparent;
+    background: var(--color-body);
     color:var(--color-green)
 }
 
@@ -78,7 +80,7 @@ header::before
     background-size: 90px;
     background-repeat: no-repeat;
 }
-header h1{font-size: 1.5em; color: #f9f9f9}
+header h1{font-size: 1.5em; color: #f9f9f9; text-transform: uppercase;}
 header p{font-size: 1.1em;color:#f9f9f9}
 
 /****************************************************************
@@ -137,12 +139,15 @@ header p{font-size: 1.1em;color:#f9f9f9}
     position: fixed;
     top: 80vh;
     height: 50px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 50px;
     border: 3px solid white;;
     border-radius: 50%;
     background: var(--color-green);
     box-shadow: 0px 3px 6px var(--color-shadow);
     z-index: 10;
+    transition: .3s;
 }
 #exit::before,
 #exit::after

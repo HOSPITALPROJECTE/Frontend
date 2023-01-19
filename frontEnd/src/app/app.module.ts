@@ -11,6 +11,7 @@ import { HistorialComponent } from './project/components/historial/historial.com
 import { LoginComponent } from './project/components/login/login.component';
 import { AdminComponent } from './project/components/Admin/admin/admin.component';
 import { AdminPlantillaguardiesComponent } from './project/components/Admin/admin-plantillaguardies/admin-plantillaguardies.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AdminPlantillaguardiesComponent } from './project/components/Admin/admi
   
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
