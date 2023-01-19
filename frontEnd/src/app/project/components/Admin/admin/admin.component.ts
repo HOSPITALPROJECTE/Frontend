@@ -37,6 +37,10 @@ export class AdminComponent {
     goToAdminFestius(){
       this.router.navigate(['/admin-festius']);
     }
+
+    goToAdminPlantillaGuardies(){
+      this.router.navigate(['/admin-plantillaguardies']);
+    }
     
   
 

@@ -10,6 +10,7 @@ import { AgendaComponent } from './project/components/agenda/agenda.component';
 import { HistorialComponent } from './project/components/historial/historial.component';
 import { LoginComponent } from './project/components/login/login.component';
 import { AdminComponent } from './project/components/Admin/admin/admin.component';
+import { AdminPlantillaguardiesComponent } from './project/components/Admin/admin-plantillaguardies/admin-plantillaguardies.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AdminComponent } from './project/components/Admin/admin/admin.component
     AgendaComponent,
     HistorialComponent,
     LoginComponent,
-    AdminComponent
+    AdminComponent,
+    AdminPlantillaguardiesComponent
   ],
   
   imports: [

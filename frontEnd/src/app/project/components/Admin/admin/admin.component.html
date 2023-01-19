@@ -5,11 +5,20 @@
 <body>
  <div id="container">
     <div id="subcontainer">
-        <div id="opcio" (click)="goToAdminGuardies()" class="dropbtn">
+        <div id="opcio" (click)="toggleMenu()" class="dropbtn" style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
             <h1 style="margin-left: 10px;">Guardies</h1>    
     
-        </div>            
-    </div>
+        </div>    
+            <div class="menu" *ngIf="isMenuOpened">
+              <div class="columna">
+                <div id="dropdown" (click)="goToAdminGuardies()">> Guardies</div>
+                <div id="dropdown2" (click)="goToAdminPlantillaGuardies()">> Plantilla</div>    
+              </div>
+              <div class="columna">
+                
+              </div>         
+          </div>
+        </div>
 
         <div class="espaiador"></div>    
 
