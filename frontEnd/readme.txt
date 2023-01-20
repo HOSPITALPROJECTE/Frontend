@@ -1,0 +1,3 @@
+- npm install express
+- npm install mysql2
+- node authServer.js

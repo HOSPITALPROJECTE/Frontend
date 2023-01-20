@@ -2,12 +2,12 @@
     <div class="login">
         <div class="logo"><img src="../../../../assets/img/logo2.png" class="logoHospital"></div>
         <div class="inputs">
-            <form>
+            <form [formGroup]="this.formulari">
                 <label for="username">Usuari:</label>
-                <input type="text" placeholder="nº" [(ngModel)]="username"  name="username" required=""br><br><br>
+                <input type="text" placeholder="nº" name="noms" formControlName="noms" required><br><br><br>
                 <label for="password">Contrasenya:</label>
-                <input type="text" placeholder="contrasenya" [(ngModel)]="password"  name="password" required><br><br><br><br>
-                <button type="submit" (click)="login()">Iniciar Sessió</button>
+                <input type="text" placeholder="contrasenya" name="contrasenyes" formControlName="contrasenyes" required><br><br><br><br>
+                <button type="submit">Iniciar Sessió</button>
             </form>
         </div>
     </div>   

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +10,7 @@ import { DayComponent } from './project/components/day/day.component';
 import { AgendaComponent } from './project/components/agenda/agenda.component';
 import { HistorialComponent } from './project/components/historial/historial.component';
 import { LoginComponent } from './project/components/login/login.component';
-import { AuthenticationComponent } from './project/components/authentication/authentication.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,13 +20,14 @@ import { AuthenticationComponent } from './project/components/authentication/aut
     DayComponent,
     AgendaComponent,
     HistorialComponent,
-    LoginComponent,
-    AuthenticationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

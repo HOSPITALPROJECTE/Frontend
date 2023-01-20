@@ -1,14 +1,55 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AuthenticationComponent } from '../authentication/authentication.component';
+import { AuthServiceService } from '../auth-service.service';
 import { Router } from '@angular/router';
+import { FormGroup,FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent{
+export class LoginComponent implements OnInit{
+  formulari!:FormGroup;
+
+  constructor(private authService: AuthServiceService, private router: Router, private fb: FormBuilder) { }
+
+
+  login(noms: string, contrasenyes: string) {
+    this.authService.login(noms, contrasenyes).subscribe({
+      next: () =>{  },
+      error:(err:any)=>{
+        console.log("Error de subscribe");
+        console.log(err.error);
+      },
+      complete: ()=>{
+        this.router.navigate(['/navbar']).then(()=>
+        this.router.navigate(['/month']));
+    }
+    }
+)  };
+  ngOnInit() {
+    this.formulari=this.fb.group({
+      noms: [""], 
+      contrasenyes: [""]
+    })
+  }
+}
+  /*
+  username = '';
+  password = '';
+
+  constructor(private router: Router, private auth: AuthenticationComponent) {}
+
+  login() {
+    if (this.auth.login(this.username, this.password)) {
+      console.log('Inici de sessió correcte');
+      this.router.navigate(['/navbar']).then(()=>
+      this.router.navigate(['/month']));
+    } else {
+      console.log('Dades incorrectes');
+    }
+  }
+}
   /*public username!: string;
   public password!: string;
 
@@ -27,24 +68,6 @@ export class LoginComponent{
   }
 }
 */
-  
-  
-  username = '';
-  password = '';
-
-  constructor(private router: Router, private auth: AuthenticationComponent) {}
-
-  login() {
-    if (this.auth.login(this.username, this.password)) {
-      console.log('Inici de sessió correcte');
-      this.router.navigate(['/navbar']).then(()=>
-      this.router.navigate(['/month']));
-    } else {
-      console.log('Dades incorrectes');
-    }
-  }
-}
-
 
   
   
