@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, OnInit, ViewChild, AfterViewChecked } from '@angular/core';
 import { Router } from '@angular/router';
 import { ATreballador } from 'src/app/project/services/api/treballador/ATreballador';
 
@@ -7,7 +7,7 @@ import { ATreballador } from 'src/app/project/services/api/treballador/ATreballa
   templateUrl: './admin-treballadors.component.html',
   styleUrls: ['./admin-treballadors.component.css']
 })
-export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
+export class AdminTreballadorsComponent implements OnInit, AfterViewChecked {
   filter_name: string = '';
   filter_dni: string = '';
   filter_select!: string;
@@ -40,8 +40,8 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
      VISUAL ACTIONS 
   *******************/
 
-  ngAfterViewInit(): void {
-    console.log('aaaa')
+  ngAfterViewChecked(): void {
+    console.log(document.querySelectorAll('.treballador'))
     this.setFilterSelect() // agafa el valor del select
     this.selectTreballador(); // acció al seleccionar un treballador
     this.btnsActions(); // accions per treballador ex: veure guardies
