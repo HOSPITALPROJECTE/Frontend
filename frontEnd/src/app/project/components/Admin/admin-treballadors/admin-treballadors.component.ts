@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ATreballador } from 'src/app/project/services/api/treballador/ATreballador';
 
@@ -8,18 +8,28 @@ import { ATreballador } from 'src/app/project/services/api/treballador/ATreballa
   styleUrls: ['./admin-treballadors.component.css']
 })
 export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
+
+
   filter_name: string = '';
   filter_dni: string = '';
   filter_select!: string;
+
+  treballadors!:Array<any>
+  categories!:Array<any>
+
   constructor(private router: Router, private httpClient:ATreballador) {
-    console.log('inici');
     this.httpClient.getTreballador().subscribe(
     data => {
-      console.log("Dins subscribe");
-      console.log(data);
-    }
-    ); 
+      this.treballadors = data['resultat']['dades'];
+    }); 
+
+    this.httpClient.getCategories().subscribe(
+      data => {
+        this.categories = data['resultat']['dades'];
+        console.log(this.categories[0]);
+      }); 
   }
+
 
   ngOnInit(): void {
   }
@@ -30,15 +40,15 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
   *******************/
 
   ngAfterViewInit(): void {
-    this.setFilterSelect()
-    this.selectTreballador(); // acció al seleccionar un treballador
+    this.setFilterSelect() // agafa el valor del select
+    //this.selectTreballador(); // acció al seleccionar un treballador
     this.btnsActions(); // accions per treballador ex: veure guardies
     this.filterTable(); // filtratje de la taula
   }
   setFilterSelect(){
     let select = document.querySelector('select')?.value;
-    if (select!=null) this.filter_select = select;
-    else this.filter_select = '';
+    if (select!=null && select!='') this.filter_select = select;
+    else this.filter_select = 'Infermeria'
   }
   selectTreballador(){
     let treballadors =  document.querySelectorAll('.treballador');
@@ -72,13 +82,16 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
   filterTable(){
     let list = document.querySelectorAll('.treballador');
     document.querySelector('.filtres > button')?.addEventListener('click', () => {
+      console.log('a')
       this.filterElements(list);
     });
   }
   filterElements(list:NodeListOf<Element>){
+    console.log('b')
+    console.log(list);
     list.forEach(l => {
-      if(this.filterTrue(l))l.classList.remove('hide');
-      else l.classList.add('hide');
+      if(this.filterTrue(l)){l.classList.remove('hide'); console.log('ba')}
+      else {l.classList.add('hide'); console.log('ba');}
     });
   }
   filterTrue(element:Element){

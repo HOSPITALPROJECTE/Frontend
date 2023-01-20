@@ -39,9 +39,7 @@
         <input #dni (change)="setDniFilter(dni.value)" type="text" name='dni' placeholder="000000000A">
         <input #nom (change)="setNomFilter(nom.value)" type="text" name='nom' placeholder="Marc Grabulosa">
         <select #cat (change)="setSelectFilter(cat.value)">
-            <option>Infermer</option>
-            <option>Auxiliar</option>
-            <option>UCI</option>
+            <option *ngFor="let c of this.categories">{{c.nom}}</option>
         </select>
         <button>FILTRAR</button>
     </div>
@@ -53,78 +51,24 @@
                 <p name="cat">Cat.</p> 
                 <p name="guard">Guardies</p> 
             </li>
-            <li class="treballador">
-                <p name="dni">11111111A</p> 
-                <p name="nom">Treballador Cognom1 Cognom2</p> 
-                <p name="cat">Infermer</p> 
+            <li class='treballador' *ngFor="let t of this.treballadors" (click)="this.selectTreballador()">
+                <p name="dni">{{t.dni}}</p> 
+                <p name="nom">{{t.nom}}</p> 
+                <p name="cat">{{t.categoria}}</p> 
                 <p name="guard">21</p> 
             </li>
-            <li class="treballador">
-                <p name="dni">00000000A</p> 
-                <p name="nom">Treballador patata Cognom2</p> 
-                <p name="cat">Infermer</p> 
+            <!--<li class='treballador'>
+                <p name="dni">0</p> 
+                <p name="nom">a</p> 
+                <p name="cat">TCAI</p> 
                 <p name="guard">21</p> 
             </li>
-            <li class="treballador">
-                <p name="dni">00000000A</p> 
-                <p name="nom">hola Cognom1 Cognom2</p> 
-                <p name="cat">Infermer</p> 
+            <li class='treballador'>
+                <p name="dni">1</p> 
+                <p name="nom">b</p> 
+                <p name="cat">Infermeria</p> 
                 <p name="guard">21</p> 
-            </li>
-            <li class="treballador">
-                <p name="dni">00000000A</p> 
-                <p name="nom">Treballador Cognom1 tres</p> 
-                <p name="cat">UCI</p> 
-                <p name="guard">21</p> 
-            </li>
-            <li class="treballador">
-                <p name="dni">00000000A</p> 
-                <p name="nom">Treballador Cognom1 Cognom2</p> 
-                <p name="cat">Auxiliar</p> 
-                <p name="guard">21</p> 
-            </li>
-            <li class="treballador">
-                <p name="dni">00000000A</p> 
-                <p name="nom">Treballador Cognom1 Cognom2</p> 
-                <p name="cat">Infermer</p> 
-                <p name="guard">21</p> 
-            </li>
-            <li class="treballador">
-                <p name="dni">00000000A</p> 
-                <p name="nom">Treballador Cognom1 Cognom2</p> 
-                <p name="cat">Infermer</p> 
-                <p name="guard">21</p> 
-            </li>
-            <li class="treballador">
-                <p name="dni">00000000A</p> 
-                <p name="nom">Treballador Cognom1 Cognom2</p> 
-                <p name="cat">Infermer</p> 
-                <p name="guard">21</p> 
-            </li>
-            <li class="treballador">
-                <p name="dni">00000000A</p> 
-                <p name="nom">Treballador Cognom1 Cognom2</p> 
-                <p name="cat">Infermer</p> 
-                <p name="guard">21</p> 
-            </li>
-            <li class="treballador">
-                <p name="dni">00000000A</p> 
-                <p name="nom">Treballador Cognom1 Cognom2</p> 
-                <p name="cat">Infermer</p> 
-                <p name="guard">21</p> 
-            </li>
-            <li class="treballador">
-                <p name="dni">00000000A</p> 
-                <p name="nom">Treballador Cognom1 Cognom2</p> 
-                <p name="cat">Infermer</p> 
-                <p name="guard">21</p> 
-            </li>
-            <li class="treballador">
-                <p name="dni">00000000A</p> 
-                <p name="nom">Treballador Cognom1 Cognom2</p> 
-                <p name="cat">Infermer</p> 
-                <p name="guard">21</p> 
-            </li>
+            </li>-->
         </ul>
     </div>
     <div class="btns">
