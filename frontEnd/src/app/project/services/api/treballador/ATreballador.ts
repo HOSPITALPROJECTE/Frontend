@@ -12,11 +12,11 @@ export class ATreballador{
 
     getTreballador():Observable<any>{
         const requestOptions = this.createHeader();
-        return this.http.get('http://localhost:4000/api/user/treballadors');
+        return this.http.get('http://localhost:4000/api/data-access/treballadors');
     }
     getCategories():Observable<any>{
         const requestOptions = this.createHeader();
-        return this.http.get('http://localhost:4000/api/user/categories');
+        return this.http.get('http://localhost:4000/api/data-access/categories');
     }
 
     private createHeader(){
