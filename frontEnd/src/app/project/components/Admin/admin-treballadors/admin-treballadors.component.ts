@@ -8,8 +8,6 @@ import { ATreballador } from 'src/app/project/services/api/treballador/ATreballa
   styleUrls: ['./admin-treballadors.component.css']
 })
 export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
-
-
   filter_name: string = '';
   filter_dni: string = '';
   filter_select!: string;
@@ -22,7 +20,6 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
     data => {
       this.treballadors = data['resultat']['dades'];
     }); 
-
     this.httpClient.getCategories().subscribe(
       data => {
         this.categories = data['resultat']['dades'];
@@ -32,6 +29,10 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
+    this.setFilterSelect() // agafa el valor del select
+    this.selectTreballador(); // acció al seleccionar un treballador
+    this.btnsActions(); // accions per treballador ex: veure guardies
+    this.filterTable(); // filtratje de la taula
   }
 
 
@@ -40,10 +41,12 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
   *******************/
 
   ngAfterViewInit(): void {
+    console.log('aaaa')
     this.setFilterSelect() // agafa el valor del select
-    //this.selectTreballador(); // acció al seleccionar un treballador
+    this.selectTreballador(); // acció al seleccionar un treballador
     this.btnsActions(); // accions per treballador ex: veure guardies
     this.filterTable(); // filtratje de la taula
+    console.log('aaaa')
   }
   setFilterSelect(){
     let select = document.querySelector('select')?.value;

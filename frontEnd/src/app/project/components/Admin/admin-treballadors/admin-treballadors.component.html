@@ -41,7 +41,7 @@
         <select #cat (change)="setSelectFilter(cat.value)">
             <option *ngFor="let c of this.categories">{{c.nom}}</option>
         </select>
-        <button>FILTRAR</button>
+        <button (click)="this.filterTable()">FILTRAR</button>
     </div>
     <div class="treballadors_box">
         <ul>
@@ -51,13 +51,13 @@
                 <p name="cat">Cat.</p> 
                 <p name="guard">Guardies</p> 
             </li>
-            <li class='treballador' *ngFor="let t of this.treballadors" (click)="this.selectTreballador()">
+            <li class="treballador" *ngFor="let t of this.treballadors" (click)="this.selectTreballador()">
                 <p name="dni">{{t.dni}}</p> 
                 <p name="nom">{{t.nom}}</p> 
                 <p name="cat">{{t.categoria}}</p> 
-                <p name="guard">21</p> 
+                <p name="guard">21</p>
             </li>
-            <!--<li class='treballador'>
+            <li class='treballador'>
                 <p name="dni">0</p> 
                 <p name="nom">a</p> 
                 <p name="cat">TCAI</p> 
@@ -68,7 +68,7 @@
                 <p name="nom">b</p> 
                 <p name="cat">Infermeria</p> 
                 <p name="guard">21</p> 
-            </li>-->
+            </li>
         </ul>
     </div>
     <div class="btns">
