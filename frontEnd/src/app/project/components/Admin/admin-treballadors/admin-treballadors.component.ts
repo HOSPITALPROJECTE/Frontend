@@ -23,7 +23,6 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewChecked {
     this.httpClient.getCategories().subscribe(
       data => {
         this.categories = data['resultat']['dades'];
-        console.log(this.categories[0]);
       }); 
   }
 
@@ -41,12 +40,10 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewChecked {
   *******************/
 
   ngAfterViewChecked(): void {
-    console.log(document.querySelectorAll('.treballador'))
     this.setFilterSelect() // agafa el valor del select
     this.selectTreballador(); // acció al seleccionar un treballador
     this.btnsActions(); // accions per treballador ex: veure guardies
     this.filterTable(); // filtratje de la taula
-    console.log('aaaa')
   }
   setFilterSelect(){
     let select = document.querySelector('select')?.value;
@@ -54,7 +51,7 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewChecked {
     else this.filter_select = 'Infermeria'
   }
   selectTreballador(){
-    let treballadors =  document.querySelectorAll('.treballador');
+    let treballadors =  document.querySelectorAll('.table_li');
     treballadors?.forEach(li => li.addEventListener('click', () => {
       this.removeSelecions(treballadors);
       li.classList.add('active');
@@ -75,26 +72,32 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewChecked {
 
   btnsActions(){
     this.btnSecondary();
+    this.btnPrimary();
   }
   btnSecondary(){
     document.querySelector('.btn_secondary')?.addEventListener('click', () => {
       document.querySelector('.btns')?.classList.remove('active');
-      this.removeSelecions(document.querySelectorAll('.treballador'));
+      this.removeSelecions(document.querySelectorAll('.table_li'));
     });
   }
+  btnPrimary(){
+    
+    document.querySelector('.btn_primary')?.addEventListener('click', () => {
+      let dni = document.querySelector(".table_li.active > p[name='dni']")?.textContent;
+      if(dni != null)
+        this.goToGuardiesTreballador(dni)
+  })
+  }
   filterTable(){
-    let list = document.querySelectorAll('.treballador');
+    let list = document.querySelectorAll('.table_li');
     document.querySelector('.filtres > button')?.addEventListener('click', () => {
-      console.log('a')
       this.filterElements(list);
     });
   }
   filterElements(list:NodeListOf<Element>){
-    console.log('b')
-    console.log(list);
     list.forEach(l => {
-      if(this.filterTrue(l)){l.classList.remove('hide'); console.log('ba')}
-      else {l.classList.add('hide'); console.log('ba');}
+      if(this.filterTrue(l))l.classList.remove('hide');
+      else l.classList.add('hide');
     });
   }
   filterTrue(element:Element){
@@ -118,6 +121,9 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewChecked {
   /* NAVEGACIO */
   goToAdmin(){
     this.router.navigate(['/admin']);
+  }
+  goToGuardiesTreballador(dni:string){
+    this.router.navigate(['/admin-treballadors-guardies', dni]);
   }
 
 }

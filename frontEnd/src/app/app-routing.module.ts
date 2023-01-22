@@ -10,6 +10,7 @@ import { AdminFestiusComponent } from './project/components/Admin/admin-festius/
 import { AdminTreballadorsComponent } from './project/components/Admin/admin-treballadors/admin-treballadors.component';
 import { AdminGuardiesComponent } from './project/components/Admin/admin-guardies/admin-guardies.component';
 import { AdminPlantillaguardiesComponent } from './project/components/Admin/admin-plantillaguardies/admin-plantillaguardies.component';
+import { AdminTreballadorsGuardiesComponent } from './project/components/Admin/admin-treballadors-guardies/admin-treballadors-guardies.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:  'admin', component: AdminComponent},
   {path:  'admin-festius', component:AdminFestiusComponent },
   {path:  'admin-treballadors', component: AdminTreballadorsComponent},
+  {path:  'admin-treballadors-guardies/:dni', component: AdminTreballadorsGuardiesComponent},
   {path:  'admin-guardies', component: AdminGuardiesComponent},
   {path:  'admin-plantillaguardies', component: AdminPlantillaguardiesComponent}
 ];

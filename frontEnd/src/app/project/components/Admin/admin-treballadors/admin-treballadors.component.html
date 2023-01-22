@@ -11,7 +11,7 @@
         </select>
         <button>FILTRAR</button>
     </div>
-    <div class="treballadors_box">
+    <div class="table">
         <ul>
             <li class="tr_header">
                 <p name="dni">DNI</p> 
@@ -19,7 +19,7 @@
                 <p name="cat">Cat.</p> 
                 <p name="guard">Guardies</p> 
             </li>
-            <li class="treballador" *ngFor="let t of this.treballadors">
+            <li class="table_li" *ngFor="let t of this.treballadors">
                 <p name="dni">{{t.dni}}</p> 
                 <p name="nom">{{t.nom}}</p> 
                 <p name="cat">{{t.categoria}}</p> 

@@ -18,6 +18,10 @@ export class ATreballador{
         const requestOptions = this.createHeader();
         return this.http.get('http://localhost:4000/api/data-access/categories');
     }
+    getGuardiesTreballador(dni:string):Observable<any>{
+        const requestOptions = this.createHeader();
+        return this.http.get('http://localhost:4000/api/data-access/guardiestreballador?dni='+dni);
+    }
 
     private createHeader(){
 
