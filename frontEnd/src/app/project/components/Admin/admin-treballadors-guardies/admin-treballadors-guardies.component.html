@@ -4,17 +4,17 @@
 </header>
 <section id="body">
     <div class="filtres">
-        <!--<select #guardiaEstat (change)="setSelectFilter(cat.value)">
-            <option *ngFor="let g of this.categories">{{g.nom}}</option>
+        <select #estat (change)="setGEstatFilter(estat.value)">
+            <option *ngFor="let e of this.gEstats">{{e}}</option>
         </select>
-        <select #estat (change)="setSelectFilter(cat.value)">
-            <option *ngFor="let e of this.categories">{{e.nom}}</option>
-        </select>-->
+        <select #gEstat (change)="setEstatFilter(gEstat.value)">
+            <option *ngFor="let e of this.estats">{{e}}</option>
+        </select>
         <button>FILTRAR</button>
     </div>
     
-    <div class="table">
-        <ul>
+    <div class="table" *ngIf="this.apunt">
+        <ul *ngIf="this.guardies.length > 0; else elseBlock">
             <li class="tr_header">
                 <p name="dni">Dia</p> 
                 <p name="dni">Unitat</p> 
@@ -32,5 +32,9 @@
                 <p name="dni">{{g.estat}}</p>
             </li>
         </ul>
+        <ng-template #elseBlock>
+            <div id="tableNull">Aquest treballador no s'ha apuntat a cap guardia</div>
+        </ng-template>
     </div>
 </section>
+<button id="exit" (click)="goToTreballadors()"></button>

@@ -9,27 +9,44 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./admin-treballadors-guardies.component.css']
 })
 export class AdminTreballadorsGuardiesComponent implements OnInit {
-  guardies!:Array<any>
+  apunt:boolean = false
+
+  gEstats:Array<string> =['Apuntat','Assignat']
+  gEstat!:string;
+  estats:Array<string> =['actiu','eliminat']
+  estat!:string;
+
+  guardies!:Array<any>;
   dni!:string;
   nom!:string;
 
   constructor(private router: Router, private httpClient:ATreballador, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       this.dni = params['dni'];
+      this.httpClient.getTreballador(this.dni).subscribe(
+      data => this.nom = data['resultat']['dades'][0].nom);
     });
     this.httpClient.getGuardiesTreballador(this.dni).subscribe(
     data => {
-      console.log(data)
       this.guardies = data['resultat']['dades'];
-      this.nom = this.guardies[0].nom;
-      console.log(this.guardies);
+      this.apunt = true;
     });
   }
 
+  ngOnInit(): void {
+  }
+  setGEstatFilter(estat:string){
+    this.gEstat = estat;
+  }
+  setEstatFilter(estat:string){
+    this.estat = estat;
+  }
   dataToString(data:Date){
     return new DatePipe("en-US").transform(data, "yyyy-MM-dd");
   }
-  ngOnInit(): void {
+  /* Navegació */
+  goToTreballadors(){
+    this.router.navigate(['/admin-treballadors']);
   }
 
 }

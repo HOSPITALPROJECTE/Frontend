@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, OnInit, ViewChild, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, ViewChildren, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ATreballador } from 'src/app/project/services/api/treballador/ATreballador';
 
@@ -7,16 +7,17 @@ import { ATreballador } from 'src/app/project/services/api/treballador/ATreballa
   templateUrl: './admin-treballadors.component.html',
   styleUrls: ['./admin-treballadors.component.css']
 })
-export class AdminTreballadorsComponent implements OnInit, AfterViewChecked {
+export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
   filter_name: string = '';
   filter_dni: string = '';
   filter_select!: string;
 
   treballadors!:Array<any>
   categories!:Array<any>
-
+  
+  @ViewChild('elementId') elementRef: ElementRef | undefined;
   constructor(private router: Router, private httpClient:ATreballador) {
-    this.httpClient.getTreballador().subscribe(
+    this.httpClient.getTreballadors().subscribe(
     data => {
       this.treballadors = data['resultat']['dades'];
     }); 
@@ -28,10 +29,6 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewChecked {
 
 
   ngOnInit(): void {
-    this.setFilterSelect() // agafa el valor del select
-    this.selectTreballador(); // acció al seleccionar un treballador
-    this.btnsActions(); // accions per treballador ex: veure guardies
-    this.filterTable(); // filtratje de la taula
   }
 
 
@@ -39,9 +36,8 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewChecked {
      VISUAL ACTIONS 
   *******************/
 
-  ngAfterViewChecked(): void {
+  ngAfterViewInit(): void {
     this.setFilterSelect() // agafa el valor del select
-    this.selectTreballador(); // acció al seleccionar un treballador
     this.btnsActions(); // accions per treballador ex: veure guardies
     this.filterTable(); // filtratje de la taula
   }
@@ -50,14 +46,12 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewChecked {
     if (select!=null && select!='') this.filter_select = select;
     else this.filter_select = 'Infermeria'
   }
-  selectTreballador(){
-    let treballadors =  document.querySelectorAll('.table_li');
-    treballadors?.forEach(li => li.addEventListener('click', () => {
-      this.removeSelecions(treballadors);
-      li.classList.add('active');
+  selectTreballador(li:Element){
+    let ul = li.parentNode?.querySelectorAll('.table_li');
+    if(ul != null) this.removeSelecions(ul);
+    li.classList.add('active');
 
-      this.actionsWithTreballador();
-    }))
+    this.actionsWithTreballador();
   }
   removeSelecions(treballadors:NodeListOf<Element>){
     treballadors.forEach(t => {
@@ -81,7 +75,6 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewChecked {
     });
   }
   btnPrimary(){
-    
     document.querySelector('.btn_primary')?.addEventListener('click', () => {
       let dni = document.querySelector(".table_li.active > p[name='dni']")?.textContent;
       if(dni != null)
@@ -106,7 +99,6 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewChecked {
     let dni = element.querySelector("p[name='dni']")?.textContent?.includes(this.filter_dni);
     return select && dni && name;
   }
-
 
 
 	setSelectFilter(value:string): void {

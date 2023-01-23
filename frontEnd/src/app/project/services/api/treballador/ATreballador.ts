@@ -10,9 +10,13 @@ export class ATreballador{
     
     constructor(private http:HttpClient){}
 
-    getTreballador():Observable<any>{
+    getTreballadors():Observable<any>{
         const requestOptions = this.createHeader();
         return this.http.get('http://localhost:4000/api/data-access/treballadors');
+    }
+    getTreballador(dni:string):Observable<any>{
+        const requestOptions = this.createHeader();
+        return this.http.get('http://localhost:4000/api/data-access/treballador?dni='+dni);
     }
     getCategories():Observable<any>{
         const requestOptions = this.createHeader();

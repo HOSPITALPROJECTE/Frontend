@@ -19,7 +19,7 @@
                 <p name="cat">Cat.</p> 
                 <p name="guard">Guardies</p> 
             </li>
-            <li class="table_li" *ngFor="let t of this.treballadors">
+            <li class="table_li" *ngFor="let t of this.treballadors" #liElement (click)="selectTreballador(liElement)">
                 <p name="dni">{{t.dni}}</p> 
                 <p name="nom">{{t.nom}}</p> 
                 <p name="cat">{{t.categoria}}</p> 

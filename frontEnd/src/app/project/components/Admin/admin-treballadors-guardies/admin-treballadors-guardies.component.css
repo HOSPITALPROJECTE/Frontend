@@ -4,3 +4,12 @@
 .table p:nth-child(4){width: 50px;}
 .table p:nth-child(5){width: 90px;}
 .table p:nth-child(6){width: 70px;}
+
+#tableNull
+{
+    font-size: .7em;
+    text-align: center;
+    width: 90vw;
+    margin: auto;
+    color: var(--color-disabled);
+}
