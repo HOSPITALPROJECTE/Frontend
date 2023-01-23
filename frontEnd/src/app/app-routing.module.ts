@@ -18,12 +18,12 @@ const routes: Routes = [
   { path: 'day', component: DayComponent },
   { path: 'agenda', component: AgendaComponent },
   { path: 'historial', component: HistorialComponent },
-  {path:  'admin', component: AdminComponent},
-  {path:  'admin-festius', component:AdminFestiusComponent },
-  {path:  'admin-treballadors', component: AdminTreballadorsComponent},
-  {path:  'admin-treballadors-guardies/:dni', component: AdminTreballadorsGuardiesComponent},
-  {path:  'admin-guardies', component: AdminGuardiesComponent},
-  {path:  'admin-plantillaguardies', component: AdminPlantillaguardiesComponent}
+  { path:  'admin', component: AdminComponent },
+  { path:  'admin-festius', component:AdminFestiusComponent },
+  { path:  'admin-treballadors', component: AdminTreballadorsComponent },
+  { path:  'admin-treballadors-guardies/:dni', component: AdminTreballadorsGuardiesComponent },
+  { path:  'admin-guardies', component: AdminGuardiesComponent },
+  { path:  'admin-plantillaguardies', component: AdminPlantillaguardiesComponent }
 ];
 
 @NgModule({
