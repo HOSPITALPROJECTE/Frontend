@@ -1,0 +1,63 @@
+/* HEADER */
+header > div
+{
+    margin-top: 1vh;
+    display: flex;
+    gap: 24px;
+}
+header > div > h3
+{
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 1.1em;
+    color: #15151580;
+}
+header > div > h3.active{color:#151515}
+
+#total
+{
+    width: 150px;
+    height: 150px;
+    border: 8px solid var(--color-blue-light);
+    background: var(--color-blue-light);
+    border-radius: 50%;
+    padding-top: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 24px;
+}
+#total > *{height: 1em;}
+#total > h2{font-size: 2.2em; height: 1.2em;}
+
+#guardies
+{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.guardia
+{
+    width: 100%;
+    margin: 8px;
+    padding: 10px 24px;
+
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    border-left: 8px solid var(--color-green);
+    box-shadow: 0px 0px 12px var(--color-shadow);
+
+}
+.guardia > div:nth-child(2)
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.3em;
+}
+.guardia h3{font-size: 1em;}
+.guardia p{font-size: .9em;}

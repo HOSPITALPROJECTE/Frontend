@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root
+{
+    --color-green:#A0CE4E;
+    --color-blue:#7EDCE9;
+    --color-blue-light:#7EDCE940;
+    --color-grey:#E5E5E5;
+    --color-black:#151515;
+    --color-body:#F9F9F9;
+    --color-shadow:#00000016;
+    --color-violet: #BE7FDE;
+    --color-red: #E43E31;
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{overflow-x: hidden;}
+/****************************************************************
+                            ELEMENTS
+****************************************************************/
+.btn_primary
+{
+    text-transform: uppercase;
+    padding: .25em 1em;
+    background: var(--color-green);
+    border: 2px solid var(--color-green);
+    color: white;
+    border-radius: 5px;
+}
+
+.btn_secondary
+{
+    border-radius: 5px;
+    padding: .25em 1em;
+    border: 2px solid var(--color-green);
+    background: transparent;
+    color:var(--color-green)
+}
+
+/****************************************************************
+
+                            HEADER
+
+*****************************************************************/
+header
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 14vh;
+    background: var(--color-green);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 5%;
+
+    z-index: 10;
+}
+header::before
+{
+    content:'';
+    position: absolute;
+    top: 0;
+    right: 6vw;
+    aspect-ratio: 1 / 1;
+    height: 100%;
+    background-image: url('src/assets/img/logo2.png');
+    background-position: center;
+    background-size: 90px;
+    background-repeat: no-repeat;
+}
+header h1{font-size: 1.5em; color: #f9f9f9}
+header p{font-size: 1.1em;color:#f9f9f9}
+
+/****************************************************************
+
+                                BODY
+
+*****************************************************************/
+#body
+{
+    padding-top: 14vh;
+    background-color: var(--color-body);
+    width: 100vw;
+    min-height: 100vh;
+    padding-bottom: 10vh;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* llegenda - ajuda visual */
+#color_legend
+{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:15px;
+
+    z-index: 3;
+}
+.legend_item
+{
+    display: flex;
+    gap:5px;
+    align-items: center;
+    padding: 1.5em 0;
+}
+.legend_item .color
+{
+    height: 22px;
+    width: 22px;
+    border-radius: 33%;
+    border: 2px solid white;
+    box-shadow: 2px 2px 5px var(--color-shadow);
+}
+.legend_item > h5
+{
+    font-weight: 400;
+}
+/* llegenda - ajuda visual */
+
+/* bnt_exit */
+#exit
+{
+    position: fixed;
+    top: 80vh;
+    height: 50px;
+    width: 50px;
+    border: 3px solid white;;
+    border-radius: 50%;
+    background: var(--color-green);
+    box-shadow: 0px 3px 6px var(--color-shadow);
+    z-index: 10;
+}
+#exit::before,
+#exit::after
+{
+    content: '';
+    position: absolute;
+    width: 26px;
+    height: 2px;
+    background: #F9F9F9;
+    top: 50%;
+    left: 50%;
+}
+#exit::before
+{
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+#exit::after
+{
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/****************************************************************
+
+                                FOOTER
+
+*****************************************************************/
+footer
+{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 10vh;
+    padding-top: .2em;
+    width: 100vw;
+    background: #FFFFFF;
+    box-shadow: 0px -5px 5px var(--color-shadow);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
+    gap:15%;
+    gap:0;
+
+    z-index: 10;
+}
+.link_box
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+}
+.link_box i {font-size: 1.6em; color: var(--color-black);}
+.link_box p {font-size: .9em; color:#999;}
