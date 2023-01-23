@@ -37,7 +37,9 @@ import { AdminTreballadorsComponent} from './project/components/Admin/admin-treb
     AppRoutingModule,
     HttpClientModule,
     CommonModule,
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

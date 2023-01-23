@@ -11,6 +11,7 @@ import { AdminTreballadorsComponent } from './project/components/Admin/admin-tre
 import { AdminGuardiesComponent } from './project/components/Admin/admin-guardies/admin-guardies.component';
 import { AdminPlantillaguardiesComponent } from './project/components/Admin/admin-plantillaguardies/admin-plantillaguardies.component';
 import { AdminTreballadorsGuardiesComponent } from './project/components/Admin/admin-treballadors-guardies/admin-treballadors-guardies.component';
+import { NavbarComponent } from './project/components/navbar/navbar.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'day', component: DayComponent },
   { path: 'agenda', component: AgendaComponent },
   { path: 'historial', component: HistorialComponent },
+  { path:  'navbar', component: NavbarComponent },
   { path:  'admin', component: AdminComponent },
   { path:  'admin-festius', component:AdminFestiusComponent },
   { path:  'admin-treballadors', component: AdminTreballadorsComponent },
