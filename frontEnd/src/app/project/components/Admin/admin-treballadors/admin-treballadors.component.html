@@ -1,0 +1,35 @@
+<header>
+    <h1>Administració</h1>
+    <p>Treballadors</p>
+</header>
+<section id="body">
+    <div class="filtres">
+        <input #dni (change)="setDniFilter(dni.value)" type="text" name='dni' placeholder="000000000A">
+        <input #nom (change)="setNomFilter(nom.value)" type="text" name='nom' placeholder="Marc Grabulosa">
+        <select #cat (change)="setSelectFilter(cat.value)">
+            <option *ngFor="let c of this.categories">{{c.nom}}</option>
+        </select>
+        <button>FILTRAR</button>
+    </div>
+    <div class="table">
+        <ul>
+            <li class="tr_header">
+                <p name="dni">DNI</p> 
+                <p name="nom">Nom</p> 
+                <p name="cat">Cat.</p> 
+                <p name="guard">Guardies</p> 
+            </li>
+            <li class="table_li" *ngFor="let t of this.treballadors" #liElement (click)="selectTreballador(liElement)">
+                <p name="dni">{{t.dni}}</p> 
+                <p name="nom">{{t.nom}}</p> 
+                <p name="cat">{{t.categoria}}</p> 
+                <p name="guard">21</p>
+            </li>
+        </ul>
+    </div>
+    <div class="btns">
+        <button class="btn_primary"> veure guardies </button>
+        <button class="btn_secondary"> eliminar selecció </button>
+    </div>
+</section>
+<button id="exit" (click)="goToAdmin()"></button>

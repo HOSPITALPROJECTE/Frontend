@@ -1,0 +1,50 @@
+<header>
+    <h1>Admin-Guardies</h1>
+</header>
+
+<html>
+<body>
+    <div id="container">
+       <div id="subcontainer">
+           <div id="opcio" class="dropbtn">
+               <h1>Guardies</h1>    
+       
+           </div>    
+               <div class="menu">
+                 <div class="columna">
+
+                    
+                        <div class="filtre">
+                            <input type="date" placeholder="Introdueix un dia per a cercar les guardies">
+
+                            <input list="estat">
+                            <datalist id="estat">
+                             <option value="Plena">
+                             <option value="Parcialment Plena">
+                             <option value="Buida">
+                             
+                             </datalist>
+                            <button id="buscar">Buscar</button>
+                        </div>
+                        <div class="llista">
+
+                            <p style="font-size: 10px; background-color: #f2f2f2; border-radius: 10px; padding-bottom: 5px; padding-top: 5px; padding-left: 10px; padding-right: 10px;"><b>Dia :</b> 31/1/24  <b>Unitat :</b> 1  <b>Categoria :</b> UCI <b>Plaçes :</b> 5/9</p>
+                            <p style="font-size: 10px; margin-left: 10px;">(exemple)</p>
+
+
+                        </div>                
+
+                   <button id="editar">Editar</button>
+                   <button id="borrar">Borrar</button>       
+                 </div>
+                 <div class="columna">
+                   
+                 </div>         
+             </div>
+             <div class="retorna" (click)="goToAdmin()">Retorna</div>
+           </div>
+           
+           </div>
+          
+           </body>
+           </html>

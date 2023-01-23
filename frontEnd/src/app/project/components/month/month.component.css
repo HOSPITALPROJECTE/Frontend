@@ -42,6 +42,32 @@
     background-image: url('../../../../assets/img/brch_tardor.png');
     background-size: 220px;
     transform: translate(-50%, -50%) scaleX(-1) rotate(30deg);}
+    #overflow_style.primavera::before{
+        top: 75vh;
+        left: 20vw;
+        background-image: url('../../../../assets/img/brch_primavera.png');
+        background-size: 220px;
+        transform: translate(-50%, -50%) rotate(16deg);
+    }
+    #overflow_style.primavera::after{
+        top: 38vh;
+        left: 80vw;
+        background-image: url('../../../../assets/img/brch_primavera.png');
+        background-size: 220px;
+        transform: translate(-50%, -50%) scaleX(-1) rotate(30deg);
+    }
+    #overflow_style.hivern::before{
+        top: 45vh;
+        left: 15vw;
+        background-image: url('../../../../assets/img/brch_hivern.png');
+        background-size: 180px;
+        transform: translate(-50%, -50%) rotate(209deg);}
+    #overflow_style.hivern::after{
+        top: 70vh;
+        left: 90vw;
+        background-image: url('../../../../assets/img/brch_hivern.png');
+        background-size: 180px;
+        transform: translate(-50%, -50%) scaleY(-1) rotate(1deg);}
 /* BODY */
 .legend_item:nth-child(1) .color{background: var(--color-green);}
 .legend_item:nth-child(2) .color{background: var(--color-blue);}
@@ -150,4 +176,60 @@
     bottom: 5.5em;
     bottom: 0;
     z-index: 8;
+}
+
+#btn_allMonths
+{
+    margin: 3vh 0;
+    padding: .5em 1.5em;
+    background: var(--color-green-light);
+    border-bottom:4px solid var(--color-green);
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px var(--color-shadow);
+
+    text-align: center;
+    font-size: .9em;
+    z-index: 8;
+    transition: .1s;
+}
+
+#allMonths_box
+{
+    position: fixed;
+    top: 14vh;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 14vh - 10vh);
+    display: none;
+    z-index: 9;
+}
+#allMonths_box.active{display: flex;}
+#allMonths_box .month_list
+{
+    height: 100%;
+    width: 45vw;
+    padding: 2em .5em;
+    background: var(--color-green-light);
+    overflow-Y: scroll;
+}
+#allMonths_box .month_list .month
+{
+    padding: .5em 1em;
+    border-bottom: 1px solid var(--color-shadow);
+}
+#allMonths_box .month_list .month h1{font-size: 1em; height: 1.1em;}
+#allMonths_box .month_list .month p{font-size: .8em;}
+
+.exitMonths
+{
+    height: 100%;
+    width: 55vw;
+    background: var(--color-shadow);
+    backdrop-filter: blur(1px);
+}
+
+#btn_allMonths:active
+{
+    background: var(--color-green-light2);
+    transform: scale(1.02);
 }

@@ -1,0 +1,44 @@
+<header>
+    <h1>Admin-PlantillaGuardies</h1>
+</header>
+
+<html>
+<body>
+    <div id="container">
+       <div id="subcontainer">
+           <div id="opcio" class="dropbtn">
+               <h1>Plantilla Guardies</h1>    
+       
+           </div>    
+               <div class="menu">
+                 <div class="columna">  
+                    <div class="filtre">
+                        <input type="text" placeholder="Introdueix un una unitat">
+                        <input type="text" placeholder="Introdueix un una categoria">
+
+                        <input list="estat">
+                        <datalist id="estat">
+                         <option value="Mati">
+                         <option value="Tarda">               
+                         
+                         </datalist>
+                        <button id="buscar" style="color: white;">Buscar</button>
+                    </div>                       
+                        <div class="llista">
+
+                        </div>                
+
+                   <button id="editar">Editar</button>
+                   <button id="borrar">Borrar</button>       
+                 </div>
+                 <div class="columna">
+                   
+                 </div>         
+             </div>
+             <div class="retorna" (click)="goToAdmin()">Retorna</div>
+           </div>
+           
+           </div>
+          
+           </body>
+           </html>

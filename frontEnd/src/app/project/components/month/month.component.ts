@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef} from '@angular/core';
 import { Router } from '@angular/router';
 import { Month } from '../../model/entities/implementations/Month';
 
@@ -9,17 +9,27 @@ import { Month } from '../../model/entities/implementations/Month';
 })
 export class MonthComponent implements AfterViewInit {
   month:Month;
+  months:Array<string> = ['Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Septembre', 'Octubre', 'Novembre', 'Desembre'];
 
-  constructor(private router: Router,private elementRef: ElementRef) { 
+  constructor(private router: Router,private elementRef: ElementRef) {
     this.month = new Month('2022-6');
   }
 
+  getDate(year:number, month:string){
+    let mes = this.months.indexOf(month) + 1;
+    return year + '-' + mes.toString();
+  }
   // equivalent a window.onload
   ngAfterViewInit() {
-    this.addGuardies(); // afegeix les guardies al mes
-    this.addClickEvent_Guardies(); // onclik -> guardia
-    this.showAllMonths(); // No esta funcionant
+    this.addFuncionalities(); //per afegir events al DOM
+    this.showAllMonths(); // Permet escollir un mes qualsevol
     this.onChangeMonth(); //cambiar mes
+  }
+  addFuncionalities(){
+    setTimeout(() => {
+      this.addGuardies(); // afegeix les guardies al mes
+      this.addClickEvent_Guardies(); // onclik -> guardia
+    }, 0);
   }
 
   setClassSeason(season:number){
@@ -28,7 +38,11 @@ export class MonthComponent implements AfterViewInit {
     else if (season == 3) return 'estiu';
     else return 'tardor';
   }
-  addGuardies(){
+  /* PENDENT DE MODIFICAR addGuardies
+  Ha d'agafar les guardes actives/apuntades per treballador
+  No les ha de posar per numero de dia sino per data
+  */
+  addGuardies(){ 
     let dias = this.elementRef.nativeElement.querySelectorAll('.day');
     for (let dia = 0; dia < dias.length; dia++) {
       if(this.month.days[dia].status == 1) dias[dia].classList.add('festivo','applyed')
@@ -37,11 +51,15 @@ export class MonthComponent implements AfterViewInit {
   }
 
   showAllMonths() {
-    let months = document.querySelector('.llistaMesos');
-    document.querySelector('.btn_viewAllMonths')?.addEventListener('click', () => {
-      if(months?.classList.contains('active'))months?.classList.remove('active')
-      else months?.classList.add('active')
-    });
+    document.getElementById('btn_allMonths')?.addEventListener('click', () => document.getElementById('allMonths_box')?.classList.add('active')); // btn.click => show all
+    document.querySelector('#allMonths_box .exitMonths')?.addEventListener('click', () => document.getElementById('allMonths_box')?.classList.remove('active')); // btn.click => show all
+    // click mes concret
+    document.querySelectorAll('#allMonths_box .month_list .month')?.forEach(month => month.addEventListener('click', () => {
+      let mes = month.getAttribute('date-filter');
+      if(mes!=null)this.month = new Month(mes);
+      document.getElementById('allMonths_box')?.classList.remove('active');
+      this.addFuncionalities();
+    }));
   }
 
   onChangeMonth(){
@@ -51,7 +69,9 @@ export class MonthComponent implements AfterViewInit {
       let sumar = true;
       if(b == boto[0]) sumar = false;
       this.month = new Month(this.setNewMonth(sumar));
-    }));
+
+      this.addFuncionalities();
+    }))
   }
   setNewMonth(sumar:boolean){
     let any = parseInt(this.month.id.substring(0,4));

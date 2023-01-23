@@ -10,7 +10,12 @@ import { DayComponent } from './project/components/day/day.component';
 import { AgendaComponent } from './project/components/agenda/agenda.component';
 import { HistorialComponent } from './project/components/historial/historial.component';
 import { LoginComponent } from './project/components/login/login.component';
+import { AdminComponent } from './project/components/Admin/admin/admin.component';
+import { AdminPlantillaguardiesComponent } from './project/components/Admin/admin-plantillaguardies/admin-plantillaguardies.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { AdminTreballadorsGuardiesComponent } from './project/components/Admin/admin-treballadors-guardies/admin-treballadors-guardies.component';
+import { AdminTreballadorsComponent} from './project/components/Admin/admin-treballadors/admin-treballadors.component';
 
 @NgModule({
   declarations: [
@@ -20,14 +25,19 @@ import { HttpClientModule } from '@angular/common/http';
     DayComponent,
     AgendaComponent,
     HistorialComponent,
-    LoginComponent
+    LoginComponent,
+    AdminComponent,
+    AdminPlantillaguardiesComponent,
+    AdminTreballadorsComponent,
+    AdminTreballadorsGuardiesComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    CommonModule,
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

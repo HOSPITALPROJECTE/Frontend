@@ -54,12 +54,12 @@ export class AgendaComponent implements OnInit,AfterViewInit {
     let inicialX = 0;
     let finalX = 0;
     
-    document.body.addEventListener('touchmove', (event) => {
+    document.getElementById('body')?.addEventListener('touchmove', (event) => {
       finalX = event.touches[0].clientX;
       if(inicialX + 75 < finalX) this.router.navigate(['/historial']);;
     });
     
-    document.body.addEventListener('touchstart', (event) => {
+    document.getElementById('body')?.addEventListener('touchstart', (event) => {
       inicialX = event.touches[0].clientX;
     });
   }
