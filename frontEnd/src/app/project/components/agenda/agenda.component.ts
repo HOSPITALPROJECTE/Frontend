@@ -1,5 +1,8 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GuardiaTreballador } from '../../model/entities/implementations/GuardiaTreballador';
+import { GuardiesMes } from '../../model/entities/implementations/GuardiesMes';
+import { ATreballador } from '../../services/api/treballador/ATreballador';
 
 @Component({
   selector: 'app-agenda',
@@ -7,12 +10,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./agenda.component.css']
 })
 export class AgendaComponent implements OnInit,AfterViewInit {
+  dni:string = '111111111E'; // get from TOKEN
+  result!:Array<any>;
+  guardies:Array<GuardiesMes> = [];
+  torns!:any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private httpClient:ATreballador) {
+    this.httpClient.getAgendaTreballador(this.dni).subscribe(
+    data => {
+      this.result = data['resultat']['dades'];
+      this.result.forEach(g => {
+        let guardia = new GuardiaTreballador(g.data_guardia, g.unitat, g.torn, g.estat_guardia);
+        let index = 0;
+        let exit = true;
+        while(index < this.guardies.length && exit){
+          if(this.guardies[index].nom == guardia.mes)exit = false;
+          index++;
+        }
+        if(!exit) this.guardies[index-1].guardies.push(guardia);
+        else this.guardies.push(new GuardiesMes(guardia.mes, guardia));
+      });
+    });
+    this.httpClient.getTorns().subscribe(
+    data => {
+      this.torns = data;
+      this.torns = this.torns['resultat']['dades'];
+    });
+  }
 
   ngOnInit(): void {
   }
-
   /* Visual Actions */
   ngAfterViewInit(): void {
     this.confirmDelete();

@@ -4,45 +4,19 @@
 </header>
 <section id="body">
     <div id="color_legend">
-        <div class="legend_item">
+        <div *ngFor="let t of this.torns" class="legend_item">
             <div class="color"></div>
-            <h5>assignades</h5>
-        </div>
-        <div class="legend_item">
-            <div class="color"></div>
-            <h5>alta prioritat</h5>
-        </div>
-        <div class="legend_item">
-            <div class="color"></div>
-            <h5>apuntades</h5>
+            <h5>{{t.nom}}</h5>
         </div>
     </div>
     <div id="agenda_box">
-        <div class="agendaMonth" month-data="gener">
-            <div class="day" status-data="assignada">
-                <div class="dayAction"><i class="fa-regular fa-trash-can"></i></div>
-                <p class="num">06</p>
+        <div *ngFor="let mes of this.guardies" class="agendaMonth" [attr.month-data]="mes.nom">
+            <div *ngFor="let g of mes.guardies" class="day" [attr.torn-data]="g.torn"><!--[attr.status-data]="g.estatGuardia">-->
+                <div *ngIf="g.estatGuardia != 'Assignat'" class="dayAction"><i class="fa-regular fa-trash-can"></i></div>
+                <p class="num">{{g.dia}}</p>
                 <div class="place">
-                    <div><h3>Unitat 2</h3><label>TARDA</label></div>
-                    <p>Infermeria, lesions greus</p>
-                </div>
-            </div>
-            <div class="day"  status-data="">
-                <div class="dayAction"><i class="fa-regular fa-trash-can"></i></div>
-                <p class="num">18</p>
-                <div class="place">
-                    <div><h3>Unitat 1</h3><label>MATI</label></div>
-                    <p>Infermeria, reabilitació</p>
-                </div>
-            </div>
-        </div>
-        <div class="agendaMonth" month-data="abril">
-            <div class="day" status-data="prioritat">
-                <div class="dayAction"><i class="fa-regular fa-trash-can"></i></div>
-                <p class="num">29</p>
-                <div class="place">
-                    <div><h3>Unitat 3</h3><label>MATI</label></div>
-                    <p>Infermeria, lesions lleus</p>
+                    <div><h3>{{g.unitat}}</h3></div>
+                    <p>Descripcio Unitat</p>
                 </div>
             </div>
         </div>
