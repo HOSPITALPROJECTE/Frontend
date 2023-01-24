@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("hospital-accessToken" , result.resultat.accessToken)
       localStorage.setItem("hospital-refreshToken" , result.resultat.accessToken)
       this.router.navigate(['/navbar']).then(()=>
-      this.router.navigate(['/month']));
+      this.router.navigate(['/month']))
     })
   }
 

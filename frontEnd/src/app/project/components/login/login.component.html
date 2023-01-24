@@ -6,7 +6,7 @@
                 <label for="username">Usuari:</label>
                 <input type="text" placeholder="nom" formControlName="nom" required><br><br><br>
                 <label for="password">Contrasenya:</label>
-                <input type="text" placeholder="contrasenya"  formControlName="password" required><br><br>
+                <input type="password" placeholder="contrasenya"  formControlName="password" required><br><br>
                 <div *ngIf="errorMissatge">{{errorMissatge}}</div><br><br>
                 <button type="submit">Iniciar Sessió</button>
             </form>
