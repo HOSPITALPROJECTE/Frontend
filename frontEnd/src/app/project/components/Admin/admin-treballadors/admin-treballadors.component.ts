@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ATreballador } from 'src/app/project/services/api/treballador/ATreballador';
 
@@ -11,15 +11,22 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
   filter_name: string = '';
   filter_dni: string = '';
   filter_select!: string;
+
+  treballadors!:Array<any>
+  categories!:Array<any>
+  
+  @ViewChild('elementId') elementRef: ElementRef | undefined;
   constructor(private router: Router, private httpClient:ATreballador) {
-    console.log('inici');
-    this.httpClient.getTreballador().subscribe(
+    this.httpClient.getTreballadors().subscribe(
     data => {
-      console.log("Dins subscribe");
-      console.log(data);
-    }
-    ); 
+      this.treballadors = data['resultat']['dades'];
+    }); 
+    this.httpClient.getCategories().subscribe(
+      data => {
+        this.categories = data['resultat']['dades'];
+      }); 
   }
+
 
   ngOnInit(): void {
   }
@@ -30,24 +37,21 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
   *******************/
 
   ngAfterViewInit(): void {
-    this.setFilterSelect()
-    this.selectTreballador(); // acció al seleccionar un treballador
+    this.setFilterSelect() // agafa el valor del select
     this.btnsActions(); // accions per treballador ex: veure guardies
     this.filterTable(); // filtratje de la taula
   }
   setFilterSelect(){
     let select = document.querySelector('select')?.value;
-    if (select!=null) this.filter_select = select;
-    else this.filter_select = '';
+    if (select!=null && select!='') this.filter_select = select;
+    else this.filter_select = 'Infermeria'
   }
-  selectTreballador(){
-    let treballadors =  document.querySelectorAll('.treballador');
-    treballadors?.forEach(li => li.addEventListener('click', () => {
-      this.removeSelecions(treballadors);
-      li.classList.add('active');
+  selectTreballador(li:Element){
+    let ul = li.parentNode?.querySelectorAll('.table_li');
+    if(ul != null) this.removeSelecions(ul);
+    li.classList.add('active');
 
-      this.actionsWithTreballador();
-    }))
+    this.actionsWithTreballador();
   }
   removeSelecions(treballadors:NodeListOf<Element>){
     treballadors.forEach(t => {
@@ -62,15 +66,23 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
 
   btnsActions(){
     this.btnSecondary();
+    this.btnPrimary();
   }
   btnSecondary(){
     document.querySelector('.btn_secondary')?.addEventListener('click', () => {
       document.querySelector('.btns')?.classList.remove('active');
-      this.removeSelecions(document.querySelectorAll('.treballador'));
+      this.removeSelecions(document.querySelectorAll('.table_li'));
     });
   }
+  btnPrimary(){
+    document.querySelector('.btn_primary')?.addEventListener('click', () => {
+      let dni = document.querySelector(".table_li.active > p[name='dni']")?.textContent;
+      if(dni != null)
+        this.goToGuardiesTreballador(dni)
+  })
+  }
   filterTable(){
-    let list = document.querySelectorAll('.treballador');
+    let list = document.querySelectorAll('.table_li');
     document.querySelector('.filtres > button')?.addEventListener('click', () => {
       this.filterElements(list);
     });
@@ -89,7 +101,6 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
   }
 
 
-
 	setSelectFilter(value:string): void {
 		this.filter_select = value;
 	}
@@ -102,6 +113,9 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
   /* NAVEGACIO */
   goToAdmin(){
     this.router.navigate(['/admin']);
+  }
+  goToGuardiesTreballador(dni:string){
+    this.router.navigate(['/admin-treballadors-guardies', dni]);
   }
 
 }

@@ -4,10 +4,12 @@
 {
     --color-green:#A0CE4E;
     --color-green-light:#CCE3A3;
+    --color-green-light2:#C6E097;
     --color-blue:#7EDCE9;
     --color-blue-light:#7EDCE940;
     --color-grey:#E5E5E5;
     --color-black:#151515;
+    --color-disabled:#666;
     --color-body:#F9F9F9;
     --color-shadow:#00000016;
     --color-violet: #BE7FDE;
@@ -203,3 +205,50 @@ footer
 }
 .link_box i {font-size: 1.6em; color: var(--color-black);}
 .link_box p {font-size: .9em; color:#999;}
+
+/****************************************************************
+
+                        ADMIN TABLES FILTRES
+
+****************************************************************/
+.filtres{
+  padding: 1.5em; 
+  display: flex; 
+  gap: 5px; 
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.filtres button
+{
+  padding: .1em .4em;
+  background: var(--color-green-light);
+  border: none;
+}
+.filtres button:active{background: var(--color-green);}
+
+
+.table
+{
+  width: 100vw;
+  padding: 0 2em 2em 2em;
+  display: flex;
+  overflow: scroll;
+}
+.table li{display: flex;}
+.tr_header{background: var(--color-grey); border-top-left-radius: 5px;border-top-right-radius: 5px;}
+.tr_header p{text-align: center; font-size: .9em;}
+
+.table_li{border-bottom: 1px solid var(--color-grey);}
+.table_li p
+{
+  padding-left: 5px;
+  font-size: .85em;
+  border-left: 1px solid var(--color-grey);
+  line-height: 24px;
+  height: 24px;
+  overflow: hidden;
+}
+.table_li p:last-child{border-right: 1px solid var(--color-grey);}
+
+.table_li.active{background: var(--color-green-light);}
+.table_li.hide{display: none !important;}

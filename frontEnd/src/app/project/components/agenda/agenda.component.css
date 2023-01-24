@@ -17,7 +17,7 @@ header > div > h3.active{color:#151515}
 /* LLEGENDA */
 .legend_item:nth-child(1) .color {background: var(--color-violet);}
 .legend_item:nth-child(2) .color {background: var(--color-green);}
-.legend_item:nth-child(3) .color {background: var(--color-blue);}
+.legend_item:nth-child(2) .color {background: var(--color-blue);}
 
 
 /* AGENDA */
@@ -80,10 +80,10 @@ header > div > h3.active{color:#151515}
     width: 8px;
     background-color: var(--color-green);
 }
-.day[status-data='assignada']::after{background-color: var(--color-violet);}
-.day[status-data='prioritat']::after{background-color: var(--color-blue);}
+.day[torn-data='Nit']::after{background-color: var(--color-violet);}
+.day[torn-data='Dia']::after{background-color: var(--color-blue);}
 
-.day:not([status-data='assignada']) .dayAction
+.dayAction
 {
     position: absolute;
     padding: 4px 16px;
@@ -93,7 +93,6 @@ header > div > h3.active{color:#151515}
     font-size: .9em;
     color: var(--color-red);
 }
-.day[status-data='assignada'] .dayAction{display: none;}
 
 .day > .num
 {

@@ -52,7 +52,6 @@ export class DayComponent implements AfterViewInit {
   deleteActiveClass(elementos: any, element: number) {
     for (let i=0; i < elementos.length; i++){
       if (elementos[i].parentNode.classList.contains('active') && elementos[i] != elementos[element]){
-        console.log('AAA')
         elementos[i].parentNode.classList.remove('active')
       }
     }

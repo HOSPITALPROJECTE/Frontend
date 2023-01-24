@@ -101,3 +101,5 @@
     display: flex;
     gap: 10px;
 }
+
+.btn_secondary{background: #FFF !important;}

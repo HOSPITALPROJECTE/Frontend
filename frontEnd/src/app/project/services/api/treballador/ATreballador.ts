@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,7 +10,48 @@ export class ATreballador{
     
     constructor(private http:HttpClient){}
 
-    getTreballador():Observable<any>{
-        return this.http.get('http://172.24.1.253:4000/api/user/treballadors');
+    getTreballadors():Observable<any>{
+        const requestOptions = this.createHeader();
+        return this.http.get('http://localhost:4000/api/data-access/treballadors', requestOptions);
     }
+    getTreballador(dni:string):Observable<any>{
+        const requestOptions = this.createHeader();
+        return this.http.get('http://localhost:4000/api/data-access/treballador?dni='+dni, requestOptions);
+    }
+    getCategories():Observable<any>{
+        const requestOptions = this.createHeader();
+        return this.http.get('http://localhost:4000/api/data-access/categories', requestOptions);
+    }
+    getGuardiesTreballador(dni:string):Observable<any>{
+        const requestOptions = this.createHeader();
+        return this.http.get('http://localhost:4000/api/data-access/guardiestreballador?dni='+dni, requestOptions);
+    }
+    getAgendaTreballador(dni:string):Observable<any>{
+        let data = this.getToday();
+        const requestOptions = this.createHeader();
+        return this.http.get('http://localhost:4000/api/data-access/getAgendaTreballador?dni='+dni+'&data='+data, requestOptions);
+    }
+    getTorns(){
+        const requestOptions = this.createHeader();
+        return this.http.get('http://localhost:4000/api/data-access/getTorns', requestOptions);
+    }
+    getToday(){   
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = (1 + date.getMonth()).toString().padStart(2, '0');
+        let day = date.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`
+    }
+
+    private createHeader(){
+
+        const header = {
+            'Access-Control-Allow-Origin':'*',
+            'Content-Type':'application/json',
+            'Accept':'application/json',
+            'Acces-Control-Allow-Headers':'Origin, Content-Type, Accept,Authorization',
+        }
+        return {headers: new HttpHeaders(header)};
+    }
+
 }

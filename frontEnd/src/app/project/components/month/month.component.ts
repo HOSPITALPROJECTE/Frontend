@@ -21,7 +21,7 @@ export class MonthComponent implements AfterViewInit {
   }
   // equivalent a window.onload
   ngAfterViewInit() {
-    this.addFuncionalities(); // funcio asyncrona per afegir events al DOM
+    this.addFuncionalities(); //per afegir events al DOM
     this.showAllMonths(); // Permet escollir un mes qualsevol
     this.onChangeMonth(); //cambiar mes
   }

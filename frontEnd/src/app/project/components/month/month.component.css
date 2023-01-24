@@ -190,6 +190,7 @@
     text-align: center;
     font-size: .9em;
     z-index: 8;
+    transition: .1s;
 }
 
 #allMonths_box
@@ -225,4 +226,10 @@
     width: 55vw;
     background: var(--color-shadow);
     backdrop-filter: blur(1px);
+}
+
+#btn_allMonths:active
+{
+    background: var(--color-green-light2);
+    transform: scale(1.02);
 }
