@@ -85,6 +85,7 @@ header > div > h3.active{color:#151515}
     font-size: 16px;
     font-weight: 200;
     top: -8.5vh;
+    top: calc(-1.5em - 36px);
     right: 50%;
     transform: translateX(50%);
 }
@@ -97,6 +98,7 @@ header > div > h3.active{color:#151515}
     font-size: 18px;
     font-weight: 600;
     top: -11.5vh;
+    top: calc(-1.5em - 56px);
     right: 50%;
     transform: translateX(50%);
 }

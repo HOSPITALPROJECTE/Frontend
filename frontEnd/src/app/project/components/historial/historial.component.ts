@@ -13,35 +13,41 @@ export class HistorialComponent implements OnInit,AfterViewInit {
   totalUnitats!:number;
   guardies!:Array<any>;
   guardiesUnitat:Array<Unitat> = []
-  dni:string = '111111111E'
-
+  dni:string = '111111111A'
+  conicGradient!:string;
 
   constructor(private router: Router, private httpClient:ATreballador) { 
     this.httpClient.getUnitats().subscribe(
       data => {
-        console.log(data);
         this.unitats = (data as any)['resultat']['dades'];
-        this.totalUnitats = this.unitats.length;
       });
       this.httpClient.getHistorialTreballador(this.dni).subscribe(
         data => {
-          console.log(data)
           this.guardies = data['resultat']['dades'];
+          this.totalUnitats = this.guardies.length
           this.guardies.forEach(guardia => {
             let existeix = true;
             let contador = 0
             while(existeix && contador < this.guardiesUnitat.length) {
-              console.log('----')
-              console.log(this.guardiesUnitat[contador].nom)
-              console.log(guardia.unitat)
               if(this.guardiesUnitat[contador].nom == guardia.unitat) existeix = false;
               contador ++;
             }
             if(!existeix)this.guardiesUnitat[contador-1].sumNum()
             else this.guardiesUnitat.push(new Unitat(guardia.unitat))
           });
-          console.log(this.guardiesUnitat)
+          this.setCronicGradient()
       });
+  }
+  setCronicGradient(){
+    let lastPercent = 0;
+    this.conicGradient = 'conic-gradient(';
+    this.guardiesUnitat.forEach(unitat => {
+      let color = '--'+unitat.nom.replace(' ', '-').toLocaleLowerCase();
+      let percent = (unitat.num * 100 / this.totalUnitats).toString()
+      this.conicGradient = this.conicGradient+'var('+color+') '+lastPercent+'% '+percent+'%,'
+    })
+    this.conicGradient = this.conicGradient.slice(0, -1)+')'
+
   }
   ngOnInit(): void {
   }
