@@ -3,32 +3,25 @@
     <div><h3 class="active">historial</h3><h3>agenda</h3></div>
 </header>
 <section id="body">
-    <div id="total">
-        <h2>28</h2>
-        <h4>GUARDIES</h4>
-        <p>TOTAL</p>
+
+    <div class="grafic_box">
+        <div class="cercleFront">
+            <h1>20</h1>
+            <h3>GUARDIES</h3>
+            <h5>TOTAL</h5>
+        </div>
+        <div class="grafic"></div>
     </div>
+
+
     <div id="guardies">
-        <div class="guardia">
+        <div *ngFor="let g of this.guardiesUnitat" class="guardia">
+            <div class="color"></div>
             <div>
-                <h3>Unitat 1</h3>
+                <h3>{{g.nom}}</h3>
                 <p>Infermeria, lesions greus</p>
             </div>
-            <div>10</div>
-        </div>
-        <div class="guardia">
-            <div>
-                <h3>Unitat 1</h3>
-                <p>Infermeria, lesions greus</p>
-            </div>
-            <div>10</div>
-        </div>
-        <div class="guardia">
-            <div>
-                <h3>Unitat 1</h3>
-                <p>Infermeria, lesions greus</p>
-            </div>
-            <div>10</div>
+            <div name="num">{{g.num}}</div>
         </div>
     </div>
 </section>

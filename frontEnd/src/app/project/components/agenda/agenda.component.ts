@@ -49,13 +49,6 @@ export class AgendaComponent implements OnInit,AfterViewInit {
     this.trashConfirmButtons();
     this.goToHistorial();
   }
-  /*toTrashEventListener(): void {
-    let day = document.querySelectorAll('.dayAction');
-    day.forEach(day => day.addEventListener('click', () => {
-      this.addDayDataToConfrimWindow(day.parentNode);
-      this.showWindow();
-    }));
-  }*/
   toTrashEventListener(day:HTMLElement): void {
     this.addDayDataToConfrimWindow(day.parentNode);
     this.showWindow();

@@ -14,6 +14,12 @@
     --color-shadow:#00000016;
     --color-violet: #BE7FDE;
     --color-red: #E43E31;
+
+    --unitat-1: var(--color-green);
+    --unitat-2: var(--color-blue);
+    --unitat-3: var(--color-violet);
+    --unitat-4: #F8AFA8;
+    --urgencies: #F5A623;
 }
 
 *
@@ -121,7 +127,7 @@ header p{font-size: 1.1em;color:#f9f9f9}
     align-items: center;
     padding: 1.5em 0;
 }
-.legend_item .color
+.color
 {
     height: 22px;
     width: 22px;
