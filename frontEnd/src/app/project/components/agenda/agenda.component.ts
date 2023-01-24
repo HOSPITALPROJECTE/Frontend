@@ -45,16 +45,20 @@ export class AgendaComponent implements OnInit,AfterViewInit {
     this.confirmDelete();
   }
   confirmDelete() {
-    this.toTrashEventListener();
+    //this.toTrashEventListener();
     this.trashConfirmButtons();
     this.goToHistorial();
   }
-  toTrashEventListener(): void {
+  /*toTrashEventListener(): void {
     let day = document.querySelectorAll('.dayAction');
     day.forEach(day => day.addEventListener('click', () => {
       this.addDayDataToConfrimWindow(day.parentNode);
       this.showWindow();
     }));
+  }*/
+  toTrashEventListener(day:HTMLElement): void {
+    this.addDayDataToConfrimWindow(day.parentNode);
+    this.showWindow();
   }
   addDayDataToConfrimWindow(day: any) {
     let data = day.querySelector('.num')?.textContent+', '+day.parentNode.getAttribute('month-data');

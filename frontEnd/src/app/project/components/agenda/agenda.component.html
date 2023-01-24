@@ -11,8 +11,8 @@
     </div>
     <div id="agenda_box">
         <div *ngFor="let mes of this.guardies" class="agendaMonth" [attr.month-data]="mes.nom">
-            <div *ngFor="let g of mes.guardies" class="day" [attr.torn-data]="g.torn"><!--[attr.status-data]="g.estatGuardia">-->
-                <div *ngIf="g.estatGuardia != 'Assignat'" class="dayAction"><i class="fa-regular fa-trash-can"></i></div>
+            <div *ngFor="let g of mes.guardies" class="day" [attr.torn-data]="g.torn">
+                <div *ngIf="g.estatGuardia != 'Assignat'" #dayAction class="dayAction" (click)="toTrashEventListener(dayAction)"><i class="fa-regular fa-trash-can"></i></div>
                 <p class="num">{{g.dia}}</p>
                 <div class="place">
                     <div><h3>{{g.unitat}}</h3></div>

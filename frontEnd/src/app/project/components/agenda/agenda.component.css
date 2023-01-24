@@ -83,7 +83,7 @@ header > div > h3.active{color:#151515}
 .day[torn-data='Nit']::after{background-color: var(--color-violet);}
 .day[torn-data='Dia']::after{background-color: var(--color-blue);}
 
-.day:not([status-data='assignada']) .dayAction
+.dayAction
 {
     position: absolute;
     padding: 4px 16px;
@@ -93,7 +93,6 @@ header > div > h3.active{color:#151515}
     font-size: .9em;
     color: var(--color-red);
 }
-.day[status-data='assignada'] .dayAction{display: none;}
 
 .day > .num
 {
