@@ -4,13 +4,13 @@
 </header>
 <section id="body">
     <div class="filtres">
-        <select #mes> <!--filtre per mes-->
+        <select #mes (change)="setMes(mes.value)"> <!--filtre per mes-->
             <option *ngFor="let m of this.mesos">{{m}}</option>
         </select>
-        <select #estat> <!--filtre estat-->
+        <select #estat (change)="setEstat(estat.value)"> <!--filtre estat-->
             <option *ngFor="let c of this.estats">{{c}}</option>
         </select>
-        <button>FILTRAR</button>
+        <button (click)="filterElements()">FILTRAR</button>
     </div>
 
     <div class="afegirDia">
@@ -23,18 +23,21 @@
             <li class="tr_header">
                 <p name="data">DATA</p> 
                 <p name="estat">ESTAT</p>
-                <div></div>
             </li>
-            <li class="table_li" *ngFor="let t of this.festius" #liElement>
+            <li class="table_li" *ngFor="let t of this.festius" #liElement (click)="selectDay(liElement)">
                 <p name="data">{{dataToString(t.dia)}}</p> 
                 <p name="estat">{{t.estat}}</p>
-                <div>
-                    <button>activar</button>
-                    <button>eliminar</button>
-                </div>
             </li>
         </ul>
     </div>
+    <div class="btns">
+        <div>
+            <button class="btn btn_activate"> Activar </button>
+            <button class="btn btn_desactivate"> Eliminar </button>
+        </div>
+        <button class="btn_secondary"> eliminar selecció </button>
+    </div>
 
 </section>
+
 <div id="exit" (click)="goToAdmin()"></div>

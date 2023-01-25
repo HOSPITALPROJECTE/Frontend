@@ -13,3 +13,26 @@
 }
 p[name="estat"],
 p[name="data"]{width: 100px;}
+
+.btns
+{
+  position: absolute;
+  bottom: 0;
+  display: flex; 
+  flex-direction: column;
+  gap: 10px;
+  z-index: 8;
+  transition: .3s;
+}
+.btns.active{bottom: 14vh;}
+
+.btns > div{display: flex; gap: 10px;}
+
+#exit.hide
+{
+  top: 100vh !important;
+  z-index: 2;
+}
+.btn{padding: .25em 1em; border: none;color:white;border-radius: 5px;}
+.btn_activate{background: var(--color-green);}
+.btn_desactivate{background: var(--color-red);}

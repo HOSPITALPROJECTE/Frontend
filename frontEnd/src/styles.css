@@ -231,7 +231,7 @@ button.addFestiu
   background: var(--color-green-light);
   border: none;
 }
-.filtres button:active{background: var(--color-green);}
+.filtres button:active,button.addFestiu:active{background: var(--color-green);}
 
 
 .table
