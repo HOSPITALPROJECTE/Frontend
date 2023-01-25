@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, ElementRef} from '@angular/core';
 import { Router } from '@angular/router';
+import { catchError, take, throwError } from 'rxjs';
 import { Month } from '../../model/entities/implementations/Month';
+import { ATreballador } from '../../services/api/treballador/ATreballador';
 
 @Component({
   selector: 'app-month',
@@ -11,21 +13,25 @@ export class MonthComponent implements AfterViewInit {
   month:Month;
   months:Array<string> = ['Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Septembre', 'Octubre', 'Novembre', 'Desembre'];
 
-  constructor(private router: Router,private elementRef: ElementRef) {
-    this.month = new Month('2022-6');
+  constructor(private router: Router,private elementRef: ElementRef , private httpRequest : ATreballador) {
+    this.month = new Month('2023-1');
   }
 
   getDate(year:number, month:string){
     let mes = this.months.indexOf(month) + 1;
     return year + '-' + mes.toString();
   }
+
   // equivalent a window.onload
   ngAfterViewInit() {
+    console.log(this.obtenirGuardiesAmbEstat())
+    console.log(2)
     this.addFuncionalities(); //per afegir events al DOM
     this.showAllMonths(); // Permet escollir un mes qualsevol
     this.onChangeMonth(); //cambiar mes
   }
   addFuncionalities(){
+    console.log(3)
     setTimeout(() => {
       this.addGuardies(); // afegeix les guardies al mes
       this.addClickEvent_Guardies(); // onclik -> guardia
@@ -92,6 +98,21 @@ export class MonthComponent implements AfterViewInit {
       }
     }
     return any.toString()+'-'+mes.toString();
+  }
+
+  /* Access a API */
+
+  obtenirGuardiesAmbEstat(){
+    let resultat;
+      this.httpRequest.obtenirGuardiesAmbEstat().pipe(take(1) , catchError((err : any) => {
+        console.log("Error en obtenir estat de guardies")
+        return throwError(()=>{new Error(err)})
+      })).subscribe((result) =>{
+        resultat = result;
+        console.log(1)
+      })
+
+      return resultat;
   }
 
   /* NAVEGACIO */
