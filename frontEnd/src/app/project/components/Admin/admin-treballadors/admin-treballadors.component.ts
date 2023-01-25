@@ -79,7 +79,7 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
       let dni = document.querySelector(".table_li.active > p[name='dni']")?.textContent;
       if(dni != null)
         this.goToGuardiesTreballador(dni)
-  })
+    })
   }
   filterTable(){
     let list = document.querySelectorAll('.table_li');

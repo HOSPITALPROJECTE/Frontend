@@ -13,7 +13,7 @@ export class HistorialComponent implements OnInit,AfterViewInit {
   totalUnitats!:number;
   guardies!:Array<any>;
   guardiesUnitat:Array<Unitat> = []
-  dni:string = '111111111A'
+  dni:string = '111111111E'
   conicGradient!:string;
 
   constructor(private router: Router, private httpClient:ATreballador) { 
@@ -44,7 +44,8 @@ export class HistorialComponent implements OnInit,AfterViewInit {
     this.guardiesUnitat.forEach(unitat => {
       let color = '--'+unitat.nom.replace(' ', '-').toLocaleLowerCase();
       let percent = (unitat.num * 100 / this.totalUnitats).toString()
-      this.conicGradient = this.conicGradient+'var('+color+') '+lastPercent+'% '+percent+'%,'
+      this.conicGradient = this.conicGradient+'var('+color+') '+lastPercent+'% '+(parseInt(percent) + lastPercent)+'%,'
+      lastPercent = (parseInt(percent) + lastPercent);
     })
     this.conicGradient = this.conicGradient.slice(0, -1)+')'
 
@@ -67,5 +68,9 @@ export class HistorialComponent implements OnInit,AfterViewInit {
     document.getElementById('body')?.addEventListener('touchstart', (event) => {
       inicialX = event.touches[0].clientX;
     });
+  }
+
+  setColorUnitat(unitat:string){
+    return unitat.slice(-1);
   }
 }

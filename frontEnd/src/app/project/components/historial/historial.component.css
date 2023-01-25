@@ -108,8 +108,12 @@ header > div > h3.active{color:#151515}
     height: 30px;
     width: 30px;
 }
-.guardia:nth-child(1) .color {background: var(--unitat-1);}
-.guardia:nth-child(2) .color {background: var(--unitat-2);}
+.color {background: var(--urgencies);}
+.color[color-data="1"] {background: var(--unitat-1);}
+.color[color-data="2"] {background: var(--unitat-2);}
+.color[color-data="3"] {background: var(--unitat-3);}
+.color[color-data="4"] {background: var(--unitat-4);}
+
 .guardia
 {
     width: 100%;

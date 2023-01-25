@@ -6,7 +6,7 @@
 
     <div class="grafic_box">
         <div class="cercleFront">
-            <h1>20</h1>
+            <h1>{{this.totalUnitats}}</h1>
             <h3>GUARDIES</h3>
             <h5>TOTAL</h5>
         </div>
@@ -16,7 +16,7 @@
 
     <div id="guardies">
         <div *ngFor="let g of this.guardiesUnitat" class="guardia">
-            <div class="color"></div>
+            <div class="color" [attr.color-data]="setColorUnitat(g.nom)"></div>
             <div>
                 <h3>{{g.nom}}</h3>
                 <p>Infermeria, lesions greus</p>

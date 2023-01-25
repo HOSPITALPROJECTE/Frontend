@@ -1,32 +1,40 @@
 <header>
-    <h1>Admin-Festius</h1>
+    <h1>ADMINISTRACIO</h1>
+    <p>Dies festius</p>
 </header>
+<section id="body">
+    <div class="filtres">
+        <select #mes> <!--filtre per mes-->
+            <option *ngFor="let m of this.mesos">{{m}}</option>
+        </select>
+        <select #estat> <!--filtre estat-->
+            <option *ngFor="let c of this.estats">{{c}}</option>
+        </select>
+        <button>FILTRAR</button>
+    </div>
 
-<html>
-<body>
-    <div id="container">
-       <div id="subcontainer">
-           <div id="opcio" class="dropbtn">
-               <h1>Festius</h1>    
-       
-           </div>    
-               <div class="menu">
-                 <div class="columna">
+    <div class="afegirDia">
+        <input type="date">
+        <button class="addFestiu">AFEGIR</button>
+    </div>
 
-                    <div class="llista"></div>
+    <div class="table">
+        <ul>
+            <li class="tr_header">
+                <p name="data">DATA</p> 
+                <p name="estat">ESTAT</p>
+                <div></div>
+            </li>
+            <li class="table_li" *ngFor="let t of this.festius" #liElement>
+                <p name="data">{{dataToString(t.dia)}}</p> 
+                <p name="estat">{{t.estat}}</p>
+                <div>
+                    <button>activar</button>
+                    <button>eliminar</button>
+                </div>
+            </li>
+        </ul>
+    </div>
 
-                   <button id="editar">Editar</button>
-                   <button id="borrar">Borrar</button>       
-                 </div>
-                 <div class="columna">
-                   
-                 </div>         
-             </div>
-             <div class="retorna" (click)="goToAdmin()">Retorna</div>
-           </div>
-           
-           </div>
-
-           
-           </body>
-           </html>
+</section>
+<div id="exit" (click)="goToAdmin()"></div>

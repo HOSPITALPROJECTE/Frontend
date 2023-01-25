@@ -51,6 +51,10 @@ export class ATreballador{
         let day = date.getDate().toString().padStart(2, '0');
         return `${year}-${month}-${day}`
     }
+    getFestius(){
+        const requestOptions = this.createHeader();
+        return this.http.get('http://localhost:4000/api/data-access/getFestius', requestOptions);
+    }
 
     private createHeader(){
 

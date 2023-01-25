@@ -224,7 +224,8 @@ footer
   flex-wrap: wrap;
   justify-content: center;
 }
-.filtres button
+.filtres button,
+button.addFestiu
 {
   padding: .1em .4em;
   background: var(--color-green-light);

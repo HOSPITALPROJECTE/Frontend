@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { AdminTreballadorsGuardiesComponent } from './project/components/Admin/admin-treballadors-guardies/admin-treballadors-guardies.component';
 import { AdminTreballadorsComponent} from './project/components/Admin/admin-treballadors/admin-treballadors.component';
+import { AdminFestiusComponent } from './project/components/Admin/admin-festius/admin-festius.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AdminTreballadorsComponent} from './project/components/Admin/admin-treb
     AdminComponent,
     AdminPlantillaguardiesComponent,
     AdminTreballadorsComponent,
-    AdminTreballadorsGuardiesComponent
+    AdminTreballadorsGuardiesComponent,
+    AdminFestiusComponent
   ],
   
   imports: [
