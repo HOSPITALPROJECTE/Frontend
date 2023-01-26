@@ -10,22 +10,22 @@ import { AFestiu } from 'src/app/project/services/api/festiu/AFestiu';
   styleUrls: ['./admin-festius.component.css']
 })
 export class AdminFestiusComponent implements AfterViewInit {
-  estat:string ='actiu';
+  estat:string ='Tots';
   mes:string ='Tots';
+  dia!:Date;
   festius!:Array<any>;
-  estats:Array<string> = ['actiu', 'eliminat'];
+  estats:Array<string> = ['Tots','actiu', 'eliminat'];
   mesos:Array<string> = ['Tots','Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Septembre', 'Octubre', 'Novembre', 'Desembre'];
 
-  constructor(private router: Router, private http:ATreballador, private httpPut:AFestiu) {
-    http.getFestius().subscribe(
+  constructor(private router: Router, public http:ATreballador, public httpPut:AFestiu) {
+    this.loadFestius();
+  } 
+  loadFestius(){
+    this.http.getFestius().subscribe(
       data => {
         this.festius = (data as any)['resultat']['dades'];
     });
-    httpPut.updateFestiu(['2023-04-07','eliminat']).subscribe(data => {
-      console.log(data);
-    });
-   } 
-
+  }
   ngAfterViewInit(): void {
     this.btnsActions();
   }
@@ -35,8 +35,14 @@ export class AdminFestiusComponent implements AfterViewInit {
     this.btnQuit();
   }
   btnActivate(){
+    this.httpPut.updateFestiu({dia:this.dataToString(this.dia),status:"actiu"}).subscribe(data => {
+      this.loadFestius();
+    });
   }
   btnDesactivate(){
+    this.httpPut.updateFestiu({dia:this.dataToString(this.dia),status:"eliminat"}).subscribe(data => {
+      this.loadFestius();
+    });
   }
   removeSelecions(treballadors:NodeListOf<Element>){
     treballadors.forEach(t => {
@@ -74,7 +80,8 @@ export class AdminFestiusComponent implements AfterViewInit {
   }
   filterTrue(element:Element){
     let mes = this.numMes(element)
-    let estat = element.querySelector("p[name='estat']")?.textContent?.includes(this.estat);
+    let estat:boolean|undefined = true;
+    if(this.estat != 'Tots') estat = element.querySelector("p[name='estat']")?.textContent?.includes(this.estat);
     return estat && mes;
   }
 
@@ -83,7 +90,7 @@ export class AdminFestiusComponent implements AfterViewInit {
     let data = (element.children[0]?.textContent)?.slice(5,-3)
     let mes = true;
     if(data!=null){
-      if(parseInt(data) != 0){
+      if(num != 0){
         if(parseInt(data, 10) != num) mes = false;
       }
     }
@@ -92,6 +99,12 @@ export class AdminFestiusComponent implements AfterViewInit {
   goToAdmin(){
     this.router.navigate(['/admin']);
   }
+  addFestiu(dia:string){
+    this.httpPut.insertFestiu({dia:dia,estat:"actiu"}).subscribe(data => {
+      this.loadFestius();
+    });
+  }
+  changeDia(dia:Date){this.dia = dia;}
   dataToString(data:Date){
     return new DatePipe("en-US").transform(data, "YYYY-MM-dd");
   }

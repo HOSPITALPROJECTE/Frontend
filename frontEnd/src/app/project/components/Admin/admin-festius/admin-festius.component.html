@@ -14,8 +14,8 @@
     </div>
 
     <div class="afegirDia">
-        <input type="date">
-        <button class="addFestiu">AFEGIR</button>
+        <input type="date" #date>
+        <button class="addFestiu" (click)="addFestiu(date.value)">AFEGIR</button>
     </div>
 
     <div class="table">
@@ -24,7 +24,7 @@
                 <p name="data">DATA</p> 
                 <p name="estat">ESTAT</p>
             </li>
-            <li class="table_li" *ngFor="let t of this.festius" #liElement (click)="selectDay(liElement)">
+            <li class="table_li" *ngFor="let t of this.festius" #liElement (click)="selectDay(liElement)" (click)="changeDia(t.dia)">
                 <p name="data">{{dataToString(t.dia)}}</p> 
                 <p name="estat">{{t.estat}}</p>
             </li>
@@ -32,8 +32,8 @@
     </div>
     <div class="btns">
         <div>
-            <button class="btn btn_activate"> Activar </button>
-            <button class="btn btn_desactivate"> Eliminar </button>
+            <button class="btn btn_activate" (click)="btnActivate()"> Activar </button>
+            <button class="btn btn_desactivate" (click)="btnDesactivate()"> Eliminar </button>
         </div>
         <button class="btn_secondary"> eliminar selecció </button>
     </div>
