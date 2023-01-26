@@ -7,9 +7,6 @@
         <select #mes (change)="setMes(mes.value)"> <!--filtre per mes-->
             <option *ngFor="let m of this.mesos">{{m}}</option>
         </select>
-        <select #estat (change)="setEstat(estat.value)"> <!--filtre estat-->
-            <option *ngFor="let c of this.estats">{{c}}</option>
-        </select>
         <button (click)="filterElements()">FILTRAR</button>
     </div>
 
@@ -31,11 +28,8 @@
         </ul>
     </div>
     <div class="btns">
-        <div>
-            <button class="btn btn_activate" (click)="btnActivate()"> Activar </button>
-            <button class="btn btn_desactivate" (click)="btnDesactivate()"> Eliminar </button>
-        </div>
-        <button class="btn_secondary"> eliminar selecció </button>
+        <button class="btn btn_desactivate" (click)="btnDesactivate()"> Eliminar </button>
+        <button class="btn_secondary" (click)="borrarSeleccio()"> eliminar selecció </button>
     </div>
 
 </section>

@@ -10,11 +10,9 @@ import { AFestiu } from 'src/app/project/services/api/festiu/AFestiu';
   styleUrls: ['./admin-festius.component.css']
 })
 export class AdminFestiusComponent implements AfterViewInit {
-  estat:string ='Tots';
   mes:string ='Tots';
   dia!:Date;
   festius!:Array<any>;
-  estats:Array<string> = ['Tots','actiu', 'eliminat'];
   mesos:Array<string> = ['Tots','Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Septembre', 'Octubre', 'Novembre', 'Desembre'];
 
   constructor(private router: Router, public http:ATreballador, public httpPut:AFestiu) {
@@ -27,21 +25,16 @@ export class AdminFestiusComponent implements AfterViewInit {
     });
   }
   ngAfterViewInit(): void {
-    this.btnsActions();
+    //this.btnsActions();
   }
-  btnsActions(){
-    this.btnActivate();
+  /*btnsActions(){
     this.btnDesactivate();
     this.btnQuit();
-  }
-  btnActivate(){
-    this.httpPut.updateFestiu({dia:this.dataToString(this.dia),status:"actiu"}).subscribe(data => {
-      this.loadFestius();
-    });
-  }
+  }*/
   btnDesactivate(){
     this.httpPut.updateFestiu({dia:this.dataToString(this.dia),status:"eliminat"}).subscribe(data => {
       this.loadFestius();
+      this.borrarSeleccio()
     });
   }
   removeSelecions(treballadors:NodeListOf<Element>){
@@ -50,11 +43,15 @@ export class AdminFestiusComponent implements AfterViewInit {
       document.querySelector('#exit')?.classList.remove('hide');
     });
   }
-  btnQuit(){
+  /*btnQuit(){
     document.querySelector('.btn_secondary')?.addEventListener('click', () => {
       document.querySelector('.btns')?.classList.remove('active');
       this.removeSelecions(document.querySelectorAll('.table_li'));
     });
+  }*/
+  borrarSeleccio(){
+    document.querySelector('.btns')?.classList.remove('active');
+    this.removeSelecions(document.querySelectorAll('.table_li'));
   }
   selectDay(li:Element){
     let ul = li.parentNode?.querySelectorAll('.table_li');
@@ -69,7 +66,6 @@ export class AdminFestiusComponent implements AfterViewInit {
   }
 
   setMes(mes:string){this.mes = mes;}
-  setEstat(estat:string){this.estat = estat;}
 
   filterElements(){
     let allLi = document.querySelectorAll('.table_li');
@@ -80,9 +76,7 @@ export class AdminFestiusComponent implements AfterViewInit {
   }
   filterTrue(element:Element){
     let mes = this.numMes(element)
-    let estat:boolean|undefined = true;
-    if(this.estat != 'Tots') estat = element.querySelector("p[name='estat']")?.textContent?.includes(this.estat);
-    return estat && mes;
+    return mes;
   }
 
   numMes(element:Element){

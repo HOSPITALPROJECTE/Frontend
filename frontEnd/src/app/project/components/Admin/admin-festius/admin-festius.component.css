@@ -19,14 +19,11 @@ p[name="data"]{width: 100px;}
   position: absolute;
   bottom: 0;
   display: flex; 
-  flex-direction: column;
   gap: 10px;
   z-index: 8;
   transition: .3s;
 }
 .btns.active{bottom: 14vh;}
-
-.btns > div{display: flex; gap: 10px;}
 
 #exit.hide
 {
