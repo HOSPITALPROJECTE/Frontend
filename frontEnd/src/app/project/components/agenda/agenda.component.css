@@ -15,9 +15,8 @@ header > div > h3
 header > div > h3.active{color:#151515}
 
 /* LLEGENDA */
-.legend_item:nth-child(1) .color {background: var(--color-violet);}
-.legend_item:nth-child(2) .color {background: var(--color-green);}
-.legend_item:nth-child(2) .color {background: var(--color-blue);}
+.legend_item:nth-child(2) .color {background: var(--color-violet);}
+.legend_item:nth-child(1) .color {background: var(--color-blue);}
 
 
 /* AGENDA */
@@ -93,7 +92,15 @@ header > div > h3.active{color:#151515}
     font-size: .9em;
     color: var(--color-red);
 }
-
+.assigned
+{
+    position: absolute;
+    padding: 4px 12px;
+    top: 0;
+    right: 0;
+    font-size: .7em;
+    color: var(--color-green);
+}
 .day > .num
 {
     font-size: 1.8em;
