@@ -10,7 +10,7 @@
 
 .btns
 {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   display: flex; 
   gap: 10px;

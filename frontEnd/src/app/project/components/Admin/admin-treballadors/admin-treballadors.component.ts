@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChildren, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { AUtils } from 'src/app/project/services/api/AUtils/AUtils';
 import { ATreballador } from 'src/app/project/services/api/treballador/ATreballador';
 
 @Component({
@@ -16,15 +17,15 @@ export class AdminTreballadorsComponent implements AfterViewInit {
   categories!:Array<any>
   
   @ViewChild('elementId') elementRef: ElementRef | undefined;
-  constructor(private router: Router, private httpClient:ATreballador) {
+  constructor(private router: Router, private httpClient:ATreballador, private httpUtils:AUtils) {
     this.httpClient.getTreballadors().subscribe(
     data => {
       this.treballadors = data['resultat']['dades'];
     }); 
-    this.httpClient.getCategories().subscribe(
+    this.httpUtils.getCategories().subscribe(
       data => {
         this.categories = data['resultat']['dades'];
-      }); 
+    }); 
   }
 
   ngAfterViewInit(): void {
@@ -68,7 +69,7 @@ export class AdminTreballadorsComponent implements AfterViewInit {
       let dni = document.querySelector(".table_li.active > p[name='dni']")?.textContent;
       if(dni != null)
         this.goToGuardiesTreballador(dni)
-  })
+    })
   }
   filterTable(){
     let list = document.querySelectorAll('.table_li');

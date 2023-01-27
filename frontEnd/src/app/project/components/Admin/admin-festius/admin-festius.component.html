@@ -1,32 +1,37 @@
 <header>
-    <h1>Admin-Festius</h1>
+    <h1>ADMINISTRACIO</h1>
+    <p>Dies festius</p>
 </header>
+<section id="body">
+    <div class="filtres">
+        <select #mes (change)="setMes(mes.value)"> <!--filtre per mes-->
+            <option *ngFor="let m of this.mesos">{{m}}</option>
+        </select>
+        <button (click)="filterElements()">FILTRAR</button>
+    </div>
 
-<html>
-<body>
-    <div id="container">
-       <div id="subcontainer">
-           <div id="opcio" class="dropbtn">
-               <h1>Festius</h1>    
-       
-           </div>    
-               <div class="menu">
-                 <div class="columna">
+    <div class="afegirDia">
+        <input type="date" #date>
+        <button class="addFestiu" (click)="addFestiu(date.value)">AFEGIR</button>
+    </div>
 
-                    <div class="llista"></div>
+    <div class="table">
+        <ul>
+            <li class="tr_header">
+                <p name="data">DATA</p> 
+                <p name="estat">ESTAT</p>
+            </li>
+            <li class="table_li" *ngFor="let t of this.festius" #liElement (click)="selectDay(liElement)" (click)="changeDia(t.dia)">
+                <p name="data">{{dataToString(t.dia)}}</p> 
+                <p name="estat">{{t.estat}}</p>
+            </li>
+        </ul>
+    </div>
+    <div class="btns">
+        <button class="btn btn_desactivate" (click)="btnDesactivate()"> Eliminar </button>
+        <button class="btn_secondary" (click)="borrarSeleccio()"> eliminar selecció </button>
+    </div>
 
-                   <button id="editar">Editar</button>
-                   <button id="borrar">Borrar</button>       
-                 </div>
-                 <div class="columna">
-                   
-                 </div>         
-             </div>
-             <div class="retorna" (click)="goToAdmin()">Retorna</div>
-           </div>
-           
-           </div>
+</section>
 
-           
-           </body>
-           </html>
+<div id="exit" (click)="goToAdmin()"></div>

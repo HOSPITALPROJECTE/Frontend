@@ -3,7 +3,6 @@ export class Guardia {
     placesdispo!: number;
     dia!: Date;
 
-
     constructor(id : number, placesdispo : number, dia : Date) {
        
         this.id = id;
