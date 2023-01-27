@@ -16,10 +16,11 @@ export class NavbarComponent implements OnInit {
     const token = localStorage.getItem("hospital-accessToken");
     if(token!=null){
     const decodedToken:any = jwt_decode(token);
+    console.log(decodedToken.rol);
     this.isAdmin = decodedToken.rol === 'ADMIN';
     }
     if(!token){
-      alert("S'ha acabat el temps, torna a iniciar sessió per seguir amb el procediment");
+      alert("La teva sessió ha caducat, siusplau torniï a iniciar sessió");
       this.router.navigate(['/login']);
     }
   }

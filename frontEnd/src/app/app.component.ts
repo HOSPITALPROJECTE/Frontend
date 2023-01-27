@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { AuthServiceService } from './project/components/auth-service.service';
+import { AuthServiceService } from './project/services/api/Login/auth-service.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,6 @@ export class AppComponent {
   title = 'guardies';
 
   showLogin=false;
-  showCalendari=false;
 
   constructor(private router: Router, private authService: AuthServiceService){
     router.events.subscribe(event => {
