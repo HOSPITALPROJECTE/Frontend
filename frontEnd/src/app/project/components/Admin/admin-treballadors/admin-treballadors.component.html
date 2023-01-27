@@ -9,7 +9,7 @@
         <select #cat (change)="setSelectFilter(cat.value)">
             <option *ngFor="let c of this.categories">{{c.nom}}</option>
         </select>
-        <button>FILTRAR</button>
+        <button (click)="filterTable()">FILTRAR</button>
     </div>
     <div class="table">
         <ul>

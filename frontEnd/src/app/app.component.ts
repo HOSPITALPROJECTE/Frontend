@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { AuthServiceService } from './project/components/auth-service.service';
 
 @Component({
   selector: 'app-root',
@@ -12,17 +13,14 @@ export class AppComponent {
   showLogin=false;
   showCalendari=false;
 
-  constructor(private router: Router){
+  constructor(private router: Router, private authService: AuthServiceService){
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         if(event.url === '/login') {
           this.showLogin = true;
-          this.showCalendari = false;
         } else if (event.url === '/navbar') {
           this.showLogin = false;
-          this.showCalendari=true;
         }
-      
         }
       })
     }

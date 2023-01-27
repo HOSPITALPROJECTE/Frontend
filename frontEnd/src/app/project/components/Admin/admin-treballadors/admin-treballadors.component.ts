@@ -7,7 +7,7 @@ import { ATreballador } from 'src/app/project/services/api/treballador/ATreballa
   templateUrl: './admin-treballadors.component.html',
   styleUrls: ['./admin-treballadors.component.css']
 })
-export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
+export class AdminTreballadorsComponent implements AfterViewInit {
   filter_name: string = '';
   filter_dni: string = '';
   filter_select!: string;
@@ -27,19 +27,8 @@ export class AdminTreballadorsComponent implements OnInit, AfterViewInit {
       }); 
   }
 
-
-  ngOnInit(): void {
-  }
-
-
-  /******************
-     VISUAL ACTIONS 
-  *******************/
-
   ngAfterViewInit(): void {
-    this.setFilterSelect() // agafa el valor del select
     this.btnsActions(); // accions per treballador ex: veure guardies
-    this.filterTable(); // filtratje de la taula
   }
   setFilterSelect(){
     let select = document.querySelector('select')?.value;

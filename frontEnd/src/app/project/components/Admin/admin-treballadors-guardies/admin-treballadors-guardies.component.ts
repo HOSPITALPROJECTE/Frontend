@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ATreballador } from 'src/app/project/services/api/treballador/ATreballador';
 import { DatePipe } from '@angular/common';
@@ -8,13 +8,13 @@ import { DatePipe } from '@angular/common';
   templateUrl: './admin-treballadors-guardies.component.html',
   styleUrls: ['./admin-treballadors-guardies.component.css']
 })
-export class AdminTreballadorsGuardiesComponent implements OnInit {
+export class AdminTreballadorsGuardiesComponent{
   apunt:boolean = false
 
-  gEstats:Array<string> =['Apuntat','Assignat']
-  gEstat!:string;
+  gEstats:Array<string> =['apuntat','assignat']
+  gEstat:string='apuntat';
   estats:Array<string> =['actiu','eliminat']
-  estat!:string;
+  estat:string='actiu';
 
   guardies!:Array<any>;
   dni!:string;
@@ -32,21 +32,29 @@ export class AdminTreballadorsGuardiesComponent implements OnInit {
       this.apunt = true;
     });
   }
-
-  ngOnInit(): void {
+  setFilterGEstat(){
+    let select = document.querySelector('select')?.value[0];
+    if (select!=null && select!='') this.gEstat = select;
+    else this.gEstat = 'apuntat'
   }
-  setGEstatFilter(estat:string){
-    this.gEstat = estat;
+  filterElements(){
+    let list = document.querySelectorAll('.table_li');
+    list.forEach(l => {
+      if(this.filterTrue(l))l.classList.remove('hide');
+      else l.classList.add('hide');
+    });
   }
-  setEstatFilter(estat:string){
-    this.estat = estat;
+  filterTrue(element:Element){
+    let gEstat = element.querySelector("p[name='guard']")?.textContent == this.gEstat;
+    return gEstat;
+  }
+  setGEstatFilter(gEstat:string){
+    this.gEstat = gEstat;
   }
   dataToString(data:Date){
     return new DatePipe("en-US").transform(data, "yyyy-MM-dd");
   }
-  /* Navegació */
   goToTreballadors(){
     this.router.navigate(['/admin-treballadors']);
   }
-
 }
