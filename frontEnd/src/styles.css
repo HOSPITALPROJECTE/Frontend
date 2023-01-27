@@ -225,7 +225,8 @@ footer
   justify-content: center;
 }
 .filtres button,
-button.addFestiu
+button.addFestiu,
+.addPlantilla > button
 {
   padding: .1em .4em;
   background: var(--color-green-light);
@@ -233,7 +234,7 @@ button.addFestiu
 }
 .filtres button:active,button.addFestiu:active{background: var(--color-green);}
 
-
+ul{padding-bottom: 7vh;}
 .table
 {
   width: 100vw;
@@ -243,7 +244,9 @@ button.addFestiu
 }
 .table li{display: flex;}
 .tr_header{background: var(--color-grey); border-top-left-radius: 5px;border-top-right-radius: 5px;}
-.tr_header p{text-align: center; font-size: .9em;}
+.tr_header p{text-align: center; font-size: .9em;border-left: 1px solid #f9f9f9;}
+.tr_header:last-child{border-right: 1px solid #f9f9f9;}
+.tr_header p:nth-child(1){border-left: none;}
 
 .table_li{border-bottom: 1px solid var(--color-grey); background: #FFF;}
 .table_li p

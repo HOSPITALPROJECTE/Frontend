@@ -1,44 +1,49 @@
 <header>
-    <h1>Admin-PlantillaGuardies</h1>
+    <h1>Administració</h1>
+    <p>Plantilles guardies</p>
 </header>
-
-<html>
-<body>
-    <div id="container">
-       <div id="subcontainer">
-           <div id="opcio" class="dropbtn">
-               <h1>Plantilla Guardies</h1>    
-       
-           </div>    
-               <div class="menu">
-                 <div class="columna">  
-                    <div class="filtre">
-                        <input type="text" placeholder="Introdueix un una unitat">
-                        <input type="text" placeholder="Introdueix un una categoria">
-
-                        <input list="estat">
-                        <datalist id="estat">
-                         <option value="Mati">
-                         <option value="Tarda">               
-                         
-                         </datalist>
-                        <button id="buscar" style="color: white;">Buscar</button>
-                    </div>                       
-                        <div class="llista">
-
-                        </div>                
-
-                   <button id="editar">Editar</button>
-                   <button id="borrar">Borrar</button>       
-                 </div>
-                 <div class="columna">
-                   
-                 </div>         
-             </div>
-             <div class="retorna" (click)="goToAdmin()">Retorna</div>
-           </div>
-           
-           </div>
-          
-           </body>
-           </html>
+<section id="body">
+    <div class="addPlantilla">
+        <p>*Si ja existeix la plantilla modificarà les places</p>
+        <select #unitat >
+            <option *ngFor="let u of this.unitats" (change)="changeUnitat(u.nom)">{{u.nom}}</option>
+        </select>
+        <select #categoria >
+            <option *ngFor="let c of this.categories" (change)="changeCategoria(c.nom)">{{c.nom}}</option>
+        </select>
+        <select #torn >
+            <option *ngFor="let t of this.torns" (change)="changeTorn(t.nom)">{{t.nom}}</option>
+        </select>
+        <input type="number" value="0">
+        <button>AFEGIR</button>
+    </div>
+    <div class="filtres">
+        <select #unitat (change)="changeUnitat(unitat.value)">
+            <option *ngFor="let u of this.unitats">{{u.nom}}</option>
+        </select>
+        <select #categoria (change)="changeCategoria(categoria.value)">
+            <option *ngFor="let c of this.categories">{{c.nom}}</option>
+        </select>
+        <select #torn (change)="changeTorn(torn.value)">
+            <option *ngFor="let t of this.torns">{{t.nom}}</option>
+        </select>
+        <button (click)="filtrar()">FILTRAR</button>
+    </div>
+    <div class="table">
+        <ul>
+            <li class="tr_header">
+                <p name="uni">Unitat</p> 
+                <p name="cat">Categoria</p> 
+                <p name="torn">Torn</p> 
+                <p name="pl">Places</p> 
+            </li>
+            <li class="table_li" *ngFor="let p of this.plantilles" #li (click)="selectElement(li)">
+                <p name="uni">{{p.unitat}}</p>
+                <p name="cat">{{p.categoria}}</p>
+                <p name="torn">{{p.torn}}</p>
+                <p name="pl">{{p.places}}</p>
+            </li>
+        </ul>
+    </div>
+</section>
+<div id="exit" (click)="goToAdmin()"></div>

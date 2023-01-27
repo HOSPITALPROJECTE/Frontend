@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AGuardia } from 'src/app/project/services/api/guardia/guardia';
 import { ATreballador } from 'src/app/project/services/api/treballador/ATreballador';
 
 @Component({

@@ -18,10 +18,6 @@ export class ATreballador{
         const requestOptions = this.createHeader();
         return this.http.get('http://localhost:4000/api/data-access/treballador?dni='+dni, requestOptions);
     }
-    getCategories():Observable<any>{
-        const requestOptions = this.createHeader();
-        return this.http.get('http://localhost:4000/api/data-access/categories', requestOptions);
-    }
     getGuardiesTreballador(dni:string):Observable<any>{
         const requestOptions = this.createHeader();
         return this.http.get('http://localhost:4000/api/data-access/guardiestreballador?dni='+dni, requestOptions);
@@ -35,14 +31,6 @@ export class ATreballador{
         let data = this.getToday();
         const requestOptions = this.createHeader();
         return this.http.get('http://localhost:4000/api/data-access/getHistorialTreballador?dni='+dni+'&data='+data, requestOptions);
-    }
-    getTorns(){
-        const requestOptions = this.createHeader();
-        return this.http.get('http://localhost:4000/api/data-access/getTorns', requestOptions);
-    }
-    getUnitats(){
-        const requestOptions = this.createHeader();
-        return this.http.get('http://localhost:4000/api/data-access/getUnitats', requestOptions);
     }
     getToday(){   
         let date = new Date();

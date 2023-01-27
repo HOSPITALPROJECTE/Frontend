@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GuardiaTreballador } from '../../model/entities/implementations/GuardiaTreballador';
 import { GuardiesMes } from '../../model/entities/implementations/GuardiesMes';
+import { AUtils } from '../../services/api/AUtils/AUtils';
 import { ATreballador } from '../../services/api/treballador/ATreballador';
 
 @Component({
@@ -15,7 +16,7 @@ export class AgendaComponent implements OnInit,AfterViewInit {
   guardies:Array<GuardiesMes> = [];
   torns!:any;
 
-  constructor(private router: Router, private httpClient:ATreballador) {
+  constructor(private router: Router, private httpClient:ATreballador, private httpUtils:AUtils) {
     this.httpClient.getAgendaTreballador(this.dni).subscribe(
     data => {
       this.result = data['resultat']['dades'];
@@ -31,7 +32,7 @@ export class AgendaComponent implements OnInit,AfterViewInit {
         else this.guardies.push(new GuardiesMes(guardia.mes, guardia));
       });
     });
-    this.httpClient.getTorns().subscribe(
+    this.httpUtils.getTorns().subscribe(
     data => {
       this.torns = data;
       this.torns = this.torns['resultat']['dades'];

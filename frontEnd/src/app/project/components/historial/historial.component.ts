@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Unitat } from '../../model/entities/implementations/Unitat';
+import { AUtils } from '../../services/api/AUtils/AUtils';
 import { ATreballador } from '../../services/api/treballador/ATreballador';
 @Component({
   selector: 'app-historial',
@@ -16,8 +17,8 @@ export class HistorialComponent implements OnInit,AfterViewInit {
   dni:string = '111111111E'
   conicGradient!:string;
 
-  constructor(private router: Router, private httpClient:ATreballador) { 
-    this.httpClient.getUnitats().subscribe(
+  constructor(private router: Router, private httpClient:ATreballador, private httpUtils:AUtils) { 
+    this.httpUtils.getUnitats().subscribe(
       data => {
         this.unitats = (data as any)['resultat']['dades'];
       });
