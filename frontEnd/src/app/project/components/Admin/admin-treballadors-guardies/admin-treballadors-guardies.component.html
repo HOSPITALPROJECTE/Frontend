@@ -19,7 +19,7 @@
                 <p name="cat">Torn</p> 
                 <p name="guard">Inscripcio</p>
             </li>
-            <li class="table_li" *ngFor="let g of this.guardies">
+            <li class="table_li" *ngFor="let g of this.guardies" #liElement (click)="selectTreballador(liElement)">
                 <p name="data">{{this.dataToString(g.data_guardia)}}</p>
                 <p name="uni">{{g.unitat}}</p>
                 <p name="nom">{{g.categoria}}</p>

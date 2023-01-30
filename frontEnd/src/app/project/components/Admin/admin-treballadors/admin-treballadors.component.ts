@@ -86,15 +86,12 @@ export class AdminTreballadorsComponent implements AfterViewInit {
 
 	setSelectFilter(value:string): void {
 		this.filter_select = value;
-    console.log(this.filter_select)
 	}
 	setNomFilter(value:string): void {
 		this.filter_name = value;
-    console.log(this.filter_name);
 	}
 	setDniFilter(value:string): void {
 		this.filter_dni = value;
-    console.log(this.selectTreballador)
 	}
   /* NAVEGACIO */
   goToAdmin(){
