@@ -13,9 +13,9 @@ export class AdminPlantillaguardiesComponent {
   categories!:Array<any>;
   torns!:Array<any>;
   unitats!:Array<any>;
-  categoria:string = 'Totes';
-  unitat:string = 'Totes';
-  torn:string = 'Totes';
+  categoria:string = 'Categoria';
+  unitat:string = 'Unitat';
+  torn:string = 'Torn';
   constructor(private router: Router, private httpUtils:AUtils, private httpG:AGuardia) {
     this.httpUtils.getCategories().subscribe(
       data => {
@@ -35,7 +35,7 @@ export class AdminPlantillaguardiesComponent {
     })
   }
   //guardar valors filtrats
-  changeUnitat(uni:string): void {this.unitat = uni; console.log(uni)}
+  changeUnitat(uni:string): void {this.unitat = uni; }
   changeCategoria(cat:string): void {this.categoria = cat}
   changeTorn(torn:string): void {this.torn = torn}
 
@@ -50,6 +50,7 @@ export class AdminPlantillaguardiesComponent {
 
   //filtres
   filtrar(){
+    console.log(this.unitat)
     let list = document.querySelectorAll('.table_li')
     list?.forEach(l => l.classList.add('hide'))
     list?.forEach(l => {
@@ -57,9 +58,9 @@ export class AdminPlantillaguardiesComponent {
     });
   }
   filtreTrue(l:any){
-    let categoria = l.querySelector("p[name='cat']").textContent == this.categoria || l.querySelector("p[name='cat']").textContent == 'Totes';
-    let torn = l.querySelector("p[name='torn']").textContent == this.torn || l.querySelector("p[name='torn']").textContent == 'Totes';
-    let unitat = l.querySelector("p[name='uni']").textContent == this.unitat || l.querySelector("p[name='uni']").textContent == 'Totes';
+    let categoria = l.querySelector("p[name='cat']").textContent == this.categoria || this.categoria == 'Categoria';
+    let torn = l.querySelector("p[name='torn']").textContent == this.torn || this.torn == 'Torn';
+    let unitat = l.querySelector("p[name='uni']").textContent == this.unitat || this.unitat == 'Unitat';
     return categoria && torn && unitat
   }
 

@@ -5,26 +5,29 @@
 <section id="body">
     <div class="addPlantilla">
         <p>*Si ja existeix, al afegir, es modificaran les places</p>
-        <select #unitat >
-            <option *ngFor="let u of this.unitats" (change)="changeUnitat(u.nom)">{{u.nom}}</option>
+        <select #unitatP (change)="changeUnitat(unitatP.value)">
+            <option *ngFor="let u of this.unitats">{{u.nom}}</option>
         </select>
-        <select #categoria >
-            <option *ngFor="let c of this.categories" (change)="changeCategoria(c.nom)">{{c.nom}}</option>
+        <select #categoriaP (change)="changeCategoria(categoriaP.value)">
+            <option *ngFor="let c of this.categories">{{c.nom}}</option>
         </select>
-        <select #torn >
-            <option *ngFor="let t of this.torns" (change)="changeTorn(t.nom)">{{t.nom}}</option>
+        <select #tornP (change)="changeTorn(tornP.value)">
+            <option *ngFor="let t of this.torns" >{{t.nom}}</option>
         </select>
         <input type="number" value="0">
         <button>AFEGIR</button>
     </div>
     <div class="filtres">
         <select #unitat (change)="changeUnitat(unitat.value)">
+            <option>Unitat</option>
             <option *ngFor="let u of this.unitats">{{u.nom}}</option>
         </select>
         <select #categoria (change)="changeCategoria(categoria.value)">
+            <option>Categoria</option>
             <option *ngFor="let c of this.categories">{{c.nom}}</option>
         </select>
         <select #torn (change)="changeTorn(torn.value)">
+            <option>Torn</option>
             <option *ngFor="let t of this.torns">{{t.nom}}</option>
         </select>
         <button (click)="filtrar()">FILTRAR</button>
