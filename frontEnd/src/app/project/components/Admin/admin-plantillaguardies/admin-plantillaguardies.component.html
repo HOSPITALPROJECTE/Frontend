@@ -4,7 +4,7 @@
 </header>
 <section id="body">
     <div class="addPlantilla">
-        <p>*Si ja existeix la plantilla modificarà les places</p>
+        <p>*Si ja existeix, al afegir, es modificaran les places</p>
         <select #unitat >
             <option *ngFor="let u of this.unitats" (change)="changeUnitat(u.nom)">{{u.nom}}</option>
         </select>
