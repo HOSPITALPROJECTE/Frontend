@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AUtils } from 'src/app/project/services/api/utils/AUtils';
 import { AGuardia } from 'src/app/project/services/api/guardia/AGuardia';
 import { Guardia } from 'src/app/project/model/entities/implementations/Guardia';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-admin-plantillaguardies',
@@ -45,8 +46,7 @@ export class AdminPlantillaguardiesComponent {
   // Inserir nova guardia
   async savePlantilla(unitat:string,torn:string,categoria:string,places:string){
     let plantilla:Guardia = new Guardia(unitat,torn,categoria, parseInt(places));
-    console.log(plantilla)
-    await this.httpG.savePlantilla(plantilla).toPromise();
+    await lastValueFrom(this.httpG.savePlantilla(plantilla))
 
     this.getPlantilles();
   }
