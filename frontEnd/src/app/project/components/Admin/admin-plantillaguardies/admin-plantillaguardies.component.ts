@@ -18,8 +18,11 @@ export class AdminPlantillaguardiesComponent {
   unitat:string = 'Unitat';
   torn:string = 'Torn';
   
-  constructor(private router: Router, public httpUtils:AUtils, public httpG:AGuardia) {
-    this.getCategories();
+  constructor(private router: Router, private httpUtils:AUtils, public httpG:AGuardia) {
+    this.httpUtils.getCategories().subscribe(
+      data => {
+        this.categories = data['resultat']['dades'];
+    });
     this.httpUtils.getTorns().subscribe(
       data => {
         this.torns = (data as any)['resultat']['dades'];
@@ -28,27 +31,24 @@ export class AdminPlantillaguardiesComponent {
       data => {
         this.unitats = (data as any)['resultat']['dades'];
     });
-    httpG.getPlantilles().subscribe(
+    this.getPlantilles()
+  }
+
+  // Carregar les categories
+  getPlantilles(){
+    this.httpG.getPlantilles().subscribe(
       data => {
         this.plantilles = data['resultat']['dades'];
     });
   }
 
-  // Carregar les categories
-  getCategories(){
-    this.httpUtils.getCategories().subscribe(
-      data => {
-        this.categories = data['resultat']['dades'];
-    });
-  }
-
   // Inserir nova guardia
-  savePlantilla(unitat:string,torn:string,categoria:string,places:string){
+  async savePlantilla(unitat:string,torn:string,categoria:string,places:string){
     let plantilla:Guardia = new Guardia(unitat,torn,categoria, parseInt(places));
     console.log(plantilla)
-    this.httpG.savePlantilla(plantilla).subscribe();
+    await this.httpG.savePlantilla(plantilla).toPromise();
 
-    this.getCategories();
+    this.getPlantilles();
   }
 
 

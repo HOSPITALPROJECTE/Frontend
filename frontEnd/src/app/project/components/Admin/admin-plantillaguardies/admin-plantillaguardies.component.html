@@ -15,7 +15,7 @@
             <option *ngFor="let t of this.torns" >{{t.nom}}</option>
         </select>
         <input type="number" value="0" #places>
-        <button (click)="savePlantilla(unitatP.value, categoriaP.value, tornP.value, places.value)">AFEGIR</button>
+        <button (click)="savePlantilla(unitatP.value, tornP.value, categoriaP.value, places.value)">AFEGIR</button>
     </div>
     <div class="filtres">
         <select #unitat (change)="changeUnitat(unitat.value)">

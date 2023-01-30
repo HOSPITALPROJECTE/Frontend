@@ -25,7 +25,7 @@ export class AdminFestiusComponent {
     });
   }
   btnDesactivate(){
-    this.httpPut.updateFestiu({dia:this.dataToString(this.dia),status:"eliminat"}).subscribe(data => {
+    this.httpPut.insertFestiu({dia:this.dataToString(this.dia),status:"eliminat"}).subscribe(data => {
       this.loadFestius();
       this.borrarSeleccio();
     });
