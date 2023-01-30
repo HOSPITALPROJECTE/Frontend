@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     const token = localStorage.getItem("hospital-accessToken");
-    if(token!=null){
+    if(token){
     const decodedToken:any = jwt_decode(token);
     console.log(decodedToken.rol);
     this.isAdmin = decodedToken.rol == 'ADMIN';

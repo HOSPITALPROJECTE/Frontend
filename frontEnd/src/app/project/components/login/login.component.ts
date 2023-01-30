@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("hospital-refreshToken" , result.resultat.accessToken)
       this.router.navigate(['/navbar']).then(()=>
       this.router.navigate(['/month']))
-      this.inicideSessio();
     })
   }
 
@@ -41,10 +40,6 @@ export class LoginComponent implements OnInit {
       password: [""]
     })
     
-  }
-  inicideSessio(){
-    this.router.navigate(['/navbar']).then(()=>
-    this.router.navigate(['/month']))
   }
 }
 

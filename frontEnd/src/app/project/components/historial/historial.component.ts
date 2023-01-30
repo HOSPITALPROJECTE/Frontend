@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Unitat } from '../../model/entities/implementations/Unitat';
