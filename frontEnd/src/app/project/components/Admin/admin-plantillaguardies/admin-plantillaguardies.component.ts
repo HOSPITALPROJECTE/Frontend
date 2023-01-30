@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AUtils } from 'src/app/project/services/api/utils/AUtils';
 import { AGuardia } from 'src/app/project/services/api/guardia/AGuardia';
+import { Guardia } from 'src/app/project/model/entities/implementations/Guardia';
 
 @Component({
   selector: 'app-admin-plantillaguardies',
@@ -16,24 +17,41 @@ export class AdminPlantillaguardiesComponent {
   categoria:string = 'Categoria';
   unitat:string = 'Unitat';
   torn:string = 'Torn';
-  constructor(private router: Router, private httpUtils:AUtils, private httpG:AGuardia) {
-    this.httpUtils.getCategories().subscribe(
-      data => {
-        this.categories = data['resultat']['dades'];
-    }) 
+  
+  constructor(private router: Router, public httpUtils:AUtils, public httpG:AGuardia) {
+    this.getCategories();
     this.httpUtils.getTorns().subscribe(
       data => {
         this.torns = (data as any)['resultat']['dades'];
-    }) 
+    });
     this.httpUtils.getUnitats().subscribe(
       data => {
         this.unitats = (data as any)['resultat']['dades'];
-    })
+    });
     httpG.getPlantilles().subscribe(
       data => {
         this.plantilles = data['resultat']['dades'];
-    })
+    });
   }
+
+  // Carregar les categories
+  getCategories(){
+    this.httpUtils.getCategories().subscribe(
+      data => {
+        this.categories = data['resultat']['dades'];
+    });
+  }
+
+  // Inserir nova guardia
+  savePlantilla(unitat:string,torn:string,categoria:string,places:string){
+    let plantilla:Guardia = new Guardia(unitat,torn,categoria, parseInt(places));
+    console.log(plantilla)
+    this.httpG.savePlantilla(plantilla).subscribe();
+
+    this.getCategories();
+  }
+
+
   //guardar valors filtrats
   changeUnitat(uni:string): void {this.unitat = uni; }
   changeCategoria(cat:string): void {this.categoria = cat}

@@ -1,12 +1,13 @@
 export class Guardia {
-    id!: number;
-    placesdispo!: number;
-    dia!: Date;
+    unitat!:string;
+    torn!:string;
+    categoria!:string;
+    places!:number;
 
-    constructor(id : number, placesdispo : number, dia : Date) {
-       
-        this.id = id;
-        this.placesdispo = placesdispo;
-        this.dia = dia;
+    constructor(unitat:string,torn:string,categoria:string,places:number) {
+       this.unitat = unitat;
+       this.torn =torn;
+       this.categoria = categoria;
+       this.places = places;
     }
 }

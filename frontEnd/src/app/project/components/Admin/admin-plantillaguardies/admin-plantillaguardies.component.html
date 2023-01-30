@@ -5,17 +5,17 @@
 <section id="body">
     <div class="addPlantilla">
         <p>*Si ja existeix, al afegir, es modificaran les places</p>
-        <select #unitatP (change)="changeUnitat(unitatP.value)">
+        <select #unitatP>
             <option *ngFor="let u of this.unitats">{{u.nom}}</option>
         </select>
-        <select #categoriaP (change)="changeCategoria(categoriaP.value)">
+        <select #categoriaP>
             <option *ngFor="let c of this.categories">{{c.nom}}</option>
         </select>
-        <select #tornP (change)="changeTorn(tornP.value)">
+        <select #tornP>
             <option *ngFor="let t of this.torns" >{{t.nom}}</option>
         </select>
-        <input type="number" value="0">
-        <button>AFEGIR</button>
+        <input type="number" value="0" #places>
+        <button (click)="savePlantilla(unitatP.value, categoriaP.value, tornP.value, places.value)">AFEGIR</button>
     </div>
     <div class="filtres">
         <select #unitat (change)="changeUnitat(unitat.value)">

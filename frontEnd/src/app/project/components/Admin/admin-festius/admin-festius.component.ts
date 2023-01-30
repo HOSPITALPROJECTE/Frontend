@@ -1,5 +1,5 @@
-import { DatePipe, NumberFormatStyle } from '@angular/common';
-import { AfterViewInit, Component } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ATreballador } from 'src/app/project/services/api/treballador/ATreballador';
 import { AFestiu } from 'src/app/project/services/api/festiu/AFestiu';
@@ -9,7 +9,7 @@ import { AFestiu } from 'src/app/project/services/api/festiu/AFestiu';
   templateUrl: './admin-festius.component.html',
   styleUrls: ['./admin-festius.component.css']
 })
-export class AdminFestiusComponent implements AfterViewInit {
+export class AdminFestiusComponent {
   mes:string ='Tots';
   dia!:Date;
   festius!:Array<any>;
@@ -24,17 +24,10 @@ export class AdminFestiusComponent implements AfterViewInit {
         this.festius = (data as any)['resultat']['dades'];
     });
   }
-  ngAfterViewInit(): void {
-    //this.btnsActions();
-  }
-  /*btnsActions(){
-    this.btnDesactivate();
-    this.btnQuit();
-  }*/
   btnDesactivate(){
     this.httpPut.updateFestiu({dia:this.dataToString(this.dia),status:"eliminat"}).subscribe(data => {
       this.loadFestius();
-      this.borrarSeleccio()
+      this.borrarSeleccio();
     });
   }
   removeSelecions(treballadors:NodeListOf<Element>){
@@ -43,12 +36,6 @@ export class AdminFestiusComponent implements AfterViewInit {
       document.querySelector('#exit')?.classList.remove('hide');
     });
   }
-  /*btnQuit(){
-    document.querySelector('.btn_secondary')?.addEventListener('click', () => {
-      document.querySelector('.btns')?.classList.remove('active');
-      this.removeSelecions(document.querySelectorAll('.table_li'));
-    });
-  }*/
   borrarSeleccio(){
     document.querySelector('.btns')?.classList.remove('active');
     this.removeSelecions(document.querySelectorAll('.table_li'));
