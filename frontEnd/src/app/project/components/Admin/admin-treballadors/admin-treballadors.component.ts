@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChildren, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AUtils } from 'src/app/project/services/api/AUtils/AUtils';
+import { AUtils } from 'src/app/project/services/api/utils/AUtils';
 import { ATreballador } from 'src/app/project/services/api/treballador/ATreballador';
 
 @Component({

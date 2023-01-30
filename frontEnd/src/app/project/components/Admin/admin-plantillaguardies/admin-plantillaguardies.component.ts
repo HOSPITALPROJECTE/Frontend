@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AUtils } from 'src/app/project/services/api/AUtils/AUtils';
+import { AUtils } from 'src/app/project/services/api/utils/AUtils';
 import { AGuardia } from 'src/app/project/services/api/guardia/AGuardia';
 
 @Component({

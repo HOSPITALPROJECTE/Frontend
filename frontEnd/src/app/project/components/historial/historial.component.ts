@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Unitat } from '../../model/entities/implementations/Unitat';
-import { AUtils } from '../../services/api/AUtils/AUtils';
+import { AUtils } from '../../services/api/utils/AUtils';
 import { ATreballador } from '../../services/api/treballador/ATreballador';
 @Component({
   selector: 'app-historial',
