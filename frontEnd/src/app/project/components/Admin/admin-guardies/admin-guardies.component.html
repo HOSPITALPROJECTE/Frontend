@@ -1,55 +1,36 @@
 <header>
     <h1>Admin-Guardies</h1>
+    <p>Guardies</p>
 </header>
 
-<html>
-<body>
-    <div id="container">
-       <div id="subcontainer">
-           <div id="opcio" class="dropbtn">
-               <h1>Guardies</h1>    
-       
-           </div>    
-               <div class="menu">
-                 <div class="columna">
-
-                    
-                        <div class="filtre">
-                            <input type="date" name="dataF" placeholder="Introdueix un dia per a cercar les guardies">
-
-                            <select #cat (change)="setSelectFilter(cat.value)">
-                                <option>Infermeria</option>
-                                <option>Urgencies</option>
-                                <option>UCI</option>
-                            </select>
-                            <button id="buscar">Buscar</button>
-                        </div>
-                        <div class="llista">
-
-                            <p class="info"><b>Dia : </b> <span name="data">31/1/24 </span>  <b>Unitat : </b> <span name="unitat">1 </span>  <b>Categoria : </b> <span name="cat">UCI</span> <b> Plaçes :</b> 5/9</p>
-                            <p class="info"><b>Dia : </b> <span name="data">31/1/24 </span>  <b>Unitat : </b> <span name="unitat">1 </span>  <b>Categoria : </b> <span name="cat">UCI</span> <b> Plaçes :</b> 5/9</p>
-                            <p class="info"><b>Dia : </b> <span name="data">31/1/24 </span>  <b>Unitat : </b> <span name="unitat">1 </span>  <b>Categoria : </b> <span name="cat">Infermeria</span> <b> Plaçes :</b> 5/9</p>
-                            <p class="info"><b>Dia : </b> <span name="data">31/1/24 </span>  <b>Unitat : </b> <span name="unitat">2 </span>  <b>Categoria : </b> <span name="cat">Infermeria</span> <b> Plaçes :</b> 5/9</p>
-                            <p class="info"><b>Dia : </b> <span name="data">31/1/24 </span>  <b>Unitat : </b> <span name="unitat">2 </span>  <b>Categoria : </b> <span name="cat">Infermeria</span> <b> Plaçes :</b> 5/9</p>
-                            <p class="info"><b>Dia : </b> <span name="data">31/1/24 </span>  <b>Unitat : </b> <span name="unitat">3 </span>  <b>Categoria : </b> <span name="cat">Urgencies</span> <b> Plaçes :</b> 5/9</p>
-                            <p class="info"><b>Dia : </b> <span name="data">31/1/24 </span>  <b>Unitat : </b> <span name="unitat">3 </span>  <b>Categoria : </b> <span name="cat">Urgencies</span> <b> Plaçes :</b> 5/9</p>
-                            <p style="font-size: 10px; margin-left: 10px;">(exemple)</p>
-
-
-                        </div>                
-                   <div class="btns">
-                   <button id="editar">Editar</button>
-                   <button id="borrar">Borrar</button>
-                </div>       
-                 </div>
-                 <div class="columna">
-                   
-                 </div>         
-             </div>
-             <div class="retorna" id="exit" (click)="goToAdmin()"></div>
-           </div>
-           
-        </div>
-          
-    </body>
-</html>
+<section id="body">
+    <div class="filtres">
+        <input type="date" name="data">
+        <select #unitat (change)="setSelectFilterUnitat(unitat.value)">
+            <option *ngFor="let u of this.unitats">{{u}}</option>
+        </select>
+        <select #categoria (change)="setSelectFilterCategoria(categoria.value)">
+            <option *ngFor="let e of this.categories">{{e}}</option>
+        </select>
+        <button (click)="filterElements()">Buscar</button>
+    </div>
+    <div class="table">
+        <ul>
+            <li class="tr_header">
+                <p name="dia">Dia</p> 
+                <p name="unitat">Unitat</p>
+                <p name="categoria">Categoria</p> 
+                <p name="torns">Torns</p> 
+                <p name="places">Places</p> 
+            </li>
+            <li class="table_li" *ngFor="let g of this.guardies">                
+                <p class="dia">{{this.dataToString(g.data_guardia)}}</p>
+                <p class="unitat">{{g.unitat}}</p>
+                <p class="categoria">{{g.categoria}}</p>
+                <p class="torns">{{g.torn}}</p>
+                <p class="places">{{g.places}}</p> 
+            </li>
+        </ul>
+    </div>
+</section>
+<button id="exit" (click)="goToAdmin()"></button>

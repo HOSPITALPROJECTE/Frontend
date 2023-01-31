@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ATreballador } from 'src/app/project/services/api/treballador/ATreballador';
 
 @Component({
@@ -7,54 +8,35 @@ import { ATreballador } from 'src/app/project/services/api/treballador/ATreballa
   templateUrl: './admin-guardies.component.html',
   styleUrls: ['./admin-guardies.component.css']
 })
-export class AdminGuardiesComponent implements OnInit, AfterViewInit {
+export class AdminGuardiesComponent{
 
-  filter_data: string = '';
-  filter_dni: string = '';
-  filter_select!: string;
-  constructor(private router: Router, private httpClient:ATreballador) {
- 
-    }
-   
-  
+  data!:Array<string>;
+  unitats:Array<string> =['Unitat 1','Unitat 2','Unitat 3', 'Unitat 4']
+  unitat:string='Unitat 1';
+  categories:Array<string> =['Infermeria','TCAI']
+  categoria:string='Infermeria';
+  torns!:Array<any>;
+  places!:Array<any>;
 
-  ngOnInit(): void {
+  guardies!:Array<any>;
+
+  constructor(private router: Router, private httpClient:ATreballador, private route: ActivatedRoute) {
+    this.httpClient.getGuardies().subscribe(
+      data=> {
+      this.guardies = data['resultat']['dades'];
+    })
+  }
+  setFilterSelectUnitat(){
+    let select = document.querySelector('select')?.value[0];
+    if (select!=null) this.unitat = select;
+    else this.unitat = 'Unitat 1';
   }
 
-
-  /******************
-     VISUAL ACTIONS 
-  *******************/
-
-  ngAfterViewInit(): void {
-    this.setFilterSelect()
-    this.selectData(); // acció al seleccionar un treballador
-    this.filterTable(); // filtratje de la taula
+  setFilterSelectCategoria(){
+    let select = document.querySelector('select')?.value[1];
+    if (select!=null) this.categoria = select;
+    else this.categoria = 'Infermeria';
   }
-  setFilterSelect(){
-    let select = document.querySelector('select')?.value;
-    if (select!=null) this.filter_select = select;
-    else this.filter_select = '';
-  }
-
-  
-  filterTable(){
-    let list = document.querySelectorAll('.info');
-    document.querySelector('.filtre > #buscar')?.addEventListener('click', () => {
-      this.filterElements(list);
-     
-    });
-  }
-  selectData(){
-    let guardies =  document.querySelectorAll('.info');
-    guardies?.forEach(li => li.addEventListener('click', () => {
-      this.removeSelecions(guardies);
-      li.classList.add('active');
-
-      this.actionsWithGuardia();
-    }))
-  }
-
   removeSelecions(guardies:NodeListOf<Element>){
     guardies.forEach(t => {
       t.classList.remove('active');
@@ -65,7 +47,9 @@ export class AdminGuardiesComponent implements OnInit, AfterViewInit {
     document.querySelector('.btns')?.classList.add('active');
     document.querySelector('#exit')?.classList.add('hide');
   }
-  filterElements(list:NodeListOf<Element>){
+
+  filterElements(){
+    let list = document.querySelectorAll('.table_li');
     list.forEach(l => {
       if(this.filterTrue(l)){l.classList.remove('hide'); }
       else l.classList.add('hide');
@@ -73,17 +57,25 @@ export class AdminGuardiesComponent implements OnInit, AfterViewInit {
     });
   }
   filterTrue(element:Element){
-    let select = element.querySelector("span[name='cat']")?.textContent == this.filter_select;
-    let data = element.querySelector("span[name='data']")?.textContent?.includes(this.filter_data);
-    
-    return select && data;
+    /*let data = element.querySelector("p[class='dia']")?.textContent == this.data;*/
+    let unitat = element.querySelector("p[class='unitat']")?.textContent == this.unitat;
+    let categoria = element.querySelector("p[class='categoria']")?.textContent == this.categoria;
+    return  unitat && categoria;
   }
-  setSelectFilter(value:string): void {
-		this.filter_select = value;
-	}
 
+  setSelectFilterDate(data:any): void {
+		this.data = data;
+	}
+  setSelectFilterCategoria(categoria:string): void {
+		this.categoria = categoria;
+	}
+  setSelectFilterUnitat(unitat:string): void {
+		this.unitat = unitat;
+	}
+  dataToString(data:Date){
+    return new DatePipe("en-US").transform(data, "dd-MM-yyyy");
+  }
   goToAdmin(){
     this.router.navigate(['/admin']);
   }
-
 }
