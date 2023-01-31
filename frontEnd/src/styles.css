@@ -142,7 +142,7 @@ header p{font-size: 1.1em;color:#f9f9f9}
 /* llegenda - ajuda visual */
 
 /* bnt_exit */
-/*#exit
+#exit
 {
     position: fixed;
     top: 80vh;
@@ -175,9 +175,9 @@ header p{font-size: 1.1em;color:#f9f9f9}
 #exit::after
 {
     transform: translate(-50%, -50%) rotate(-45deg);
-}*/
+}
 
-#exit
+/*#exit
 {
     position: fixed;
     top: 80vh;
@@ -206,7 +206,7 @@ header p{font-size: 1.1em;color:#f9f9f9}
 {
     background: var(--color-green-light2);
     transform: translateX(-50%) scale(1.02);
-}
+}*/
 
 /****************************************************************
 
