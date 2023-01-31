@@ -18,6 +18,7 @@ import { AdminTreballadorsGuardiesComponent } from './project/components/Admin/a
 import { AdminTreballadorsComponent} from './project/components/Admin/admin-treballadors/admin-treballadors.component';
 import { AdminFestiusComponent } from './project/components/Admin/admin-festius/admin-festius.component';
 import { AdminGuardiesComponent } from './project/components/Admin/admin-guardies/admin-guardies.component';
+import { TreballadorsXGuardiaComponent } from './project/components/treballadors-x-guardia/treballadors-x-guardia.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AdminGuardiesComponent } from './project/components/Admin/admin-guardie
     AdminTreballadorsComponent,
     AdminTreballadorsGuardiesComponent,
     AdminFestiusComponent,
-    AdminGuardiesComponent
+    AdminGuardiesComponent,
+    TreballadorsXGuardiaComponent
   ],
   
   imports: [
