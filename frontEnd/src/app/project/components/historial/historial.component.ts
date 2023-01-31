@@ -39,7 +39,7 @@ export class HistorialComponent implements OnInit,AfterViewInit {
       });
   }
   setCronicGradient(){
-    if(this.guardiesUnitat.length < 0){
+    if(this.guardiesUnitat.length > 0){
       let lastPercent = 0;
       this.conicGradient = 'conic-gradient(';
       this.guardiesUnitat.forEach(unitat => {
@@ -49,7 +49,7 @@ export class HistorialComponent implements OnInit,AfterViewInit {
         lastPercent = (parseInt(percent) + lastPercent);
       })
       this.conicGradient = this.conicGradient.slice(0, -1)+')'
-    }else{this.conicGradient = 'conic-gradient(var(--color-grey) 0% 100%'; console.log('aaaaa')};
+    }else{this.conicGradient = 'conic-gradient(var(--color-grey) 0% 100%';};
   }
   ngOnInit(): void {
   }

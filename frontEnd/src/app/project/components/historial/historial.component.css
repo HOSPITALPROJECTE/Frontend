@@ -52,6 +52,7 @@ header > div > h3.active{color:#151515}
 {
     font-size: 0.9em;
     height: 1em;
+    color: var(--color-disabled);
 }
 .grafic
 {
@@ -113,10 +114,7 @@ header > div > h3.active{color:#151515}
 .color[color-data="4"] {background: var(--unitat-4);}
 
 
-.senseGuardia
-{
-    color: var(--color-disabled);
-}
+.senseGuardia{color: var(--color-disabled);}
 .guardia
 {
     width: 100%;

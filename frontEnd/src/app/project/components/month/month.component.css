@@ -203,6 +203,11 @@
     display: none;
     z-index: 9;
 }
+#btn_allMonths:active
+{
+    background: var(--color-green-light2);
+    transform: scale(1.02);
+}
 #allMonths_box.active{display: flex;}
 #allMonths_box .month_list
 {
@@ -226,10 +231,4 @@
     width: 55vw;
     background: var(--color-shadow);
     backdrop-filter: blur(1px);
-}
-
-#btn_allMonths:active
-{
-    background: var(--color-green-light2);
-    transform: scale(1.02);
 }
