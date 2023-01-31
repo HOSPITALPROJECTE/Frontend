@@ -7,6 +7,7 @@
         <input #dni (change)="setDniFilter(dni.value)" type="text" name='dni' placeholder="000000000A">
         <input #nom (change)="setNomFilter(nom.value)" type="text" name='nom' placeholder="Marc Grabulosa">
         <select #cat (change)="setSelectFilter(cat.value)">
+            <option>Totes</option>
             <option *ngFor="let c of this.categories">{{c.nom}}</option>
         </select>
         <button (click)="filterTable()">FILTRAR</button>

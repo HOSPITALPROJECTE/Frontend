@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GuardiaTreballador } from '../../model/entities/implementations/GuardiaTreballador';
 import { GuardiesMes } from '../../model/entities/implementations/GuardiesMes';
-import { AUtils } from '../../services/api/AUtils/AUtils';
+import { AUtils } from '../../services/api/utils/AUtils';
 import { ATreballador } from '../../services/api/treballador/ATreballador';
 
 @Component({

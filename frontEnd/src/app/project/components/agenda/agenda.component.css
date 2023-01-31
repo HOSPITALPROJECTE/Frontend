@@ -115,6 +115,9 @@ header > div > h3.active{color:#151515}
 .day > .place label{font-size: .8em; color:#707070}
 .day > .place > p{font-size: .9em;}
 
+
+.senseGuardia{color: var(--color-disabled); margin-top: 2vh;}
+
 #confirm_window
 {
     position: fixed;

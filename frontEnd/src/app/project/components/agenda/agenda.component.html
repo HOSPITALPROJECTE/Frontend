@@ -9,8 +9,8 @@
             <h5>{{t.nom}}</h5>
         </div>
     </div>
-    <div id="agenda_box">
-        <div *ngFor="let mes of this.guardies" class="agendaMonth" [attr.month-data]="mes.nom">
+    <div id="agenda_box" *ngIf="this.guardies.length > 0; else senseGuardies">
+        <div *ngFor="let mes of this.guardies" class="agendaMonth" [attr.month-data]="mes.nom" #guardies>
             <div *ngFor="let g of mes.guardies" class="day" [attr.torn-data]="g.torn">
                 <div *ngIf="g.estatGuardia != 'assignat';else elseBlock" #dayAction class="dayAction" (click)="toTrashEventListener(dayAction)"><i class="fa-regular fa-trash-can"></i></div>
                 <ng-template #elseBlock><div class="assigned">Assignat</div></ng-template>
@@ -22,6 +22,9 @@
             </div>
         </div>
     </div>
+    <ng-template #senseGuardies>
+        <p class="senseGuardia">No tens cap guardia inscrita</p>
+    </ng-template>
 </section>
 <section id="confirm_window" class="hide">
     <div id="window_box">

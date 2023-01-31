@@ -15,14 +15,19 @@
 
 
     <div id="guardies">
-        <div *ngFor="let g of this.guardiesUnitat" class="guardia">
-            <div class="color" [attr.color-data]="setColorUnitat(g.nom)"></div>
-            <div>
-                <h3>{{g.nom}}</h3>
-                <p>Infermeria, lesions greus</p>
-            </div>
-            <div name="num">{{g.num}}</div>
+        <div class="senseGuardia" *ngIf="this.guardiesUnitat.length == 0; else mostrarGuardies">
+            <p> No has fet cap guardia.</p>
         </div>
+        <ng-template #mostrarGuardies>
+            <div *ngFor="let g of this.guardiesUnitat" class="guardia" >
+                <div class="color" [attr.color-data]="setColorUnitat(g.nom)"></div>
+                <div>
+                    <h3>{{g.nom}}</h3>
+                    <p>Infermeria, lesions greus</p>
+                </div>
+                <div name="num">{{g.num}}</div>
+            </div>
+        </ng-template> 
     </div>
 </section>
 <app-navbar></app-navbar>

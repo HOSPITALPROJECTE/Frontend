@@ -9,11 +9,6 @@ export class AFestiu{
     
     constructor(private http:HttpClient){}
 
-
-    updateFestiu(data:any){
-        const requestOptions = this.createHeader();
-        return this.http.post('http://localhost:4000/api/data-access/updateFestiu',data, requestOptions);      
-    }
     insertFestiu(data:any){
         const requestOptions = this.createHeader();
         return this.http.post('http://localhost:4000/api/data-access/insertFestiu',data, requestOptions);      

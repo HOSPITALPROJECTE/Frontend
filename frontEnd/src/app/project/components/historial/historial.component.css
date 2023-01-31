@@ -52,6 +52,7 @@ header > div > h3.active{color:#151515}
 {
     font-size: 0.9em;
     height: 1em;
+    color: var(--color-disabled);
 }
 .grafic
 {
@@ -59,8 +60,6 @@ header > div > h3.active{color:#151515}
     width: 160px;
 	height: 160px;
 	border-radius: 50%;
-	background-image: conic-gradient(var(--unitat-1) 0% 75%,
-									 var(--unitat-2) 75% 100%);
 }
 
 #guardies
@@ -114,6 +113,8 @@ header > div > h3.active{color:#151515}
 .color[color-data="3"] {background: var(--unitat-3);}
 .color[color-data="4"] {background: var(--unitat-4);}
 
+
+.senseGuardia{color: var(--color-disabled);}
 .guardia
 {
     width: 100%;

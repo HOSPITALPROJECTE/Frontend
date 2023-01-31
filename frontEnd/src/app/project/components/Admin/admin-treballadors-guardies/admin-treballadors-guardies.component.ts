@@ -32,6 +32,17 @@ export class AdminTreballadorsGuardiesComponent{
       this.apunt = true;
     });
   }
+  selectTreballador(li:Element){
+    let ul = li.parentNode?.querySelectorAll('.table_li');
+    if(ul != null) this.removeSelecions(ul);
+    li.classList.add('active');
+  }
+  removeSelecions(treballadors:NodeListOf<Element>){
+    treballadors.forEach(t => {
+      t.classList.remove('active');
+      document.querySelector('#exit')?.classList.remove('hide');
+    });
+  }
   setFilterGEstat(){
     let select = document.querySelector('select')?.value[0];
     if (select!=null && select!='') this.gEstat = select;

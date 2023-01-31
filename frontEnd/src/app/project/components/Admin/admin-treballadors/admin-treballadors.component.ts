@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChildren, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AUtils } from 'src/app/project/services/api/AUtils/AUtils';
+import { AUtils } from 'src/app/project/services/api/utils/AUtils';
 import { ATreballador } from 'src/app/project/services/api/treballador/ATreballador';
 
 @Component({
@@ -11,7 +11,7 @@ import { ATreballador } from 'src/app/project/services/api/treballador/ATreballa
 export class AdminTreballadorsComponent implements AfterViewInit {
   filter_name: string = '';
   filter_dni: string = '';
-  filter_select!: string;
+  filter_select: string = 'Totes';
 
   treballadors!:Array<any>
   categories!:Array<any>
@@ -30,11 +30,6 @@ export class AdminTreballadorsComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.btnsActions(); // accions per treballador ex: veure guardies
-  }
-  setFilterSelect(){
-    let select = document.querySelector('select')?.value;
-    if (select!=null && select!='') this.filter_select = select;
-    else this.filter_select = 'Infermeria'
   }
   selectTreballador(li:Element){
     let ul = li.parentNode?.querySelectorAll('.table_li');
@@ -73,9 +68,7 @@ export class AdminTreballadorsComponent implements AfterViewInit {
   }
   filterTable(){
     let list = document.querySelectorAll('.table_li');
-    document.querySelector('.filtres > button')?.addEventListener('click', () => {
       this.filterElements(list);
-    });
   }
   filterElements(list:NodeListOf<Element>){
     list.forEach(l => {
@@ -84,7 +77,7 @@ export class AdminTreballadorsComponent implements AfterViewInit {
     });
   }
   filterTrue(element:Element){
-    let select = element.querySelector("p[name='cat']")?.textContent == this.filter_select;
+    let select = element.querySelector("p[name='cat']")?.textContent == this.filter_select  || this.filter_select == 'Totes';
     let name = element.querySelector("p[name='nom']")?.textContent?.includes(this.filter_name);
     let dni = element.querySelector("p[name='dni']")?.textContent?.includes(this.filter_dni);
     return select && dni && name;
