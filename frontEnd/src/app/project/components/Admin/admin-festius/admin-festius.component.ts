@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ATreballador } from 'src/app/project/services/api/treballador/ATreballador';
 import { AFestiu } from 'src/app/project/services/api/festiu/AFestiu';
+import { AGuardia } from 'src/app/project/services/api/guardia/AGuardia';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-admin-festius',
@@ -15,7 +17,7 @@ export class AdminFestiusComponent {
   festius!:Array<any>;
   mesos:Array<string> = ['Tots','Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Septembre', 'Octubre', 'Novembre', 'Desembre'];
 
-  constructor(private router: Router, public http:ATreballador, public httpPut:AFestiu) {
+  constructor(private router: Router, public http:ATreballador, public httpPut:AFestiu, public hhtpG:AGuardia) {
     this.loadFestius();
   } 
   loadFestius(){
@@ -36,16 +38,25 @@ export class AdminFestiusComponent {
       document.querySelector('#exit')?.classList.remove('hide');
     });
   }
+  selectAll(){
+    document.querySelectorAll('.table_li').forEach(li => li.classList.add('active'));
+  }
   borrarSeleccio(){
     document.querySelector('.btns')?.classList.remove('active');
     this.removeSelecions(document.querySelectorAll('.table_li'));
   }
   selectDay(li:Element){
-    let ul = li.parentNode?.querySelectorAll('.table_li');
-    if(ul != null) this.removeSelecions(ul);
-    li.classList.add('active');
+    if(li.classList.contains('active')) {
+      li.classList.remove('active');
+      let ul = document.querySelectorAll('.table_li.active');
+      if( ul?.length == 0) this.borrarSeleccio();
+    }else{
+      let ul = li.parentNode?.querySelectorAll('.table_li');
+      //if(ul != null) this.removeSelecions(ul);
+      li.classList.add('active');
 
-    this.actionsWithTreballador();
+      this.actionsWithTreballador();
+    }
   }
   actionsWithTreballador(){
     document.querySelector('.btns')?.classList.add('active');
@@ -77,6 +88,22 @@ export class AdminFestiusComponent {
     }
     return mes;
   }
+
+  async createGuardies(){
+    let guardiesToCreate:Array<string> = [];
+    let list = document.querySelectorAll('.table_li.active')
+    list.forEach(data => {
+      let date = data.textContent;
+      if(date!= null)guardiesToCreate.push(date)
+    });
+    console.log(guardiesToCreate)
+    await lastValueFrom(this.hhtpG.createGuardia(guardiesToCreate))
+    this.notifyUser()
+  }
+
+  notifyUser(){ console.log('aaaa')}
+
+
   goToAdmin(){
     this.router.navigate(['/admin']);
   }

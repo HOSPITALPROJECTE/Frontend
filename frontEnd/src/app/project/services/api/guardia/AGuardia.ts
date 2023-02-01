@@ -20,6 +20,10 @@ export class AGuardia{
         const requestOptions = this.createHeader();
         return this.http.post('http://localhost:4000/api/data-access/savePlantilla', plantilla, requestOptions);
     }
+    createGuardia(dates:Array<string>){
+        const requestOptions = this.createHeader();
+        return this.http.post('http://localhost:4000/api/data-access/createGuardies', dates, requestOptions);
+    }
 
 
 

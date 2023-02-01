@@ -3,16 +3,15 @@
     <p>Dies festius</p>
 </header>
 <section id="body">
+    <div class="afegirDia">
+        <input type="date" #date>
+        <button class="addFestiu" (click)="addFestiu(date.value)">AFEGIR</button>
+    </div>
     <div class="filtres">
         <select #mes (change)="setMes(mes.value)"> <!--filtre per mes-->
             <option *ngFor="let m of this.mesos">{{m}}</option>
         </select>
         <button (click)="filterElements()">FILTRAR</button>
-    </div>
-
-    <div class="afegirDia">
-        <input type="date" #date>
-        <button class="addFestiu" (click)="addFestiu(date.value)">AFEGIR</button>
     </div>
 
     <div class="table">
@@ -26,8 +25,13 @@
         </ul>
     </div>
     <div class="btns">
-        <button class="btn btn_desactivate" (click)="btnDesactivate()"> Eliminar </button>
-        <button class="btn_secondary" (click)="borrarSeleccio()"> eliminar selecció </button>
+        <div class="actions">
+            <button class="btn afegirGuardies" (click)="createGuardies()"> Crear Guardies </button>
+            <button class="btn btn_desactivate" (click)="btnDesactivate()"> Eliminar </button>
+        </div>
+        <div>
+            <button class="selectAll btn_secondary" (click)="selectAll()">sel·leccionar tot</button>
+        </div>
     </div>
 
 </section>
