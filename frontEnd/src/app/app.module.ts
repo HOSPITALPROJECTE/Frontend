@@ -13,10 +13,12 @@ import { LoginComponent } from './project/components/login/login.component';
 import { AdminComponent } from './project/components/Admin/admin/admin.component';
 import { AdminPlantillaguardiesComponent } from './project/components/Admin/admin-plantillaguardies/admin-plantillaguardies.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { AdminTreballadorsGuardiesComponent } from './project/components/Admin/admin-treballadors-guardies/admin-treballadors-guardies.component';
 import { AdminTreballadorsComponent} from './project/components/Admin/admin-treballadors/admin-treballadors.component';
 import { AdminFestiusComponent } from './project/components/Admin/admin-festius/admin-festius.component';
+import { AdminGuardiesComponent } from './project/components/Admin/admin-guardies/admin-guardies.component';
+import { TreballadorsXGuardiaComponent } from './project/components/treballadors-x-guardia/treballadors-x-guardia.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { AdminFestiusComponent } from './project/components/Admin/admin-festius/
     AdminPlantillaguardiesComponent,
     AdminTreballadorsComponent,
     AdminTreballadorsGuardiesComponent,
-    AdminFestiusComponent
+    AdminFestiusComponent,
+    AdminGuardiesComponent,
+    TreballadorsXGuardiaComponent
   ],
   
   imports: [

@@ -44,6 +44,21 @@ export class ATreballador{
         return this.http.get('http://localhost:4000/api/data-access/getFestius', requestOptions);
     }
 
+    getDiaAlCapDunAny(){
+        let date = new Date();
+        let year = date.getFullYear()+1;
+        let month = (1 + date.getMonth()).toString().padStart(2, '0');
+        let day = date.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`
+    }
+
+    getGuardies():Observable<any>{
+        let primer_dia = this.getToday();
+        let ultim_dia=this.getDiaAlCapDunAny();
+        const requestOptions= this.createHeader();
+        return this.http.get('http://localhost:4000/api/data-access/getGuardiesMesAny?primer_dia='+primer_dia+'&ultim_dia='+ultim_dia,requestOptions)
+    }
+
     private createHeader(){
 
         const header = {

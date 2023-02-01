@@ -1,5 +1,6 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { request } from 'express';
 import { Observable } from 'rxjs';
 import { Guardia } from 'src/app/project/model/entities/implementations/Guardia';
 
@@ -10,7 +11,7 @@ import { Guardia } from 'src/app/project/model/entities/implementations/Guardia'
 export class AGuardia{
     
     constructor(private http:HttpClient){}
-
+    
     getPlantilles():Observable<any>{
         const requestOptions = this.createHeader();
         return this.http.get('http://localhost:4000/api/data-access/getPlantilla', requestOptions);
