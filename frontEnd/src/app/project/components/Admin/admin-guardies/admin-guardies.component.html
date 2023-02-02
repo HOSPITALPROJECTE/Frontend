@@ -11,45 +11,35 @@
        
            </div>    
                <div class="menu">
-                 <div class="columna">
-
-                    
+                 <div class="columna">                    
                         <div class="filtre">
                             <input type="date" name="dataF" placeholder="Introdueix un dia per a cercar les guardies">
-
-                            <select #cat (change)="setSelectFilter(cat.value)">
-                                <option>Infermeria</option>
-                                <option>Urgencies</option>
-                                <option>UCI</option>
+                            <select class="unitat" #unitat (change)="changeUnitat(unitat.value)">
+                                <option *ngFor="let u of this.unitats">{{u.nom}}</option>
                             </select>
-                            <button id="buscar">Buscar</button>
+                            <select #categoria (change)="changeCategoria(categoria.value)">
+                                <option *ngFor="let c of this.categories">{{c.nom}}</option>
+                            </select>
+                            <select #torn (change)="changeTorn(torn.value)">
+                                <option *ngFor="let t of this.torns">{{t.nom}}</option>
+                            </select>        
+                            <button id="buscar" (click)="filtrar()">Buscar</button>
                         </div>
-                        <div class="llista">
-
-                            <p class="info"><b>Dia : </b> <span name="data">31/1/24 </span>  <b>Unitat : </b> <span name="unitat">1 </span>  <b>Categoria : </b> <span name="cat">UCI</span> <b> Plaçes :</b> 5/9</p>
-                            <p class="info"><b>Dia : </b> <span name="data">31/1/24 </span>  <b>Unitat : </b> <span name="unitat">1 </span>  <b>Categoria : </b> <span name="cat">UCI</span> <b> Plaçes :</b> 5/9</p>
-                            <p class="info"><b>Dia : </b> <span name="data">31/1/24 </span>  <b>Unitat : </b> <span name="unitat">1 </span>  <b>Categoria : </b> <span name="cat">Infermeria</span> <b> Plaçes :</b> 5/9</p>
-                            <p class="info"><b>Dia : </b> <span name="data">31/1/24 </span>  <b>Unitat : </b> <span name="unitat">2 </span>  <b>Categoria : </b> <span name="cat">Infermeria</span> <b> Plaçes :</b> 5/9</p>
-                            <p class="info"><b>Dia : </b> <span name="data">31/1/24 </span>  <b>Unitat : </b> <span name="unitat">2 </span>  <b>Categoria : </b> <span name="cat">Infermeria</span> <b> Plaçes :</b> 5/9</p>
-                            <p class="info"><b>Dia : </b> <span name="data">31/1/24 </span>  <b>Unitat : </b> <span name="unitat">3 </span>  <b>Categoria : </b> <span name="cat">Urgencies</span> <b> Plaçes :</b> 5/9</p>
-                            <p class="info"><b>Dia : </b> <span name="data">31/1/24 </span>  <b>Unitat : </b> <span name="unitat">3 </span>  <b>Categoria : </b> <span name="cat">Urgencies</span> <b> Plaçes :</b> 5/9</p>
-                            <p style="font-size: 10px; margin-left: 10px;">(exemple)</p>
-
-
-                        </div>                
+                        <div style="height:300px; overflow: scroll; margin: 5px;">
+                        <div class="llista" *ngFor="let span of this.guardies" #div (click)="selectElement(div)">
+                            <p class="info"><b>Dia : </b> <span name="data">{{span.data}} </span> <b>Torn : </b> <span name="torn">{{span.torn}} </span>  <b>Unitat : </b> <span name="unitat">{{span.unitat}} </span>  <b>Categoria : </b> <span name="cat">{{span.categoria}}</span> <b> Plaçes :</b> {{span.places}}</p>
+                        </div>     
+                    </div>           
                    <div class="btns">
-                   <button id="editar">Editar</button>
-                   <button id="borrar">Borrar</button>
+                   <button id="editar" class="btn_primary">Editar</button>
+                   <button id="borrar" class="btn_secondary">Borrar</button>
                 </div>       
-                 </div>
-                 <div class="columna">
-                   
-                 </div>         
-             </div>
-             <div class="retorna" id="exit" (click)="goToAdmin()"></div>
-           </div>
-           
-        </div>
-          
+                </div>
+                   <div class="columna">                   
+                   </div>         
+                </div>
+                <div class="retorna" id="exit" (click)="goToAdmin()"></div>
+            </div>           
+        </div>          
     </body>
 </html>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,11 +12,12 @@ import { HistorialComponent } from './project/components/historial/historial.com
 import { LoginComponent } from './project/components/login/login.component';
 import { AdminComponent } from './project/components/Admin/admin/admin.component';
 import { AdminPlantillaguardiesComponent } from './project/components/Admin/admin-plantillaguardies/admin-plantillaguardies.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { AdminTreballadorsGuardiesComponent } from './project/components/Admin/admin-treballadors-guardies/admin-treballadors-guardies.component';
 import { AdminTreballadorsComponent} from './project/components/Admin/admin-treballadors/admin-treballadors.component';
 import { AdminFestiusComponent } from './project/components/Admin/admin-festius/admin-festius.component';
+import { AdminGuardiesComponent } from './project/components/Admin/admin-guardies/admin-guardies.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { AdminFestiusComponent } from './project/components/Admin/admin-festius/
     AdminPlantillaguardiesComponent,
     AdminTreballadorsComponent,
     AdminTreballadorsGuardiesComponent,
-    AdminFestiusComponent
+    AdminFestiusComponent,
+    AdminGuardiesComponent
   ],
   
   imports: [
@@ -38,9 +41,12 @@ import { AdminFestiusComponent } from './project/components/Admin/admin-festius/
     AppRoutingModule,
     HttpClientModule,
     CommonModule,
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [ 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -19,11 +19,9 @@
         <ul>
             <li class="tr_header">
                 <p name="data">DATA</p> 
-                <p name="estat">ESTAT</p>
             </li>
             <li class="table_li" *ngFor="let t of this.festius" #liElement (click)="selectDay(liElement)" (click)="changeDia(t.dia)">
                 <p name="data">{{dataToString(t.dia)}}</p> 
-                <p name="estat">{{t.estat}}</p>
             </li>
         </ul>
     </div>

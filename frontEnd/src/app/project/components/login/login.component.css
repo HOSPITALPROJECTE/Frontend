@@ -1,12 +1,12 @@
 .logo{
     position: absolute;
-    top: 17%;
+    top: 22%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 .inputs{
     position: absolute;
-    top:57%;
+    top:62%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -41,4 +41,14 @@ label{
     justify-content:center;
     background-repeat: no-repeat;
     background-size: 100%;
+    z-index: 100;
 }   
+.capa{
+    z-index: 99;
+    background-size: 100%;
+    background-color: white;
+    position: fixed;
+    top:0;
+    width: 100vw;
+    height: 100vh;
+}

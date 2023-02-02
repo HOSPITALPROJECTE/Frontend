@@ -14,6 +14,10 @@ export class AGuardia{
         const requestOptions = this.createHeader();
         return this.http.get('http://localhost:4000/api/data-access/getPlantilla', requestOptions);
     }
+    getGuardies():Observable<any>{
+        const requestOptions = this.createHeader();
+        return this.http.get('http://localhost:4000/api/data-access/guardies', requestOptions);
+    }
     private createHeader(){
 
         const header = {

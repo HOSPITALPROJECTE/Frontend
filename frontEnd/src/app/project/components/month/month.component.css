@@ -217,7 +217,7 @@
     padding: .5em 1em;
     border-bottom: 1px solid var(--color-shadow);
 }
-#allMonths_box .month_list .month h1{font-size: 1em; height: 1.1em;}
+#allMonths_box .month_list .month h1{font-size: 1em; height: 1.3em;}
 #allMonths_box .month_list .month p{font-size: .8em;}
 
 .exitMonths

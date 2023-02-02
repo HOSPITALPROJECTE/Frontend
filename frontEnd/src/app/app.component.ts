@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { AuthServiceService } from './project/services/api/Login/auth-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'guardies';
+
+  showLogin=false;
+
+  constructor(private router: Router, private authService: AuthServiceService){
+    router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        if(event.url === '/login') {
+          this.showLogin = true;
+        } else if (event.url === '/navbar') {
+          this.showLogin = false;
+        }
+        }
+      })
+    }
 }
