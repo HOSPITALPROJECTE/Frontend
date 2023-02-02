@@ -5,11 +5,13 @@
 
 <section id="body">
     <div class="filtres">
-        <input type="date" name="data">
+        <input type="date" name="data" #data (change)="setSelectFilterDate(data.value)">
         <select #unitat (change)="setSelectFilterUnitat(unitat.value)">
+            <option>Totes</option>
             <option *ngFor="let u of this.unitats">{{u}}</option>
         </select>
         <select #categoria (change)="setSelectFilterCategoria(categoria.value)">
+            <option>Totes</option>
             <option *ngFor="let e of this.categories">{{e}}</option>
         </select>
         <button (click)="filterElements()">Buscar</button>
@@ -23,7 +25,7 @@
                 <p name="torns">Torns</p> 
                 <p name="places">Places</p> 
             </li>
-            <li class="table_li" *ngFor="let g of this.guardies">                
+            <li class="table_li" *ngFor="let g of this.guardies" #liElement (click)="selectGuardia(liElement)">                
                 <p class="dia">{{this.dataToString(g.data_guardia)}}</p>
                 <p class="unitat">{{g.unitat}}</p>
                 <p class="categoria">{{g.categoria}}</p>
@@ -32,5 +34,10 @@
             </li>
         </ul>
     </div>
+    <div class="btns">
+        <button class="btn_primary"> veure guardies </button>
+        <button class="btn_secondary"> eliminar selecció </button>
+    </div>
 </section>
 <button id="exit" (click)="goToAdmin()"></button>
+<app-navbar></app-navbar>
