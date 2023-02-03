@@ -11,6 +11,7 @@ import { ATreballador } from 'src/app/project/services/api/treballador/ATreballa
 })
 export class AdminGuardiesComponent implements AfterViewInit{
 
+  id_guardia!:string;
   data:any;
   unitats:Array<string> =['Unitat 1','Unitat 2','Unitat 3', 'Unitat 4']
   unitat:string='Totes';
@@ -62,9 +63,9 @@ export class AdminGuardiesComponent implements AfterViewInit{
   }
   btnPrimary(){
     document.querySelector('.btn_primary')?.addEventListener('click', () => {
-      let unitat = document.querySelector(".table_li.active > p[class='unitat']")?.textContent;
-      if(unitat != null)
-        this.goToTreballadorsGuardia()
+      let id = document.querySelector(".table_li.active > p[class='dia']")?.getAttribute("value");
+      if(id != null)
+        this.goToTreballadorsGuardia(id)
     })
   }
   btnSecondary(){
@@ -108,10 +109,12 @@ export class AdminGuardiesComponent implements AfterViewInit{
     return new DatePipe("en-US").transform(data, "dd-MM-yyyy");
   }
   
-  goToTreballadorsGuardia(){
-    this.router.navigate(['/admin-treballadors-x-guardia']);
+  goToTreballadorsGuardia(id:string){
+    this.router.navigate(['/admin-treballadors-x-guardia', id]);
   }
+  goToTreballadors(){
 
+  }
   goToAdmin(){
     this.router.navigate(['/admin']);
   }

@@ -28,7 +28,7 @@ const routes: Routes = [
   { path:  'admin-treballadors-guardies/:dni', component: AdminTreballadorsGuardiesComponent },
   { path:  'admin-guardies', component: AdminGuardiesComponent },
   { path:  'admin-plantillaguardies', component: AdminPlantillaguardiesComponent },
-  { path:  'admin-treballadors-x-guardia', component: AdminTreballadorsXGuardiaComponent}
+  { path:  'admin-treballadors-x-guardia/:id', component: AdminTreballadorsXGuardiaComponent}
 
 ];
 

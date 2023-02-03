@@ -10,19 +10,24 @@
             <option>Totes</option>
             <option *ngFor="let c of this.categories">{{c.nom}}</option>
         </select>
-        <button (click)="filterTable()">FILTRAR</button>
+        <button (click)="filterTable()">BUSCAR</button>
     </div>
     <div class="table">
         <ul>
             <li class="tr_header">
                 <p name="dni">DNI</p> 
                 <p name="nom">Nom</p> 
+                <p name="unitat">Unitat</p> 
                 <p name="cat">Categoria</p> 
+                <p name="estat">Estat</p> 
+
             </li>
             <li class="table_li" *ngFor="let t of this.treballadors">
-                <p name="dni">{{t.dni}}</p> 
+                <p name="dni">{{t.dni_treballador}}</p> 
                 <p name="nom">{{t.nom}}</p> 
+                <p name="unitat">{{t.unitat}}</p> 
                 <p name="cat">{{t.categoria}}</p> 
+                <p name="estat">{{t.estat_guardia}}</p> 
             </li>
         </ul>
         <ng-template #elseBlock>

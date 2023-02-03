@@ -1,6 +1,7 @@
 import { Component,} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ATreballador } from '../../services/api/treballador/ATreballador';
+import { AUtils } from '../../services/api/utils/AUtils';
 
 @Component({
   selector: 'app-admin-treballadors-x-guardia',
@@ -11,21 +12,24 @@ export class AdminTreballadorsXGuardiaComponent{
   filter_name: string = '';
   filter_dni: string = '';
   filter_select: string = 'Totes';
+  apunt:boolean = false
 
   treballadors!:Array<any>
   categories!:Array<any>
-  id_guardia!:Array<string>;
+  id!:string;
 
-  constructor(private router: Router, private httpClient:ATreballador,private route: ActivatedRoute) {
-    /*this.route.params.subscribe(params => {
-      this.id_guardia=params['id_guardia'];    
-      console.log(this.id_guardia=params['id_guardia'] );
-      this.httpClient.getTreballadorsGuardia(this.id_guardia).subscribe(
+  constructor(private router: Router, private httpClient:ATreballador,private route: ActivatedRoute,private httpUtils:AUtils) {
+    this.route.params.subscribe(params => {
+      this.id=params['id'];    
+      this.httpClient.getTreballadorsGuardia(this.id).subscribe(
         data => {
       this.treballadors = data['resultat']['dades'];
-      console.log(this.treballadors);
-      }
-    )});  */
+      })
+      this.httpUtils.getCategories().subscribe(
+        data => {
+          this.categories = data['resultat']['dades'];
+      }); 
+    });  
   }
 
   filterTable(){

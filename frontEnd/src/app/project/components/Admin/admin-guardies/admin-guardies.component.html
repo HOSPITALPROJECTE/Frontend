@@ -25,8 +25,8 @@
                 <p name="torns">Torns</p> 
                 <p name="places">Places</p> 
             </li>
-            <li class="table_li" *ngFor="let g of this.guardies" #liElement (click)="selectGuardia(liElement)">                
-                <p class="dia">{{this.dataToString(g.data_guardia)}}</p>
+            <li class="table_li" *ngFor="let g of this.guardies" #liElement (click)="selectGuardia(liElement)">    
+                <p class="dia" [attr.value]=g.id>{{this.dataToString(g.data_guardia)}}</p>
                 <p class="unitat">{{g.unitat}}</p>
                 <p class="categoria">{{g.categoria}}</p>
                 <p class="torns">{{g.torn}}</p>
