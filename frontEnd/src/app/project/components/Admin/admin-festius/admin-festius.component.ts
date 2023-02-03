@@ -12,6 +12,7 @@ import { lastValueFrom } from 'rxjs';
   styleUrls: ['./admin-festius.component.css']
 })
 export class AdminFestiusComponent {
+  loading = false;
   mes:string ='Tots';
   dia!:Date;
   festius!:Array<any>;
@@ -94,11 +95,31 @@ export class AdminFestiusComponent {
     let list = document.querySelectorAll('.table_li.active')
     list.forEach(data => {
       let date = data.textContent;
-      if(date!= null)guardiesToCreate.push(date)
+      if(date!= null){
+        if (date == 'Diumenges') guardiesToCreate = this.addAllSundays(guardiesToCreate);
+        guardiesToCreate.push(date)
+      }
     });
-    console.log(guardiesToCreate)
+    this.loading = true;
     await lastValueFrom(this.hhtpG.createGuardia(guardiesToCreate))
+    console.log('aaa')
+    this.loading = false;
+    console.log('bbb')
     this.notifyUser()
+  }
+
+  addAllSundays(dates:Array<string>){
+    const year = 2023;
+    const date = new Date(year, 0, 1);
+
+    while (date.getFullYear() === year) {
+        if (date.getDay() === 0) {
+          let data = this.dataToString(new Date(date))
+          if(data!=null) dates.push(data);
+        }
+        date.setDate(date.getDate() + 1);
+    }
+    return dates
   }
 
   notifyUser(){ console.log('aaaa')}

@@ -36,3 +36,30 @@ p[name="data"]{width: 100px;}
 .actions{display: flex; gap: 5px;}
 .afegirGuardies{background: var(--color-green);}
 .btn_desactivate{background: var(--color-red);}
+
+.loader
+{
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  left: 0;
+  top: 0;
+  z-index: 10000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader_box
+{
+  width: 80%;
+  height: 80px;
+  border-radius: 30px;
+  background-color: var(--color-disabled);
+
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+.loader_box p {
+  color: white;
+}

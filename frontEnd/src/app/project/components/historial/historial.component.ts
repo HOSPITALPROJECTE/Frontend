@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Unitat } from '../../model/entities/implementations/Unitat';
 import { AUtils } from '../../services/api/utils/AUtils';
 import { ATreballador } from '../../services/api/treballador/ATreballador';
+import { Token } from '../../model/entities/implementations/Token';
 @Component({
   selector: 'app-historial',
   templateUrl: './historial.component.html',
@@ -16,7 +17,8 @@ export class HistorialComponent implements OnInit,AfterViewInit {
   dni:string = '111111111E'
   conicGradient!:string;
 
-  constructor(private router: Router, private httpClient:ATreballador, private httpUtils:AUtils) { 
+  constructor(private router: Router, private httpClient:ATreballador, private httpUtils:AUtils) {
+    let token = new Token(this.router); 
     this.httpUtils.getUnitats().subscribe(
       data => {
         this.unitats = (data as any)['resultat']['dades'];

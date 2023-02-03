@@ -19,6 +19,9 @@
             <li class="tr_header">
                 <p name="data">DATA</p> 
             </li>
+            <li class="table_li" #liElement (click)="selectDay(liElement)">
+                <p name="data">Diumenges</p> 
+            </li>
             <li class="table_li" *ngFor="let t of this.festius" #liElement (click)="selectDay(liElement)" (click)="changeDia(t.dia)">
                 <p name="data">{{dataToString(t.dia)}}</p> 
             </li>
@@ -38,3 +41,11 @@
 
 <div id="exit" (click)="goToAdmin()"></div>
 <app-navbar></app-navbar>
+
+<div *ngIf="this.loading">
+    <div class="loader">
+      <div class="loader_box">
+        <p>S'estan creant les guardes...</p>
+      </div>
+    </div>
+</div>
