@@ -12,6 +12,7 @@ import { AdminGuardiesComponent } from './project/components/Admin/admin-guardie
 import { AdminPlantillaguardiesComponent } from './project/components/Admin/admin-plantillaguardies/admin-plantillaguardies.component';
 import { AdminTreballadorsGuardiesComponent } from './project/components/Admin/admin-treballadors-guardies/admin-treballadors-guardies.component';
 import { NavbarComponent } from './project/components/navbar/navbar.component';
+import { AdminTreballadorsXGuardiaComponent } from './project/components/admin-treballadors-x-guardia/admin-treballadors-x-guardia.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -26,7 +27,9 @@ const routes: Routes = [
   { path:  'admin-treballadors', component: AdminTreballadorsComponent },
   { path:  'admin-treballadors-guardies/:dni', component: AdminTreballadorsGuardiesComponent },
   { path:  'admin-guardies', component: AdminGuardiesComponent },
-  { path:  'admin-plantillaguardies', component: AdminPlantillaguardiesComponent }
+  { path:  'admin-plantillaguardies', component: AdminPlantillaguardiesComponent },
+  { path:  'admin-treballadors-x-guardia/:id', component: AdminTreballadorsXGuardiaComponent}
+
 ];
 
 @NgModule({

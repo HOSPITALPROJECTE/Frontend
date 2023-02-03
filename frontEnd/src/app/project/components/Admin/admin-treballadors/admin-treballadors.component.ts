@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AUtils } from 'src/app/project/services/api/utils/AUtils';
 import { ATreballador } from 'src/app/project/services/api/treballador/ATreballador';
@@ -49,7 +49,7 @@ export class AdminTreballadorsComponent implements AfterViewInit {
     document.querySelector('#exit')?.classList.add('hide');
   }
 
-  btnsActions(){
+  btnsActions(){ 
     this.btnSecondary();
     this.btnPrimary();
   }

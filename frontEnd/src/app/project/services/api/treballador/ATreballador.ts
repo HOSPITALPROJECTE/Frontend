@@ -22,6 +22,11 @@ export class ATreballador{
         const requestOptions = this.createHeader();
         return this.http.get('http://localhost:4000/api/data-access/guardiestreballador?dni='+dni, requestOptions);
     }
+    getTreballadorsGuardia(id_guardia:string):Observable<any>{
+        const requestOptions = this.createHeader();
+        console.log('http://localhost:4000/api/data-access/treballadors_x_guardia?id_guardia='+id_guardia);
+        return this.http.get('http://localhost:4000/api/data-access/treballadors_x_guardia?id_guardia='+id_guardia, requestOptions);
+    }
     getAgendaTreballador(dni:string):Observable<any>{
         let data = this.getToday();
         const requestOptions = this.createHeader();

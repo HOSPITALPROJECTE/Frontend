@@ -1,1 +1,39 @@
-<p>admin-treballadors-x-guardia works!</p>
+<header>
+    <h1>Administració</h1>
+    <p>Treballadors</p>
+</header>
+<section id="body">
+    <div class="filtres">
+        <input #dni (change)="setDniFilter(dni.value)" type="text" name='dni' placeholder="000000000A">
+        <input #nom (change)="setNomFilter(nom.value)" type="text" name='nom' placeholder="Marc Grabulosa">
+        <select #cat (change)="setSelectFilter(cat.value)">
+            <option>Totes</option>
+            <option *ngFor="let c of this.categories">{{c.nom}}</option>
+        </select>
+        <button (click)="filterTable()">BUSCAR</button>
+    </div>
+    <div class="table">
+        <ul>
+            <li class="tr_header">
+                <p name="dni">DNI</p> 
+                <p name="nom">Nom</p> 
+                <p name="unitat">Unitat</p> 
+                <p name="cat">Categoria</p> 
+                <p name="estat">Estat</p> 
+
+            </li>
+            <li class="table_li" *ngFor="let t of this.treballadors">
+                <p name="dni">{{t.dni_treballador}}</p> 
+                <p name="nom">{{t.nom}}</p> 
+                <p name="unitat">{{t.unitat}}</p> 
+                <p name="cat">{{t.categoria}}</p> 
+                <p name="estat">{{t.estat_guardia}}</p> 
+            </li>
+        </ul>
+        <ng-template #elseBlock>
+            <div id="tableNull">Aquest treballador no s'ha apuntat a cap guardia</div>
+        </ng-template>
+    </div>
+</section>
+<button id="exit" (click)="goToAdmin()"></button>
+<app-navbar></app-navbar>
