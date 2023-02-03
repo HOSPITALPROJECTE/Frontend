@@ -12,9 +12,9 @@ export class Interceptor implements HttpInterceptor {
           Authorization: `Bearer ${token}`
         }
       });
-      console.log('Token is valid. Adding Authorization header to the request.');
+      console.log('Valid');
     } else {
-      console.log('Token is invalid. Showing an error.');
+      console.log('Invalid');
       return throwError(new Error('Token is missing or invalid.'));
     }
     return next.handle(request).pipe(
