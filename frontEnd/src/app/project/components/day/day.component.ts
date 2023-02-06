@@ -9,7 +9,7 @@ import { ATreballador } from '../../services/api/treballador/ATreballador';
   templateUrl: './day.component.html',
   styleUrls: ['./day.component.css']
 })
-export class DayComponent implements OnInit {
+export class DayComponent implements OnInit , AfterViewInit {
 
   torns = this.carregarTorns();
   unitats = JSON.parse(<string>localStorage.getItem("unitats"))
@@ -19,12 +19,14 @@ export class DayComponent implements OnInit {
   nomDia = (localStorage.getItem("nomDia") === null) ? this.diaGuardia.getDayName() : localStorage.getItem("nomDia");
 
   constructor(private diaGuardia: DiaGuardiaService, private router: Router, private elementRef: ElementRef, private httpRequest: ATreballador) { }
+  ngAfterViewInit(): void {
+    this.selectUnitiOnClick(); // desplegar una unitat
+  }
   ngOnInit(): void {
     this.getGuardiesOrdenades()
     if (localStorage.getItem("nomDia") === null) {
       localStorage.setItem("nomDia", <string>this.nomDia)
     }
-    this.selectUnitiOnClick(); // desplegar una unitat
 
   }
 
