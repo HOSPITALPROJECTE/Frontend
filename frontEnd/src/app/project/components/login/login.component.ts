@@ -3,7 +3,6 @@ import { AuthServiceService } from '../../services/api/Login/auth-service.servic
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { catchError, take, throwError } from 'rxjs';
-import { ATreballador } from '../../services/api/treballador/ATreballador';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +13,7 @@ export class LoginComponent implements OnInit {
   formulariLogin!: FormGroup;
   errorMissatge!:string;
 
-  constructor(private authService: ATreballador, private router: Router, private fb: FormBuilder) { }
+  constructor(private authService: AuthServiceService, private router: Router, private fb: FormBuilder) { }
 
   
 

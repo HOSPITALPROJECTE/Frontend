@@ -98,9 +98,11 @@ export class ATreballador{
     obtenirDiesAmbEstat(data : any) : Observable<any>{
         return this.http.post('http://localhost:4000/api/user/estatdies' ,data,this.requestOptions)
     }
-    login(user : any): Observable<any> {
+    
+    
+    /*login(user : any): Observable<any> {
         return this.http.post('http://localhost:4000/api/user/login', user , this.requestOptions);
-      }
+      }*/
     private createHeader(){
 
         let token = localStorage.getItem("hospital-accessToken")

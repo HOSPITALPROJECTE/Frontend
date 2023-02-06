@@ -5,6 +5,16 @@ import { catchError } from 'rxjs/operators';
 
 export class Interceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    
+    if(request.url=="http://localhost:4000/api/user/login"){
+      return next.handle(request).pipe(
+        catchError((error)=>{
+          console.log('An error occurred:',error);
+          return throwError(error);
+        })
+      )
+    }   
+    
     let token = localStorage.getItem('hospital-accessToken');
     if (token) {
       request = request.clone({

@@ -13,7 +13,7 @@ export class AdminGuardiesComponent implements AfterViewInit{
 
   id_guardia!:string;
   data:any;
-  unitats:Array<string> =['Unitat 1','Unitat 2','Unitat 3', 'Unitat 4']
+  unitats:Array<string> =['Unitat 1','Unitat 2','Unitat 3', 'Unitat 4','Urgencies']
   unitat:string='Totes';
   categories:Array<string> =['Infermeria','TCAI']
   categoria:string='Totes';
