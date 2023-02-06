@@ -12,6 +12,7 @@ import { ATreballador } from '../../services/api/treballador/ATreballador';
 export class DayComponent implements AfterViewInit, OnInit {
 
   torns = this.carregarTorns();
+  unitats = JSON.parse(<string>localStorage.getItem("unitats"))
   guardiesAssigandes = JSON.parse(<string>localStorage.getItem("guardiesAssignades"))
   categoriaTreballador = localStorage.getItem("categoria");
   guardies!: Array<any>;
@@ -43,11 +44,14 @@ export class DayComponent implements AfterViewInit, OnInit {
   }
 
   retornaArrayGuardies(nomUnitat : string){
+      let guardies : Array<any> = [];
       this.guardies.forEach(unitat =>{
         if(unitat.nomUnitat == nomUnitat){
-            let guardies = <Array<any>> unitat.guardies
+             guardies = <Array<any>> unitat.guardies
         }
       })
+      console.log(guardies)
+      return guardies;
   }
 
   getGuardiesOrdenades() {
@@ -64,11 +68,10 @@ export class DayComponent implements AfterViewInit, OnInit {
         return -1
       
 
-      if (parseInt(numeroUnitatA) < parseInt(numeroUnitatB))
-        return -1
+      if (parseInt(numeroUnitatA) < parseInt(numeroUnitatB)) return -1
       
-      if (parseInt(numeroUnitatA) > parseInt(numeroUnitatB))
-        return  1
+      if (parseInt(numeroUnitatA) > parseInt(numeroUnitatB)) return  1
+
 
         return 0
     })
@@ -88,7 +91,7 @@ guardiesDeStorage() {
       index++
     }
   }
-  return values
+  return values;
 }
 
 goToMonth(): void {

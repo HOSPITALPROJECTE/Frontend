@@ -43,6 +43,7 @@ export class MonthComponent implements AfterViewInit , OnInit {
         return throwError(()=>{return new Error(err)})
       })).subscribe((res)=>{
           this.unitats = res;
+          localStorage.setItem("unitats" , JSON.stringify(res.resultat.dades))
           console.log(this.unitats)
       })
   }
@@ -106,6 +107,7 @@ export class MonthComponent implements AfterViewInit , OnInit {
       this.addFuncionalities();
     }))
   }
+  
   setNewMonth(sumar:boolean){
     let any = parseInt(this.month.id.substring(0,4));
     let mes = parseInt(this.month.id.substring(5));

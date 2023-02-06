@@ -16,32 +16,39 @@
         </div>
     </section>
     <div id="unitats">
-        <div *ngFor="let unitat of this.guardies" class="unitat_box">
+        <div *ngFor="let unitat of this.unitats" class="unitat_box">
+
             <div class="unitat">
-                <h1>guardia.nomUnitat</h1>
+                <h1>{{unitat.nom}}</h1>
             </div>
-            <div *ngFor="let guardia of this.retornaArray(unitat.guardies) ">
-                <div class="unitat_data">
-                    <div class="buttons">
-                        <input type="checkbox">
-                        <button>MATI</button>
-                        <button>TARDA</button>
-                    </div>
-                    <div class="info torn_mati">
-                        <p>Places</p>
-                        <p>{{unitat[2][1]}}</p>
-                        <p>Inscripcions</p>
-                        <p>{{unitat[2][2]}}</p>
-                    </div>
-                    <div class="info torn_tarda">
-                        <p>Places</p>
-                        <p>{{unitat[3][1]}}</p>
-                        <p>Inscripcions</p>
-                        <p>{{unitat[3][2]}}</p>
-                    </div>
-                    <div class="actions">
-                        <button class="btn_primary">Inscriure'm</button>
-                        <button class="btn_secondary">cancelar</button>
+            <div *ngFor="let guardia of this.retornaArrayGuardies(unitat.nom) ">
+                <div *ngIf="guardia.categoria == 'Infermeria'">
+                    <div class="unitat_data">
+                        <div class="buttons">
+                            <input type="checkbox">
+                            <button>MATI</button>
+                            <button>TARDA</button>
+                        </div>
+                        <div *ngIf="guardia.torn == 'Dia'">
+                            <div class="info torn_mati">
+                                <p>Places</p>
+                                <p>{{guardia.places}}</p>
+                                <p>{{guardia.inscripcions}}</p>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div *ngIf="guardia.torn == 'Nit'">
+                            <div class="info torn_tarda">
+                                <p>Places</p>
+                                <p>{{guardia.places}}</p>
+                                <p>{{guardia.inscripcions}}</p>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <button class="btn_primary">Inscriure'm</button>
+                            <button class="btn_secondary">cancelar</button>
+                        </div>
                     </div>
                 </div>
             </div>

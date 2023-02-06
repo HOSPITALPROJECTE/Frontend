@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
       console.log(result);
       localStorage.setItem("hospital-accessToken" , result.resultat.accessToken)
       localStorage.setItem("hospital-refreshToken" , result.resultat.accessToken)
+      console.log(localStorage.getItem("hospital-accessToken") + "holas")
       setTimeout(()=>{
         this.router.navigate(['/navbar']).then(()=>
         this.router.navigate(['/month']));
