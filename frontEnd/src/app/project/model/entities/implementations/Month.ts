@@ -7,10 +7,11 @@ export class Month implements IMonth{
     id!: string;
     season!: number;
     days: Array<Day> = [];
+    guardies! : Array<Array<number>>
 
-    constructor(id:string){
+    constructor(id:string /*array amb guardies i estat*/){
         this.id = id;
-        let month = new Date(id);
+        let month = new Date(id); // data mes el nom del dia i hora
         this.setSeason(month.getMonth());
         this.setName(month.getMonth());
         this.setDays(month);
@@ -29,7 +30,7 @@ export class Month implements IMonth{
         let month = date.getMonth();
         let year = date.getFullYear();
         this.year = year;
-        let numDays = new Date(year, month + 1, 0).getDate();
+        let numDays = new Date(year, month + 1, 0).getDate(); // numero de dies que té el mes
 
         this.setNullDays(date)
         this.setAllDays(numDays)
@@ -37,7 +38,7 @@ export class Month implements IMonth{
     }
     /* agafeixo dies en null pq el dia 1 comenci el dia de setmana que li pertoca */
     private setNullDays(date: Date) {
-        let firstDay = date.getDay();
+        let firstDay = date.getDay(); // primer dia del mes segons el que pasem
         if (firstDay == 0) firstDay = 7;
 
         for(let i = 1; i<firstDay; i++){
@@ -47,8 +48,9 @@ export class Month implements IMonth{
     private setAllDays(num:number){
         for(let i = 1; i<=num; i++){
             let day = new Day(i);
-            day.setHolidays(this.days.length + 1);
+            day.setHolidays(this.days.length + 1 , );
             this.days.push(day)
         }
     }
+
 }

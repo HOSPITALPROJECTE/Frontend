@@ -10,13 +10,22 @@ export class ATreballador{
     
     constructor(private http:HttpClient){}
 
+    requestOptions = this.createHeader();
+
     getTreballadors():Observable<any>{
-        const requestOptions = this.createHeader();
-        return this.http.get('http://localhost:4000/api/data-access/treballadors', requestOptions);
+        return this.http.get('http://localhost:4000/api/data-access/treballadors');
     }
     getTreballador(dni:string):Observable<any>{
-        const requestOptions = this.createHeader();
-        return this.http.get('http://localhost:4000/api/data-access/treballador?dni='+dni, requestOptions);
+        return this.http.get('http://localhost:4000/api/data-access/treballador?dni='+dni);
+    }
+    getCategories():Observable<any>{
+        return this.http.get('http://localhost:4000/api/data-access/categories');
+    }
+    getUnitats(): Observable<any>{
+        return this.http.get('http://localhost:4000/api/data-access/unitats');
+    }
+    getTorns() : Observable<any>{
+        return this.http.get('http://localhost:4000/api/data-access/torns');
     }
     getGuardiesTreballador(dni:string):Observable<any>{
         const requestOptions = this.createHeader();
@@ -73,15 +82,34 @@ export class ATreballador{
         const requestOptions = this.createHeader();
         console.log('http://localhost:4000/api/data-access/desAssignarEstatGuardia?dni_treballador='+dni_treballador)
         return this.http.post('http://localhost:4000/api/data-access/desAssignarEstatGuardia?dni_treballador='+dni_treballador,requestOptions);
+        //return this.http.get('http://localhost:4000/api/data-access/guardiestreballador?dni='+dni);
+    }
+    obtenirGuardiesData(data : any){
+        return this.http.post('http://localhost:4000/api/data-access/guardiesperdata' ,data,this.requestOptions)
     }
 
+    // USER REQUESTS WITH TOKEN  \\
+    getCategoriaTreballador():Observable<any>{
+        return this.http.get('http://localhost:4000/api/user/categoria' , this.requestOptions);
+    }
+    apuntarseGuardia(data : any){
+        return this.http.post('http://localhost:4000/api/user/apuntar-se' , data , this.requestOptions );
+    }
+    obtenirDiesAmbEstat(data : any) : Observable<any>{
+        return this.http.post('http://localhost:4000/api/user/estatdies' ,data,this.requestOptions)
+    }
+    login(user : any): Observable<any> {
+        return this.http.post('http://localhost:4000/api/user/login', user , this.requestOptions);
+      }
     private createHeader(){
 
+        let token = localStorage.getItem("hospital-accessToken")
+
         const header = {
-            'Access-Control-Allow-Origin':'*',
             'Content-Type':'application/json',
             'Accept':'application/json',
             'Acces-Control-Allow-Headers':'Origin, Content-Type, Accept,Authorization',
+            'Authorization' : 'Bearer ' + token
         }
         return {headers: new HttpHeaders(header)};
     }

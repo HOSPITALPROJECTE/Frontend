@@ -1,3 +1,5 @@
+import { Unitat } from "./Unitat";
+
 export class Guardia {
     unitat!:string;
     torn!:string;

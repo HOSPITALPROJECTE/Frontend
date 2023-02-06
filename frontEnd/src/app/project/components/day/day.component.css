@@ -1,5 +1,6 @@
-.legend_item:nth-child(1) .color{background-color: var(--color-blue);}
-.legend_item:nth-child(2) .color{background-color: var(--color-green);}
+.legend_item:nth-child(1) .color{background-color: var(--color-green);}
+.legend_item:nth-child(2) .color{background-color: var(--color-blue);}
+.legend_item:nth-child(3) .color{background-color: var(--color-grey);}
 #unitats
 {
     width: 100%;
@@ -29,7 +30,7 @@
     position: absolute;
     width: 8px;
     height: 100%;
-    background-color: var(--color-green);
+    background-color: var(--color-grey);
     left: 0;
     top: 0;
 }
