@@ -97,7 +97,6 @@ export class AdminGuardiesComponent implements AfterViewInit{
   setSelectFilterDate(data:string): void {
     let date=this.dataToString(data);
     this.data=date;
-    console.log(this.data);
 	}
   setSelectFilterCategoria(categoria:string): void {
 		this.categoria = categoria;

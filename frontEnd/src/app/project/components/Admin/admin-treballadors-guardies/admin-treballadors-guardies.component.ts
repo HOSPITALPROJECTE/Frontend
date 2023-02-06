@@ -23,7 +23,6 @@ export class AdminTreballadorsGuardiesComponent{
   constructor(private router: Router, private httpClient:ATreballador, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       this.dni = params['dni'];
-      console.log(this.dni)
       this.httpClient.getTreballador(this.dni).subscribe(
       data => this.nom = data['resultat']['dades'][0].nom);
     });

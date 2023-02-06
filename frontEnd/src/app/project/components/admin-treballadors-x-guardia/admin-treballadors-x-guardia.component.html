@@ -22,7 +22,7 @@
                 <p name="estat">Estat</p> 
 
             </li>
-            <li class="table_li" *ngFor="let t of this.treballadors">
+            <li class="table_li" *ngFor="let t of this.treballadors" #liElement (click)="selectTreballador(liElement)">
                 <p name="dni">{{t.dni_treballador}}</p> 
                 <p name="nom">{{t.nom}}</p> 
                 <p name="unitat">{{t.unitat}}</p> 
@@ -31,9 +31,20 @@
             </li>
         </ul>
         <ng-template #elseBlock>
-            <div id="tableNull">Aquest treballador no s'ha apuntat a cap guardia</div>
+            <div id="tableNull">Aquesta guardia no s'hi ha apuntat cap treballador</div>
         </ng-template>
+    </div><br>
+    <div class="assignacio" *ngIf="isAssigned">
+        Aquest treballador ja està assignat a la guàrdia
+    </div>
+    <div class="assignacio" *ngIf="isApuntat">
+        Aquest treballador ja està desassignat de la guàrdia
+    </div>
+    <div class="btns">
+        <button class="btn_primary"> assignar guardia </button>
+        <button class="btn_terciary"> desassignar guardia </button>
+        <button class="btn_secondary"> eliminar selecció </button>
     </div>
 </section>
-<button id="exit" (click)="goToAdmin()"></button>
+<button id="exit" (click)="goBack()"></button>
 <app-navbar></app-navbar>

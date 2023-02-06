@@ -24,7 +24,6 @@ export class ATreballador{
     }
     getTreballadorsGuardia(id_guardia:string):Observable<any>{
         const requestOptions = this.createHeader();
-        console.log('http://localhost:4000/api/data-access/treballadors_x_guardia?id_guardia='+id_guardia);
         return this.http.get('http://localhost:4000/api/data-access/treballadors_x_guardia?id_guardia='+id_guardia, requestOptions);
     }
     getAgendaTreballador(dni:string):Observable<any>{
@@ -62,6 +61,18 @@ export class ATreballador{
         let ultim_dia=this.getDiaAlCapDunAny();
         const requestOptions= this.createHeader();
         return this.http.get('http://localhost:4000/api/data-access/getGuardiesMesAny?primer_dia='+primer_dia+'&ultim_dia='+ultim_dia,requestOptions)
+    }
+
+    assignarEstatGuardia(dni_treballador:string){
+        const requestOptions = this.createHeader();
+        console.log('http://localhost:4000/api/data-access/assignarEstatGuardia?dni_treballador='+dni_treballador)
+        return this.http.post('http://localhost:4000/api/data-access/assignarEstatGuardia?dni_treballador='+dni_treballador,requestOptions);
+    }
+    
+    desAssignarEstatGuardia(dni_treballador:string){
+        const requestOptions = this.createHeader();
+        console.log('http://localhost:4000/api/data-access/desAssignarEstatGuardia?dni_treballador='+dni_treballador)
+        return this.http.post('http://localhost:4000/api/data-access/desAssignarEstatGuardia?dni_treballador='+dni_treballador,requestOptions);
     }
 
     private createHeader(){

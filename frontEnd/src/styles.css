@@ -44,6 +44,15 @@ li{list-style: none;}
     color: white;
     border-radius: 5px;
 }
+.btn_terciary
+{
+    text-transform: uppercase;
+    padding: .25em 1em;
+    background: var(--color-green);
+    border: 2px solid var(--color-green);
+    color: white;
+    border-radius: 5px;
+}
 .btn_secondary
 {
     border-radius: 5px;
