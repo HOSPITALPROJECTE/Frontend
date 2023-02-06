@@ -21,14 +21,15 @@
             <div class="unitat">
                 <h1>{{unitat.nom}}</h1>
             </div>
-            <div *ngFor="let guardia of this.retornaArrayGuardies(unitat.nom) ">
-                <div *ngIf="guardia.categoria == 'Infermeria'">
                     <div class="unitat_data">
                         <div class="buttons">
                             <input type="checkbox">
                             <button>MATI</button>
                             <button>TARDA</button>
                         </div>
+                        
+                <div *ngFor="let guardia of this.retornaArrayGuardies(unitat.nom) ">
+                    <div *ngIf="guardia.categoria == 'Infermeria'">
                         <div *ngIf="guardia.torn == 'Dia'">
                             <div class="info torn_mati">
                                 <p>Places</p>

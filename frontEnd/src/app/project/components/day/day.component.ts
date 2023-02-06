@@ -9,7 +9,7 @@ import { ATreballador } from '../../services/api/treballador/ATreballador';
   templateUrl: './day.component.html',
   styleUrls: ['./day.component.css']
 })
-export class DayComponent implements AfterViewInit, OnInit {
+export class DayComponent implements OnInit {
 
   torns = this.carregarTorns();
   unitats = JSON.parse(<string>localStorage.getItem("unitats"))
@@ -24,10 +24,8 @@ export class DayComponent implements AfterViewInit, OnInit {
     if (localStorage.getItem("nomDia") === null) {
       localStorage.setItem("nomDia", <string>this.nomDia)
     }
-  }
-  // equivalent a js window.onload
-  ngAfterViewInit() {
     this.selectUnitiOnClick(); // desplegar una unitat
+
   }
 
   carregarTorns() {
@@ -47,6 +45,7 @@ export class DayComponent implements AfterViewInit, OnInit {
       let guardies : Array<any> = [];
       this.guardies.forEach(unitat =>{
         if(unitat.nomUnitat == nomUnitat){
+            console.log(unitat.guardies)
              guardies = <Array<any>> unitat.guardies
         }
       })
