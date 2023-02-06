@@ -19,6 +19,7 @@ import { AdminTreballadorsComponent} from './project/components/Admin/admin-treb
 import { AdminFestiusComponent } from './project/components/Admin/admin-festius/admin-festius.component';
 import { AdminGuardiesComponent } from './project/components/Admin/admin-guardies/admin-guardies.component';
 import {  AdminTreballadorsXGuardiaComponent } from './project/components/admin-treballadors-x-guardia/admin-treballadors-x-guardia.component';
+import { Interceptor } from './project/services/interceptor/interceptor';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,9 @@ import {  AdminTreballadorsXGuardiaComponent } from './project/components/admin-
     ReactiveFormsModule,
   ],
   providers: [ 
+    {provide: HTTP_INTERCEPTORS,
+    useClass: Interceptor,
+    multi: true}
   ],
   bootstrap: [AppComponent]
 })
