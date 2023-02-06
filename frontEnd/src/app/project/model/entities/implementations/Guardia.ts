@@ -1,13 +1,14 @@
+import { Unitat } from "./Unitat";
+
 export class Guardia {
     id!: number;
-    placesdispo!: number;
     dia!: Date;
+    unitats! : Array<Unitat>;
 
 
-    constructor(id : number, placesdispo : number, dia : Date) {
-       
+    constructor(id : number, placesdispo : number, dia : Date , unitats : Array<Unitat>) {
         this.id = id;
-        this.placesdispo = placesdispo;
         this.dia = dia;
+        this.unitats = unitats;
     }
 }

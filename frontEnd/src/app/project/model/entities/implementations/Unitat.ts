@@ -1,10 +1,16 @@
 export class Unitat {
-    tipus!: string;
+    nom!: string;
+    placesMati! : number; 
+    inscripcionsMati! : number;
+    placesNit! : number;
+    inscripcionsNit! : number;
 
-
-    constructor(tipus :string) {
-       
-        this.tipus = tipus;
-        
+    constructor(nom :string , placesMati : number , inscripcionsMati : number , placesNit : number , inscripcionsNit : number) {
+        this.nom = nom;
+        this.placesMati = placesMati;
+        this.inscripcionsMati = inscripcionsMati;
+        this.placesNit = placesNit;
+        this.inscripcionsNit = inscripcionsNit;
     }
+
 }

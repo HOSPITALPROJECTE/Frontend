@@ -1,7 +1,9 @@
-import { AfterViewInit, Component, ElementRef} from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, take, throwError } from 'rxjs';
 import { Month } from '../../model/entities/implementations/Month';
+import { DiaGuardiaService } from '../../services/altres/dia-guardia.service';
 import { ATreballador } from '../../services/api/treballador/ATreballador';
 
 @Component({
@@ -9,12 +11,40 @@ import { ATreballador } from '../../services/api/treballador/ATreballador';
   templateUrl: './month.component.html',
   styleUrls: ['./month.component.css']
 })
-export class MonthComponent implements AfterViewInit {
+export class MonthComponent implements AfterViewInit , OnInit {
   month:Month;
   months:Array<string> = ['Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Septembre', 'Octubre', 'Novembre', 'Desembre'];
+  guardiaEstat! : Array<any> 
+  unitats! : any;
+  guardiesAssignades : Array<String> = [];
 
-  constructor(private router: Router,private elementRef: ElementRef , private httpRequest : ATreballador) {
+  constructor(private diaGuardia : DiaGuardiaService , private router: Router,private elementRef: ElementRef , private httpRequest : ATreballador) {
     this.month = new Month('2023-1');
+  }
+  ngOnInit(): void {
+    localStorage.removeItem("nomDia")
+    this.obtenirCategoriaTreballador();
+    this.getUnitats();
+    this.obtenirGuardiesAmbEstat() // obté guardies d'aquell mes 
+  }
+
+  obtenirCategoriaTreballador(){
+
+    this.httpRequest.getCategoriaTreballador().pipe(take(1) , catchError((err: any) => {
+        return throwError(()=>{return Error(err)        })
+    })).subscribe((res) => {
+         localStorage.setItem("categoria" , res.resultat[0].categoria);
+    })
+
+  }
+
+  getUnitats(){
+      this.httpRequest.getUnitats().pipe(take(1) , catchError((err : any) =>{
+        return throwError(()=>{return new Error(err)})
+      })).subscribe((res)=>{
+          this.unitats = res;
+          console.log(this.unitats)
+      })
   }
 
   getDate(year:number, month:string){
@@ -24,17 +54,14 @@ export class MonthComponent implements AfterViewInit {
 
   // equivalent a window.onload
   ngAfterViewInit() {
-    console.log(this.obtenirGuardiesAmbEstat())
-    console.log(2)
     this.addFuncionalities(); //per afegir events al DOM
     this.showAllMonths(); // Permet escollir un mes qualsevol
     this.onChangeMonth(); //cambiar mes
   }
   addFuncionalities(){
-    console.log(3)
     setTimeout(() => {
       this.addGuardies(); // afegeix les guardies al mes
-      this.addClickEvent_Guardies(); // onclik -> guardia
+      //this.addClickEvent_Guardies(); // onclik -> guardia
     }, 0);
   }
 
@@ -75,7 +102,7 @@ export class MonthComponent implements AfterViewInit {
       let sumar = true;
       if(b == boto[0]) sumar = false;
       this.month = new Month(this.setNewMonth(sumar));
-
+      this.obtenirGuardiesAmbEstat()
       this.addFuncionalities();
     }))
   }
@@ -100,32 +127,104 @@ export class MonthComponent implements AfterViewInit {
     return any.toString()+'-'+mes.toString();
   }
 
-  /* Access a API */
+  aplicarGuardiesTreballador(res : any){
+      this.guardiaEstat = this.obtenirArrayGuardiesEstat(res);
+      
+      this.month.days.forEach(dia => {
+         this.guardiaEstat.forEach(guardia => {
+              if(dia.num == guardia.dia_guardia){
+                  dia.status = guardia.estat_guardia
+              } 
+         }); 
+      });
 
-  obtenirGuardiesAmbEstat(){
-    let resultat;
-      this.httpRequest.obtenirGuardiesAmbEstat().pipe(take(1) , catchError((err : any) => {
-        console.log("Error en obtenir estat de guardies")
-        return throwError(()=>{new Error(err)})
-      })).subscribe((result) =>{
-        resultat = result;
-        console.log(1)
+      this.addGuardies();
+  }
+
+  obtenirArrayGuardiesEstat(res : any){
+      let guardies = <Array<any>> res.guardies
+      let guardiaEstat : Array<any> = [];
+      guardies.forEach( guardia =>{
+          let dia = parseInt(<string>this.dateToString( "dd" , guardia.data_guardia));
+          let estatNum = (guardia.estat_guardia == "apuntat") ? 1 : 2 ; 
+          guardiaEstat.push({
+            id_guardia : guardia.id_guardia,
+            dia_guardia : dia,
+            estat_guardia : estatNum,
+            data_guardia : guardia.data_guardia 
+          })
+          if(estatNum == 2){
+            this.guardiesAssignades.push(guardia.id_guardia)
+          }
       })
 
-      return resultat;
+      localStorage.setItem("guardiesAssignades" , JSON.stringify(this.guardiesAssignades))
+      console.log(this.guardiesAssignades)
+      return guardiaEstat;
   }
 
-  /* NAVEGACIO */
-  addClickEvent_Guardies(){
-    let elementos = this.elementRef.nativeElement.querySelectorAll('.festivo');
+  dateToString( format : string , data:Date){
+    return new DatePipe("en-US").transform(data, format);
+  }
+  /* Access a API */
 
-    for (let i = 0; i < elementos.length; i++) {
-      elementos[i].addEventListener('click', () => {
-        this.goToDay();
-      });
-    }
+   
+  obtenirGuardiesAmbEstat(){
+        let data = {data : this.month.id} 
+        this.httpRequest.obtenirDiesAmbEstat(data).pipe(take(1), catchError((err : any) =>{
+         return throwError(()=> {return new Error(err)}) 
+        })).subscribe((res) =>{
+            console.log(res)
+            this.aplicarGuardiesTreballador(res);
+        })
+
   }
-  goToDay(){
-    this.router.navigate(['/day']);
+
+  goToDay(dia : any){
+    this.diaGuardia.setDia(this.month.id + "-" + dia.num)
+    this.carregarGuardiesDia(dia)
   }
+
+  carregarGuardiesDia(dia : any){
+    let data = {data : this.obtenirDataGuardia(dia)}
+
+    this.httpRequest.obtenirGuardiesData(data).pipe(take(1), catchError((err : any) =>{
+      return throwError(()=> {return new Error(err)}) 
+     })).subscribe((res) =>{
+        console.log(res)
+        this.guardarGuardiesLocalStorage(res)
+     })
+  }
+
+  guardarGuardiesLocalStorage(res : any){
+    let unitats : Array<any> = this.unitats.resultat.dades;
+    let guardies : Array<any> = res.resultat.dades;
+    let i = 0;
+   unitats.forEach(unitat=> {
+      let nomClau = "unitatClau_" + i.toString();
+      let nomUnitat = unitat.nom;
+      let guardiesUnitat : Array<any> = [];
+      guardies.forEach((guardia: any) =>{
+        if(guardia.unitat == nomUnitat)
+          guardiesUnitat.push(guardia)
+      })
+      localStorage.setItem(nomClau , JSON.stringify({
+        nomUnitat : nomUnitat,
+        guardies : guardiesUnitat}));
+        i++;
+    });
+
+    this.router.navigate(['/day'])
+  }
+
+  obtenirDataGuardia(dia : any){
+    let data : string = "";
+    this.guardiaEstat.forEach(guardia =>{
+      if(parseInt(guardia.dia_guardia) == parseInt(dia.num))    
+          data = <string>this.dateToString( "YYYY-MM-dd" , guardia.data_guardia);
+    })
+
+    return data;
+  }
+
 }

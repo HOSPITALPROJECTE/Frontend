@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   
 
   ngOnInit() {
+    localStorage.clear();
     this.formulariLogin = this.fb.group({
       nom: [""],
       password: [""]
@@ -39,47 +40,16 @@ export class LoginComponent implements OnInit {
       console.log(result);
       localStorage.setItem("hospital-accessToken" , result.resultat.accessToken)
       localStorage.setItem("hospital-refreshToken" , result.resultat.accessToken)
-      this.router.navigate(['/navbar']).then(()=>
-      this.router.navigate(['/month']));
+      setTimeout(()=>{
+        this.router.navigate(['/navbar']).then(()=>
+        this.router.navigate(['/month']));
+      }, 500)
     })
   }
 
     
 }
-  /*
-username = '';
-password = '';
 
-constructor(private router: Router, private auth: AuthenticationComponent) {}
-
-login() {
-if (this.auth.login(this.username, this.password)) {
-  console.log('Inici de sessió correcte');
-  this.router.navigate(['/navbar']).then(()=>
-  this.router.navigate(['/month']));
-} else {
-  console.log('Dades incorrectes');
-}
-}
-}
-/*public username!: string;
-public password!: string;
-
-constructor(private http: HttpClient) { }
-
-ngOnInit() {
-}
-
-login() {
-const body = {username: this.username, password: this.password};
-this.http.post('/api/login', body).subscribe(data => {
-  localStorage.setItem('token', data.token);
-}, error => {
-  console.log(error);
-});
-}
-}
-*/
 
 
 

@@ -21,28 +21,41 @@ export class ATreballador{
     getCategories():Observable<any>{
         return this.http.get('http://localhost:4000/api/data-access/categories');
     }
+    getUnitats(): Observable<any>{
+        return this.http.get('http://localhost:4000/api/data-access/unitats');
+    }
+    getTorns() : Observable<any>{
+        return this.http.get('http://localhost:4000/api/data-access/torns');
+    }
     getGuardiesTreballador(dni:string):Observable<any>{
         return this.http.get('http://localhost:4000/api/data-access/guardiestreballador?dni='+dni);
     }
+    obtenirGuardiesData(data : any){
+        return this.http.post('http://localhost:4000/api/data-access/guardiesperdata' ,data,this.requestOptions)
+    }
 
+    // USER REQUESTS WITH TOKEN  \\
+    getCategoriaTreballador():Observable<any>{
+        return this.http.get('http://localhost:4000/api/user/categoria' , this.requestOptions);
+    }
     apuntarseGuardia(data : any){
         return this.http.post('http://localhost:4000/api/user/apuntar-se' , data , this.requestOptions );
     }
-
-    obtenirGuardiesAmbEstat(){
-        return this.http.get('http://localhost:4000/api/user/estatguardies' , this.requestOptions)
+    obtenirDiesAmbEstat(data : any) : Observable<any>{
+        return this.http.post('http://localhost:4000/api/user/estatdies' ,data,this.requestOptions)
     }
-
     login(user : any): Observable<any> {
         return this.http.post('http://localhost:4000/api/user/login', user , this.requestOptions);
       }
     private createHeader(){
 
+        let token = localStorage.getItem("hospital-accessToken")
+
         const header = {
             'Content-Type':'application/json',
             'Accept':'application/json',
             'Acces-Control-Allow-Headers':'Origin, Content-Type, Accept,Authorization',
-            'Authorization' : 'Bearer' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkbmkiOiIxMTExMTExMTFCIiwiY2F0ZWdvcmlhIjoiSW5mZXJtZXJpYSIsImlhdCI6MTY3NDU4NjU5NiwiZXhwIjoxNjc0NTg3NDk2fQ.6t85VDDBPc7ZVrdgWqZG4rcCNYS-jKoMywAUtGxYU4k'
+            'Authorization' : 'Bearer ' + token
         }
         return {headers: new HttpHeaders(header)};
     }

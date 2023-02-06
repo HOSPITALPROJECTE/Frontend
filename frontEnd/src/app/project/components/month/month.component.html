@@ -41,7 +41,7 @@
         </div>
         <div class="calendar_grid">
             <!--ngFor month.days each(day:Day)-->
-            <div *ngFor="let day of this.month.days let i = index" class="day" [attr.data-index]="i" [ngClass]="day.holiday ? 'festivo': ''">
+        <div *ngFor="let day of this.month.days let i = index" class="day" [attr.data-index]="i" [ngClass]="day.holiday ? 'festivo': ''" (click)="day.holiday ? goToDay(this.day): '' ">
                 <p *ngIf="day.num > 0">{{day.num}}</p>
             </div>
         </div>

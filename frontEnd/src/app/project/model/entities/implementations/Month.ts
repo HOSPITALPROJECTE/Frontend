@@ -52,4 +52,5 @@ export class Month implements IMonth{
             this.days.push(day)
         }
     }
+
 }

@@ -10,12 +10,5 @@ export class Day implements IDay {
     }
     public setHolidays(position:number ){
         if (Number.isInteger(position/7)) this.holiday = true; // cambiar?
-        this.addGuardiaStatus();
-    }
-    addGuardiaStatus(/*array dies*/ ) {
-        let guardies = [[]] // guardies amb estat
-        for (let i = 0; i < guardies.length; i++){
-            if(this.num == guardies[i][0]) this.status = guardies[i][1]
-        }
     }
 }
