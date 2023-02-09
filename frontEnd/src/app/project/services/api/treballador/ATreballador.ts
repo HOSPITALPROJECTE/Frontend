@@ -82,7 +82,6 @@ export class ATreballador{
         const requestOptions = this.createHeader();
         console.log('http://localhost:4000/api/data-access/desAssignarEstatGuardia?dni_treballador='+dni_treballador)
         return this.http.post('http://localhost:4000/api/data-access/desAssignarEstatGuardia?dni_treballador='+dni_treballador,requestOptions);
-        //return this.http.get('http://localhost:4000/api/data-access/guardiestreballador?dni='+dni);
     }
     obtenirGuardiesData(data : any){
         return this.http.post('http://localhost:4000/api/data-access/guardiesperdata' ,data,this.requestOptions)
@@ -99,10 +98,6 @@ export class ATreballador{
         return this.http.post('http://localhost:4000/api/user/estatdies' ,data,this.requestOptions)
     }
     
-    
-    /*login(user : any): Observable<any> {
-        return this.http.post('http://localhost:4000/api/user/login', user , this.requestOptions);
-      }*/
     private createHeader(){
 
         let token = localStorage.getItem("hospital-accessToken")

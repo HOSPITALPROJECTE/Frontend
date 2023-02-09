@@ -1,7 +1,7 @@
 import { AfterViewInit, Component,} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ATreballador } from '../../services/api/treballador/ATreballador';
-import { AUtils } from '../../services/api/utils/AUtils';
+import { ATreballador } from '../../../services/api/treballador/ATreballador';
+import { AUtils } from '../../../services/api/utils/AUtils';
 
 @Component({
   selector: 'app-admin-treballadors-x-guardia',
