@@ -33,6 +33,13 @@ export class AdminTreballadorsXGuardiaComponent implements AfterViewInit{
       })})
   }
 
+  loadTreballadors(){
+    this.httpClient.getTreballadorsGuardia(this.id).subscribe(
+      data => {
+    this.treballadors = data['resultat']['dades'];
+    })
+  }
+
   ngAfterViewInit(): void {
     this.btnsActions(); 
   }
@@ -84,6 +91,7 @@ export class AdminTreballadorsXGuardiaComponent implements AfterViewInit{
         console.error('Error updating value');
       }
     })
+    this.loadTreballadors();
   }  
 
   btnTerciary(){
@@ -107,6 +115,7 @@ export class AdminTreballadorsXGuardiaComponent implements AfterViewInit{
         console.error('Error updating value');
       }
     })
+    this.loadTreballadors();
   }  
 
   btnSecondary(){
