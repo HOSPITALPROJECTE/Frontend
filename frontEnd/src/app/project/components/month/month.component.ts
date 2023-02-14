@@ -16,7 +16,7 @@ export class MonthComponent implements AfterViewInit , OnInit {
   months:Array<string> = ['Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Septembre', 'Octubre', 'Novembre', 'Desembre'];
   guardiaEstat! : Array<any> 
   unitats! : any;
-  guardiesAssignades : Array<String> = [];
+  guardiesAssignades : Array<any> = [];
 
   constructor(private diaGuardia : DiaGuardiaService , private router: Router,private elementRef: ElementRef , private httpRequest : ATreballador) {
     this.month = new Month('2023-1');
@@ -156,12 +156,12 @@ export class MonthComponent implements AfterViewInit , OnInit {
             data_guardia : guardia.data_guardia 
           })
           if(estatNum == 2){
-            this.guardiesAssignades.push(guardia.id_guardia)
+            this.guardiesAssignades.push({guardia : guardia.id_guardia,
+                                          unitat : guardia.unitat})
           }
       })
 
       localStorage.setItem("guardiesAssignades" , JSON.stringify(this.guardiesAssignades))
-      console.log(this.guardiesAssignades)
       return guardiaEstat;
   }
 

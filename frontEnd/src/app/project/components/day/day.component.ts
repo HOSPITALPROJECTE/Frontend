@@ -23,6 +23,7 @@ export class DayComponent implements OnInit , AfterViewInit {
     this.selectUnitiOnClick(); // desplegar una unitat
   }
   ngOnInit(): void {
+    console.log(this.guardiesAssigandes);
     this.getGuardiesOrdenades()
     if (localStorage.getItem("nomDia") === null) {
       localStorage.setItem("nomDia", <string>this.nomDia)
