@@ -23,7 +23,6 @@ export class DayComponent implements OnInit , AfterViewInit {
     this.selectUnitiOnClick(); // desplegar una unitat
   }
   ngOnInit(): void {
-    console.log(this.guardiesAssigandes);
     this.getGuardiesOrdenades()
     if (localStorage.getItem("nomDia") === null) {
       localStorage.setItem("nomDia", <string>this.nomDia)
@@ -48,11 +47,9 @@ export class DayComponent implements OnInit , AfterViewInit {
       let guardies : Array<any> = [];
       this.guardies.forEach(unitat =>{
         if(unitat.nomUnitat == nomUnitat){
-            console.log(unitat.guardies)
              guardies = <Array<any>> unitat.guardies
         }
       })
-      console.log(guardies)
       return guardies;
   }
 
@@ -138,13 +135,11 @@ apuntarseGuardia(dni: string, id_guardia: string) {
     "id_guardia": id_guardia
   }
   this.httpRequest.apuntarseGuardia(dataObject).pipe(take(1), catchError((err: any) => {
-    console.log(err)
     return throwError(() => new Error("Error en apuntar-se a guardia"))
 
   })).subscribe({
     next: () => { },
     error: (err: any) => {
-      console.log("Error al fer el subscribe")
       console.log(err.error)
     },
     complete: () => { console.log("Correcte!!!") }

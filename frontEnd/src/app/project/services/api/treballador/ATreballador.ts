@@ -57,6 +57,10 @@ export class ATreballador{
         return this.http.get('http://localhost:4000/api/data-access/getFestius', requestOptions);
     }
 
+    getGuardiesTreballadorPerData(data : any):Observable<any>{
+        return this.http.post('http://localhost:4000/api/user/guardiesTreballadorData', data ,this.requestOptions);
+    }
+
     getDiaAlCapDunAny(){
         let date = new Date();
         let year = date.getFullYear()+1;
@@ -74,13 +78,11 @@ export class ATreballador{
 
     assignarEstatGuardia(dni_treballador:string){
         const requestOptions = this.createHeader();
-        console.log('http://localhost:4000/api/data-access/assignarEstatGuardia?dni_treballador='+dni_treballador)
         return this.http.post('http://localhost:4000/api/data-access/assignarEstatGuardia?dni_treballador='+dni_treballador,requestOptions);
     }
     
     desAssignarEstatGuardia(dni_treballador:string){
         const requestOptions = this.createHeader();
-        console.log('http://localhost:4000/api/data-access/desAssignarEstatGuardia?dni_treballador='+dni_treballador)
         return this.http.post('http://localhost:4000/api/data-access/desAssignarEstatGuardia?dni_treballador='+dni_treballador,requestOptions);
     }
     obtenirGuardiesData(data : any){
@@ -97,6 +99,7 @@ export class ATreballador{
     obtenirDiesAmbEstat(data : any) : Observable<any>{
         return this.http.post('http://localhost:4000/api/user/estatdies' ,data,this.requestOptions)
     }
+
     
     private createHeader(){
 

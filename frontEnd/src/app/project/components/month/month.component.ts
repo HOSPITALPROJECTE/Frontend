@@ -157,7 +157,8 @@ export class MonthComponent implements AfterViewInit , OnInit {
           })
           if(estatNum == 2){
             this.guardiesAssignades.push({guardia : guardia.id_guardia,
-                                          unitat : guardia.unitat})
+                                          unitat : guardia.unitat,
+                                          estat_guardia : guardia.estat_guardia})
           }
       })
 
@@ -168,9 +169,7 @@ export class MonthComponent implements AfterViewInit , OnInit {
   dateToString( format : string , data:Date){
     return new DatePipe("en-US").transform(data, format);
   }
-  /* Access a API */
 
-   
   obtenirGuardiesAmbEstat(){
         let data = {data : this.month.id} 
         this.httpRequest.obtenirDiesAmbEstat(data).pipe(take(1), catchError((err : any) =>{
@@ -190,12 +189,24 @@ export class MonthComponent implements AfterViewInit , OnInit {
   carregarGuardiesDia(dia : any){
     let data = {data : this.obtenirDataGuardia(dia)}
 
+    this.carregarTreballadorPerData(data);
+
     this.httpRequest.obtenirGuardiesData(data).pipe(take(1), catchError((err : any) =>{
       return throwError(()=> {return new Error(err)}) 
      })).subscribe((res) =>{
         console.log(res)
         this.guardarGuardiesLocalStorage(res)
      })
+  }
+
+  carregarTreballadorPerData(data : any){
+
+    this.httpRequest.getGuardiesTreballadorPerData(data).pipe(take(1), catchError((err : any) =>{
+      return throwError(()=> {return new Error(err)}) 
+     })).subscribe((res) =>{
+        localStorage.setItem("unitatsApuntades" ,JSON.stringify(res.resultat));
+     })
+
   }
 
   guardarGuardiesLocalStorage(res : any){

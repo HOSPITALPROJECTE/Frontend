@@ -34,7 +34,8 @@
     left: 0;
     top: 0;
 }
-.unitat_box.inscrito::before{background-color: var(--color-blue);}
+.unitat_box.apuntat::before{background-color: var(--color-blue);}
+.unitat_box.assignat::before{background-color: var(--color-blue);}
 .unitat
 {
     position: relative;
