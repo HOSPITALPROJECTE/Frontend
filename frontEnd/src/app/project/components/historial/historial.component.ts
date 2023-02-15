@@ -15,7 +15,7 @@ export class HistorialComponent implements OnInit,AfterViewInit {
   totalUnitats!:number;
   guardies!:Array<any>;
   guardiesUnitat:Array<Unitat> = []
-  dni:string = '111111111E'
+  dni:string = '123456789A'
   conicGradient!:string;
 
   constructor(private router: Router, private httpClient:ATreballador, private httpUtils:AUtils, private http:HttpClient) {
