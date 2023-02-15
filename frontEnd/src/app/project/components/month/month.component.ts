@@ -204,7 +204,7 @@ export class MonthComponent implements AfterViewInit , OnInit {
     this.httpRequest.getGuardiesTreballadorPerData(data).pipe(take(1), catchError((err : any) =>{
       return throwError(()=> {return new Error(err)}) 
      })).subscribe((res) =>{
-        localStorage.setItem("unitatsApuntades" ,JSON.stringify(res.resultat));
+        localStorage.setItem("unitatsAmbEstat" ,JSON.stringify(res.resultat));
      })
 
   }

@@ -129,12 +129,10 @@ deleteActiveClass(elementos: any, element: number) {
   }
 }
 
-apuntarseGuardia(dni: string, id_guardia: string) {
-  let dataObject = {
-    "dni": dni,
-    "id_guardia": id_guardia
-  }
-  this.httpRequest.apuntarseGuardia(dataObject).pipe(take(1), catchError((err: any) => {
+apuntarseGuardia(id_guardia: string) {
+
+
+  this.httpRequest.apuntarseGuardia({id_guardia : id_guardia}).pipe(take(1), catchError((err: any) => {
     return throwError(() => new Error("Error en apuntar-se a guardia"))
 
   })).subscribe({
@@ -145,6 +143,36 @@ apuntarseGuardia(dni: string, id_guardia: string) {
     complete: () => { console.log("Correcte!!!") }
   }
   )
+}
+
+
+cancelarGuardia(id_guardia: string) {
+
+  this.httpRequest.cancelarGuardia({id_guardia : id_guardia}).pipe(take(1), catchError((err: any) => {
+    return throwError(() => new Error("Error en cancelar guardia"))
+
+  })).subscribe({
+    next: () => { },
+    error: (err: any) => {
+      console.log(err.error)
+    },
+    complete: () => { console.log("Correcte!!!") }
+  }
+  )
+}
+
+getClasseUnitat(unitatNom : string){
+
+  let unitatsAmbEstat = <Array<any>>JSON.parse(<string>localStorage.getItem("unitatsAmbEstat")).dades;
+  let classe = {}; 
+  unitatsAmbEstat.forEach(unitat => {
+    
+      if(unitatNom == unitat.unitat){
+         classe = (unitat.estat_guardia == "assignat") ? {'assignat' : true} : {'apuntat' : true};
+      }
+  });
+
+  return classe;
 }
 
 

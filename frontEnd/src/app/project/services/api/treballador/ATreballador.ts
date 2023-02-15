@@ -93,9 +93,15 @@ export class ATreballador{
     getCategoriaTreballador():Observable<any>{
         return this.http.get('http://localhost:4000/api/user/categoria' , this.requestOptions);
     }
+
     apuntarseGuardia(data : any){
         return this.http.post('http://localhost:4000/api/user/apuntar-se' , data , this.requestOptions );
     }
+
+    cancelarGuardia(data : any){
+        return this.http.post('http://localhost:4000/api/user/cancelar' , data , this.requestOptions );
+    }
+
     obtenirDiesAmbEstat(data : any) : Observable<any>{
         return this.http.post('http://localhost:4000/api/user/estatdies' ,data,this.requestOptions)
     }

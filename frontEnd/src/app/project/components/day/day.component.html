@@ -20,7 +20,7 @@
         </div>
     </section>
     <div id="unitats">
-        <div *ngFor="let unitat of this.unitats ; let i = index" class="unitat_box" [ngClass]="">
+        <div *ngFor="let unitat of this.unitats ; let i = index" class="unitat_box" [ngClass]="this.getClasseUnitat(unitat.nom)">
 
             <div class="unitat">
                 <h1>{{unitat.nom}}</h1>
@@ -31,7 +31,7 @@
                             <button>DIA</button>
                             <button>NIT</button>
                         </div>                    
-                <div *ngFor="let guardia of this.retornaArrayGuardies(unitat.nom)">
+                <div *ngFor="let guardia of this.retornaArrayGuardies(unitat.nom)  ; let i = index">
 
                     <div *ngIf="guardia.categoria == 'Infermeria'">
                         <div *ngIf="guardia.torn == 'Dia'">
@@ -48,13 +48,14 @@
                                 <p>{{guardia.places}}</p>
                                 <p>Inscripcions</p>
                                 <p>{{guardia.inscripcions}}</p>
+                                <label hidden>{{guardia.id}}</label>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="actions">
-                    <button class="btn_primary">Inscriure'm</button>
-                    <button class="btn_secondary">cancelar</button>
+                    <div *ngIf="i < 1" class="actions">
+                        <button class="btn_primary" (click)="this.apuntarseGuardia(guardia.id)">Inscriure'm</button>
+                        <button class="btn_secondary" (click)="this.cancelarGuardia(guardia.id)">Cancelar</button>
+                    </div>
                 </div>
             </div>
         </div>
