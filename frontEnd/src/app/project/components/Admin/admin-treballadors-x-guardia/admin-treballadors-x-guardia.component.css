@@ -13,7 +13,7 @@
   align-items: center;
   gap: 10px;
   transition: .3s;
-  bottom: 0;
+  bottom: -2vh;
 }
 
 .actions{
