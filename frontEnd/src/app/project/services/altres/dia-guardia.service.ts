@@ -25,6 +25,6 @@ export class DiaGuardiaService {
       let nomMes =  date.toLocaleDateString("ca-ES", { month: 'long' });
           nomMes = nomMes.charAt(0).toUpperCase() + nomMes.slice(1);
       
-      return `${nomDia}, ${date.getDate()} de ${nomMes} ${date.getFullYear()}`
+      return `${nomDia}, ${date.getDate()} de ${nomMes}`
   }
 }
